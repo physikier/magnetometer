@@ -51,8 +51,8 @@ class NidaqDevice(object):
         self.downsampling_factor = downsampling_factor
         self.sampleBufferSize = self.uInt64(100000)
 
-        self.sampleRate = sample_rate 
-        self.detectionTime = detection_time 
+        self.sampleRate = sample_rate
+        self.detectionTime = detection_time
         self.triggerSource = ctypes.create_string_buffer(trigger_source.encode('utf-8'))
         self.triggerLevel = trigger_level
         
