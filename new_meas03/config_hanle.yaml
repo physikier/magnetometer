@@ -1,0 +1,212 @@
+outputs:
+    B1:
+        device: tektronix
+        channel: 2
+        active: 'false'
+        func: SIN   # available funcs: 'SIN'
+        methods: const     # available methods: 'freq', 'amp', 'offset', 'const', 'freq_mod.span', 'freq_mod.sweep_time', 'freq_mod.return_time', 'amp_mod.freq', 'amp_mod.depth'
+        freq:
+            start: 0
+            stop: 0
+            step: 0
+            label: B1 frequency (Hz)    # TODO
+        amp:
+            start: 0
+            stop: 0
+            step: 0
+            label: B1 amplitude (V)
+        offset:
+            start: 0
+            stop: 0
+            step: 0
+            label: B1 offset (V)
+        # frequency modulation settings (cannot be combined with amplitude 
+        # modulation)
+        freq_mod:
+            active: false
+            center: 1100.0
+            span:
+                start: 1500.0
+                stop: 0.0
+                step: 0.0
+                label: B1 frequency modulation span (Hz)
+            sweep_time:
+                start: 2.0
+                stop: 0.0
+                step: 0.0
+                label: B1 frequency modulation sweep time (s)
+            return_time:
+                start: 2.0
+                stop: 0.0
+                step: 0.0
+                label: B1 frequency modulation return time (s)
+            hold_time: 0
+            form: LIN
+        # amplitude modulation settings (cannot be combined with frequency 
+        # modulation)
+        amp_mod:
+            active: false
+            waveform: SIN    # available waveforms: 'SIN', 'SQU', 'TRI'
+            depth:
+                start: 50
+                stop: 50
+                step: 10
+                label: B1 amplitude modulation depth (%)
+            freq:
+                start: 50
+                stop: 350
+                step: 10
+                label: B1 amplitude modulation frequency (Hz)
+    B0:
+        device: tektronix
+        channel: 1
+        active: 'false'
+        func: RAMP   # available funcs: 'DC', 'RAMP', 'SQU'
+        methods: const   # available methods: 'freq', 'amp', 'offset', 'const'
+        freq:
+            start: 0
+            stop: 0
+            step: 0
+            label: B0 frequency (Hz)
+        amp:
+            start: 0
+            stop: 0
+            step: 0
+            label: B0 amplitude (V)
+        offset:
+            start: 0
+            stop: 0
+            step: 0
+            label: B0 offset (V)
+    R3:
+        device: hameg
+        channel: 1
+        active: 'true'
+        func: DC
+        methods: [const]   # available methods: 'offset', 'const'
+        offset:
+            start: 0.0
+            stop: 0.8
+            step: 0.05
+            label: R3 offset (V)
+    R2:
+        device: hameg
+        channel: 2
+        active: 'true'
+        func: DC
+        methods: [const]   # available methods: 'offset', 'const'
+        offset:
+            start: 0.0
+            stop: 0.8
+            step: 0.05
+            label: R2 offset (V)
+    R4:
+        device: hameg
+        channel: 3
+        active: 'true'
+        func: DC
+        methods: [const]   # available methods: 'offset', 'const'
+        offset:
+            start: 0.0
+            stop: 0.9
+            step: 0.05
+            label: R4 offset (V)
+    lock_in:
+        device: SR830
+        methods: [const]   # available methods: 'time_constant', 'sensitivity', 'phase', 'harmonic'
+        channel: A
+        active: 'false'
+        time_constant:
+            start: 6
+            stop: 19
+            step: 1
+            label: Time constant parameter
+            # i=0: 10us, i=1: 30us, i=2: 100us, i=3: 300us,
+            # i=4: 1ms, i=5: 3ms, i=6: 10ms, i=7: 30ms,
+            # i=8: 100ms, i=9: 300ms, i=10: 1s, i=11: 3s,
+            # i=12: 10s, i=13: 30s, i=14: 100s, i=15: 300s,
+            # i=16: 1ks, i-17: 3ks, i=18: 10ks, i=19: 30ks
+        sensitivity:
+            start: 23
+            stop: 26
+            step: 1
+            label: Sensitivity parameter
+            # i=0:2nV/fA, i=1:5nV/fA, i=2: 10nV/fA, 
+            # i=3: 20nV/fA, i=4: 50nV/fA, i=5: 100nV/fA
+            # i=6: 200nV/fA, i=7: 500nV/fA, i=8: 1uV/pA,
+            # i=9: 2uV/pA, i=10: 5uV/pA, 
+            # i=11: 10uV/pA, i=12: 20uV/pA, i=13: 50uV/pA,
+            # i=14: 100uV/pA, i=15: 200uV/pA,
+            # i=16:500uV/pA, i=17: 1mV/nA, i=18: 2mV/nA,
+            # i=19: 5mV/nA, i=20: mV/nA,
+            # i=21: 20mV/nA, i=22: 50mV/nA, i=23: 100mV/nA,
+            # i=24: 200mV/nA, i=25: 500mV/nA,
+            # i=26: 1V/uA
+        slope: 3
+        # The parameter i means: i=0: 6dB/oct, 
+        # i=1: 12dB/oct, i=2: 18dB/oct, i=3: 24dB/oct
+        sync_filter: 1
+        # The parameter i means: i=0: Off and i=1: synchronous filtering below 200 Hz.
+        # Synchronous filtering is tuned on only if the detection frequency is less than 200 Hz
+        ground: 1
+        # The parameter i selects Float (i=0) or Ground (i=1)
+        filters: 3
+        # The parameter i means no filters (i=0), Line notch in (i=1), 
+        # 2xLine notch in (i=2) or both notch filters in (i=3)
+        reserve: 2
+        # The parameter i means High Reserve (i=0), Normal (i=1) or
+        # Low Noise (i=2)
+        phase:  # in degrees
+            start: 10.0
+            stop: 20.0
+            step: 1.0
+            label: Phase (degree)
+        harmonic:
+            start: 1
+            stop: 3
+            step: 1
+            label: Harmonic
+    motor:
+        device: motor_driver
+        methods: [position]   # available methods: 'const' or 'position'
+        channel: 1 #available channels: 0, 1, 2, 3
+        active: 'false'
+        position: #position in degree
+            start: 165
+            stop: 225
+            step: 10
+            label: NDF position in degree
+stack:
+-   B0.0
+devices:
+    nidaq:
+        sample_rate: 200000.0
+        measurement_time_s: 1.0
+        downsampling_factor: 100.0
+
+measurement:
+    cell_id: 0
+    measurement_id: 1
+    rubidium_isotope: 85
+    laser_locked: 'true'
+    temperature_C: 0
+    laser_power_uW: 0
+    photo_diode_gain_dB: 0
+    NV_in_cell: false
+    NV_light_on: false
+    NV_light_power_mW: 59
+    NV_chopper_on: false
+    NV_chopper_freq: 70
+    NV_microwave_on: false
+    NV_microwave_level_dBm: 0
+    NV_microwave_am_freq: 50000.0
+    extra_resistances:
+        R0: 1800
+        R1: with_highpass (430kOhm, 1uF, 680Ohm)
+        R2: 1800
+        R3: 1800
+        R4: 1800
+    polarity:
+        R2: +=+, -=-
+        R3: -=+, +=-
+        R4: +=+, -=-

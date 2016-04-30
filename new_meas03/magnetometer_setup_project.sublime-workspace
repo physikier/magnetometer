@@ -1,0 +1,1427 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"__",
+				"__write"
+			],
+			[
+				"check",
+				"check_ch"
+			],
+			[
+				"ch",
+				"channel"
+			],
+			[
+				"set",
+				"set_phase"
+			],
+			[
+				"allow",
+				"allowed_outputs"
+			],
+			[
+				"all",
+				"all_outputs"
+			],
+			[
+				"Value",
+				"ValueError"
+			],
+			[
+				"re",
+				"reference"
+			],
+			[
+				"fre",
+				"freq"
+			],
+			[
+				"detection",
+				"detectionmode"
+			],
+			[
+				"freq",
+				"frequency"
+			],
+			[
+				"en",
+				"end_meas"
+			],
+			[
+				"me",
+				"mean_width_and_std"
+			],
+			[
+				"data",
+				"datanew"
+			],
+			[
+				"corr_factor",
+				"corr_factor_HzperVolts"
+			],
+			[
+				"meas",
+				"start_meas"
+			],
+			[
+				"start",
+				"start_meas"
+			],
+			[
+				"in",
+				"instance"
+			],
+			[
+				"z",
+				"z_min"
+			],
+			[
+				"offs",
+				"offsetstart"
+			],
+			[
+				"che",
+				"check_ch"
+			],
+			[
+				"Task",
+				"TaskHandle"
+			],
+			[
+				"Crea",
+				"DAQmxCreateTask"
+			],
+			[
+				"am",
+				"amfreqsteps"
+			],
+			[
+				"amfre",
+				"amfreqsteps"
+			],
+			[
+				"b0",
+				"b0offsetsteps"
+			],
+			[
+				"f",
+				"frequency"
+			],
+			[
+				"volR",
+				"volR4"
+			],
+			[
+				"volR2s",
+				"volR2step"
+			],
+			[
+				"vol",
+				"volR2start"
+			],
+			[
+				"set_",
+				"set_voltage"
+			],
+			[
+				"volR2",
+				"volR2start"
+			],
+			[
+				"b1ampst",
+				"b1ampstep"
+			],
+			[
+				"b1amp",
+				"b1ampstop"
+			],
+			[
+				"b1",
+				"b1ampstart"
+			],
+			[
+				"b",
+				"b1ampstep"
+			],
+			[
+				"b0wa",
+				"b0waveform"
+			],
+			[
+				"b0w",
+				"b0waveform"
+			],
+			[
+				"set_A",
+				"set_AMmod_state"
+			],
+			[
+				"b0of",
+				"b0offsetstep"
+			],
+			[
+				"b0offsetst",
+				"b0offsetstop"
+			],
+			[
+				"offsetst",
+				"offsetsteps"
+			],
+			[
+				"offset",
+				"offsetsteps"
+			],
+			[
+				"off",
+				"offsetsteps"
+			],
+			[
+				"b1sw",
+				"b1sweepFreq"
+			],
+			[
+				"amp",
+				"ampsteps"
+			],
+			[
+				"b0se",
+				"b0sweepFreq"
+			],
+			[
+				"d",
+				"downsampling"
+			],
+			[
+				"ymaxtra",
+				"ymaxtrack2"
+			],
+			[
+				"ymax",
+				"ymaxtrack"
+			],
+			[
+				"tra",
+				"trackinglen"
+			],
+			[
+				"que",
+				"queuetracking"
+			],
+			[
+				"trac",
+				"trackFreqPanel"
+			],
+			[
+				"EVENT",
+				"EVT_TEXT_ENTER"
+			],
+			[
+				"EVE",
+				"EVT_UPDATE_UI"
+			],
+			[
+				"dataa",
+				"dataavg"
+			],
+			[
+				"nu",
+				"numberPointsComp"
+			],
+			[
+				"dataav",
+				"dataavgfft"
+			],
+			[
+				"datafft",
+				"datafftavg"
+			],
+			[
+				"da",
+				"datacomp"
+			],
+			[
+				"task",
+				"taskHandle"
+			],
+			[
+				"sin",
+				"sinus"
+			],
+			[
+				"num",
+				"numpy"
+			],
+			[
+				"delta",
+				"delta_tComp"
+			],
+			[
+				"dete",
+				"detectionTime"
+			],
+			[
+				"sam",
+				"sampleRateComp"
+			],
+			[
+				"de",
+				"delta_t"
+			],
+			[
+				"Av",
+				"transformAvg"
+			],
+			[
+				"uIn",
+				"uInt64"
+			],
+			[
+				"number",
+				"numberPoints"
+			],
+			[
+				"det",
+				"detectionTime"
+			],
+			[
+				"sample",
+				"sampleRate"
+			],
+			[
+				"float",
+				"float64"
+			],
+			[
+				"ai",
+				"ai_measurement"
+			],
+			[
+				"time",
+				"timeconstant"
+			],
+			[
+				"sleep",
+				"sleepi"
+			],
+			[
+				"fs",
+				"fstep"
+			],
+			[
+				"stop",
+				"stoptime"
+			],
+			[
+				"ref",
+				"reffreqnp"
+			],
+			[
+				"tek",
+				"tektronix"
+			],
+			[
+				"Get",
+				"GetDeviceNames"
+			],
+			[
+				"assembly",
+				"assembly_dir"
+			],
+			[
+				"assemb",
+				"assembly_name"
+			],
+			[
+				"assembl",
+				"assembly_dir"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "from __future__ import division\nimport ctypes\nimport numpy as np\n\n\nclass NidaqDevice(object):\n    # typedefs are setup to correspond to NIDAQmx.h\n    int32 = ctypes.c_long\n    uInt32 = ctypes.c_ulong\n    uInt64 = ctypes.c_ulonglong\n    float64 = ctypes.c_double\n    TaskHandle = uInt32\n    written = int32()\n    pointsRead = uInt32()\n    \n    #constants are setup to correspond to NIDAQmx.h\n    DAQmx_Val_Volts = 10348\n    DAQmx_Val_Falling = 10171\n    DAQmx_Val_Rising = 10280\n    DAQmx_Val_Cfg_Default = int32(-1)\n    DAQmx_Val_ContSamps = 10123\n    DAQmx_Val_FiniteSamps = 10178\n    DAQmx_Val_ChanForAllLines = 1\n    DAQmx_Val_RSE = 10083\n    DAQmx_Val_Volts = 10348\n    DAQmx_Val_GroupByScanNumber = 1\n    DAQmx_Val_GroupByChannel = 0\n    \n    \n    def __init__(self, \n                 detection_time=1.0, # detection time in seconds\n                 downsampling_factor=100,\n                 sample_rate=float64(2000000.0), # sampling rate in samples per second\n                 trigger_level=float64(0.),\n                 trigger_source='/Dev2/pfi0', \n                 channel_photodiode='/Dev2/ai0',  # channel to read photo diode signal\n                 channel_lock_in='/Dev2/ai1',   # channel to read lock-in signal\n                 clock_source='OnboardClock'\n\n                ):\n        self.instance = ctypes.windll.nicaiu \n        self.taskHandle = self.TaskHandle(0)\n        \n        self.min1 = self.float64(-5.0) \n        self.max1 = self.float64(5.0)\n        self.timeout = self.float64(10.0)\n        self.bufferSize = self.uInt32(10)\n        self.pointsToRead = self.bufferSize\n        self.pointsRead = self.uInt32()\n        \n        self.downsampling_factor = downsampling_factor\n        self.sampleBufferSize = self.uInt64(100000)\n\n        self.sampleRate = sample_rate \n        self.detectionTime = detection_time \n        self.triggerSource = ctypes.create_string_buffer(trigger_source)\n        self.triggerLevel = trigger_level\n        \n        self._channel_photodiode = channel_photodiode\n        self._channel_lock_in = channel_lock_in\n        self.channel = ctypes.create_string_buffer(channel_photodiode)\n        self.clockSource = ctypes.create_string_buffer(clock_source)\n        \n        self._calc_deps()\n\n\n\n\n        self.do_chan = ctypes.create_string_buffer('/Dev2/port0/line0')\n        uInt_ArrayFactory = ctypes.c_uint8 *2 \n        self.do_data = uInt_ArrayFactory(1,0)\n        self.DAQmx_Val_ChanPerLine = 0\n        self.DAQmx_Val_GroupByChannel = 0\n\n        TaskHandle = ctypes.c_uint32\n        self.do_task = TaskHandle(1)\n        self.instance.DAQmxCreateTask(\"\",ctypes.byref(self.do_task))\n        self.instance.DAQmxCreateDOChan(self.do_task, self.do_chan,\"output\", self.DAQmx_Val_ChanPerLine)\n\n\n\n    def connect_pipes(self,source,destination): #  modTR : example: source= '/Dev1/PFI12'| destination= '/Dev2/PFI36'\n        self.instance.DAQmxConnectTerms(source,destination)\n    def disconnect_pipes(self,source,destination):# modTR : example: source= '/Dev1/PFI12'| destination= '/Dev2/PFI36' \n        self.instance.DAQmxDisconnectTerms((source,destination))\n      \n    def setup_task(self):\n        self.instance.DAQmxCreateTask(\"\",ctypes.byref(self.taskHandle))\n        self.instance.DAQmxCreateAIVoltageChan(\n            self.taskHandle, \n            self.channel, \n            \"\", \n            self.DAQmx_Val_Cfg_Default, \n            self.min1, \n            self.max1, \n            self.DAQmx_Val_Volts,\n            None\n        )\n        self.instance.DAQmxCfgSampClkTiming(\n            self.taskHandle,\n            self.clockSource,\n            self.sampleRate,\n            self.DAQmx_Val_Rising,\n            self.DAQmx_Val_ContSamps,\n            self.sampleBufferSize\n        )\n#         error.append(\n#             (\n#                 'DAQmxCfgAnlgEdgeStartTrig',\n#                 self.instance.DAQmxCfgAnlgEdgeStartTrig(\n#                     self.taskHandle,\n#                     self.triggerSource,\n#                     self.DAQmx_Val_Rising,\n#                     self.triggerLevel\n#                 )\n#             )\n#         )\n        self.instance.DAQmxCfgDigEdgeStartTrig(\n            self.taskHandle,\n            self.triggerSource,\n            self.DAQmx_Val_FiniteSamps,\n            self.DAQmx_Val_Rising)\n\n        self.instance.DAQmxCfgInputBuffer(self.taskHandle, 200000)\n        \n    def read_samples(self, points):\n        bufferSize = self.uInt32(points)\n        pointsToRead = bufferSize\n        data = np.zeros((points,),dtype=np.float64)\n\n        self.instance.DAQmxReadAnalogF64(\n            self.taskHandle,\n            pointsToRead,\n            self.timeout,\n            self.DAQmx_Val_GroupByScanNumber,\n            data.ctypes.data,\n            self.uInt32(2*bufferSize.value),\n            ctypes.byref(self.pointsRead),\n            None\n        )\n        \n        return data\n\n    def pulse(self, length=0.5):\n        return self.instance.DAQmxWriteDigitalLines(self.do_task,2,1,-1,self.DAQmx_Val_GroupByChannel,self.do_data,None,None)\n\n    \n    def start_task(self):\n        self.instance.DAQmxStartTask(self.taskHandle)\n    \n    def stop_and_clear_task(self):\n        if self.taskHandle.value != 0:\n            self.instance.DAQmxStopTask(self.taskHandle)\n    \n    def get_data(self, q, points=None):\n        # if no points are given, use the default number points\n        if points is None:\n            points = self.numberPoints\n        self.start_task()\n        self.pulse()\n        data = self.read_samples(points)\n        self.stop_and_clear_task()\n        q.put(data)\n        return data\n    \n    def downsampling(self, data):\n        downsampled_data = data.reshape(-1, self.downsampling_factor).mean(axis=1)\n        return downsampled_data\n    \n    def _calc_deps(self):\n        self.sampleRateComp = self.sampleRate.value/self.downsampling_factor\n        self.numberPoints = int(self.sampleRate.value*self.detectionTime)\n        self.numberPointsComp = int(self.sampleRateComp*self.detectionTime)\n        self.delta_t = 1/self.sampleRate.value\n        self.delta_tComp = 1/self.sampleRateComp\n        \n    \n    def load_config(self, config, use_lock_in=False):\n        self.detectionTime = config['measurement_time_s']\n        self.downsampling_factor = config['downsampling_factor']\n        self.sampleRate = self.float64(config['sample_rate'])\n        if use_lock_in:\n            self.channel = ctypes.create_string_buffer(self._channel_lock_in)\n        else:\n            self.channel = ctypes.create_string_buffer(self._channel_photodiode)\n        \n        self._calc_deps()",
+			"file": "/N/meassrc/magnetometer/new_meas02/nidaq_device_modTR.py",
+			"file_size": 6571,
+			"file_write_time": 130909608420000000,
+			"settings":
+			{
+				"buffer_size": 6571,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/N/software/meassrc/audio/ui.py",
+			"settings":
+			{
+				"buffer_size": 390,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "configs/config-10.yaml",
+			"settings":
+			{
+				"buffer_size": 6598,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/N/software/meassrc/NI-DAQ-python-master/DAQ_emi_v4.py",
+			"settings":
+			{
+				"buffer_size": 21088,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "configs/config-34.yaml",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "\n# ----------------------------------------------------------------------------\n#  Motordriver.py: 3. PI, Uni Stuttgart\n#  Copyright (C) 2014  Stefan Lasse\n#\n#  This program is free software: you can redistribute it and/or modify\n#  it under the terms of the GNU General Public License as published by\n#  the Free Software Foundation, either version 3 of the License, or\n#  (at your option) any later version.\n# \n#  This program is distributed in the hope that it will be useful,\n#  but WITHOUT ANY WARRANTY; without even the implied warranty of\n#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n#  GNU General Public License for more details.\n# \n#  You should have received a copy of the GNU General Public License\n#  along with this program.  If not, see <http://www.gnu.org/licenses/>.\n# ----------------------------------------------------------------------------\n\nimport time\nimport serial\nimport numpy\n\nclass Motordriver():\n  \n  \"\"\" Gives an interface to the Motordriver. \"\"\"\n  \n  ON        = \"1\"\n  OFF       = \"0\"\n  \n  STEPS     = \"steps\"\n  DEGREE    = \"deg\"\n  PI        = \"pi\"\n  \n  RELATIVE  = \"REL\"\n  ABSOLUTE  = \"ABS\"\n  \n  CW        = \"CW\"\n  CCW       = \"CCW\"\n  STOP      = \"STOP\"\n  \n  \n  # to keep some internal information\n  __subSteps = [0.0, 0.0, 0.0, 0.0]\n  __stepsPerFullRotation = [0.0, 0.0, 0.0, 0.0]\n  __gearRatio = [0.0, 0.0, 0.0, 0.0]\n  \n  \n  # --------------------------------------------------------------------------\n  def __init__(self, interface='/dev/ttyUSB0'):\n    self.ser = serial.Serial(\n      port = interface,\n      baudrate = 57600,\n      bytesize = serial.EIGHTBITS,\n      parity = serial.PARITY_NONE,\n      stopbits = serial.STOPBITS_ONE,\n      timeout = 5,      \n      xonxoff = 0,\n      rtscts = 0,\n      dsrdtr = 0,\n      writeTimeout = 5\n    )\n    self.ser.close()\n    self.ser.open()\n    time.sleep(0.5)\n    \n    # get some internal information\n    for i in range(4):\n      self.__subSteps[i] = self.getSubSteps(i)\n      self.__stepsPerFullRotation[i] = self.getStepsPerFullRotation(i)\n      self.__gearRatio[i] = self.getGearRatio(i)\n    \n    \n  # --------------------------------------------------------------------------\n  def __del__(self):\n    # stop all motor movements when closing the interface\n    self.stopAllMovements()\n    if self.ser.isOpen():\n      self.ser.close()\n\n    del self.ser\n    \n  # --------------------------------------------------------------------------\n  # helpers\n  # --------------------------------------------------------------------------\n  \n# --------------------------------------------------------------------------\n  def disconnect(self):\n    self.ser.close()\n\n  # --------------------------------------------------------------------------\n  def __checkMotor(self, motor):\n    if not isinstance(motor, int):\n      print \"error: motor number must be an integer.\"\n      return False\n    if motor > 3:\n      print \"maximum motor is 3\"\n      return False\n    if motor < 0:\n      print \"minimum motor is 0\"\n      return False\n    \n    return True\n  \n  # --------------------------------------------------------------------------\n  def __checkUnit(self, unit):\n    if unit == self.STEPS or unit == self.DEGREE or unit == self.PI:\n      return True\n    else:\n      return False\n  \n  # --------------------------------------------------------------------------\n  def __degreeToSteps(self, deg, i):\n    return int(round(deg * (( self.__stepsPerFullRotation[i]   \\\n                             *self.__gearRatio[i]              \\\n                             *self.__subSteps[i])/(360.0))))\n    \n  # --------------------------------------------------------------------------\n  def __radianToSteps(self, rad, i):\n    return int(round(rad * (( self.__stepsPerFullRotation[i]   \\\n                             *self.__gearRatio[i]              \\\n                             *self.__subSteps[i])/(2.0))))\n  \n  # --------------------------------------------------------------------------\n  # low level functionality\n  # --------------------------------------------------------------------------\n  \n  # --------------------------------------------------------------------------\n  def __sendCommand(self, cmd):    \n    ack = \"A\"\n    maxtries = 0\n    self.ser.flushOutput()\n    \n    while ord(ack) != 6 and maxtries < 10:\n      self.ser.write(cmd + '\\n')\n      self.ser.flush()\n      time.sleep(0.05)\n      maxtries += 1\n      while self.ser.inWaiting() == 0:\n        pass\n      \n      if self.ser.inWaiting() > 0:\n        ack = self.ser.read(1)\n        \n    if maxtries == 9:\n      print \"error: unable to send command: \" + cmd\n    \n    self.ser.flushOutput()\n    return\n  \n  # --------------------------------------------------------------------------\n  def __readResponse(self):\n    out = \"\"    \n    while self.ser.inWaiting() > 0:\n      c = self.ser.read(1)\n      if c != '\\n':\n        out += c\n    \n    self.ser.flushInput()\n    return out.decode(\"utf-8\")\n    \n  # --------------------------------------------------------------------------\n  # command implementation\n  # --------------------------------------------------------------------------\n\n  # --------------------------------------------------------------------------\n  def reset(self):\n    self.__sendCommand(\"STOPALL\")\n    self.__sendCommand(\"*RST\")\n    return\n  \n  # --------------------------------------------------------------------------\n  def getState(self, mot):\n    if self.__checkMotor(mot):\n      self.__sendCommand(\"GETMOTSTATE \" + str(mot))\n      return str(self.__readResponse())\n\n  # --------------------------------------------------------------------------\n  def getIDN(self):\n    self.__sendCommand(\"*IDN?\")\n    return str(self.__readResponse())\n  \n  # --------------------------------------------------------------------------\n  def setIDN(self, id):\n    if not isinstance(id, basestring):\n      print \"ID is not a string.\"\n      return\n    \n    if len(id) > 20:\n      print \"IDN too long. max: 20 characters\"\n      return\n    \n    if len(id) == 0:\n      print \"IDN too short. min: 1 character\"\n      return\n    \n    self.__sendCommand(\"*IDN \" + id)\n    return\n  \n  # --------------------------------------------------------------------------\n  def goHome(self):\n    self.moveToAbsolutePosition(0, 0, self.STEPS)\n    self.moveToAbsolutePosition(1, 0, self.STEPS)\n    self.moveToAbsolutePosition(2, 0, self.STEPS)\n    self.moveToAbsolutePosition(3, 0, self.STEPS)\n    \n  # --------------------------------------------------------------------------\n  def moveToAbsolutePosition(self, motor=0, pos=0, unit=DEGREE):\n    if unit is self.STEPS and not isinstance(pos, int):\n      print \"err: unit is STEPS, so position must be an integer\"\n      return\n    \n    if pos < 0:\n      print \"position must be a positive value\"\n      return\n    \n    if self.__checkMotor(motor) and self.__checkUnit(unit):\n      cmd = \"MOVEABS \" + str(motor) + \" \" + str(pos) + \" \" + unit\n      self.__sendCommand(cmd)\n    return\n    \n  # --------------------------------------------------------------------------\n  def moveRelative(self, motor=0, pos=0, unit=DEGREE):\n    if unit is self.STEPS and not isinstance(pos, int):\n      print \"err: unit is STEPS, so position must be an integer\"\n      return\n    \n    if self.__checkMotor(motor) and self.__checkUnit(unit):\n      cmd = \"MOVEREL \" + str(motor) + \" \" + str(pos) + \" \" + unit\n      self.__sendCommand(cmd)\n    return\n    \n  # --------------------------------------------------------------------------\n  def zeroMotor(self, motor=0):\n    if self.__checkMotor(motor):\n      self.__sendCommand(\"ZERORUN \" + str(motor))\n    return\n    \n  # --------------------------------------------------------------------------\n  def turnOnMotor(self, motor=0):\n    if self.__checkMotor(motor):\n      self.__sendCommand(\"ENABLE \" + str(motor) + \" \" + self.ON)\n    return\n\n  # --------------------------------------------------------------------------\n  def turnOffMotor(self, motor=0):\n    if self.__checkMotor(motor):\n      self.__sendCommand(\"ENABLE \" + str(motor) + \" \" + self.OFF)\n\n  # --------------------------------------------------------------------------\n  def getPosition(self, motor=0, unit=DEGREE):\n    if self.__checkMotor(motor) and self.__checkUnit(unit):    \n      self.__sendCommand(\"GETPOS \" + str(motor) + \" \" + unit)\n      return float(self.__readResponse())\n    return\n\n  # --------------------------------------------------------------------------\n  def saveCurrentConfiguration(self):\n    self.__sendCommand(\"SAVECONF\")\n    return\n  \n  # --------------------------------------------------------------------------\n  def loadSavedConfiguration(self):\n    self.__sendCommand(\"LOADCONF\")\n    return\n  \n  # --------------------------------------------------------------------------\n  def isMoving(self, motor=0):\n    if self.__checkMotor(motor):\n      self.__sendCommand(\"ISMOVING \" + str(motor))\n      resp = self.__readResponse()\n      if resp == \"1\":\n        return True\n      else:\n        return False\n    return\n\n  # --------------------------------------------------------------------------\n  def getAnalogValue(self, channel=0):\n    if self.__checkMotor(channel):\n      self.__sendCommand(\"GETANALOG \" + str(channel))\n      return int(self.__readResponse())\n    return    \n  \n  # --------------------------------------------------------------------------\n  def getOpticalZeroPosition(self, motor=0):\n    if self.__checkMotor(motor):\n      self.__sendCommand(\"GETOPTZEROPOS \" + str(motor))\n      return int(self.__readResponse())\n    return\n  \n  # --------------------------------------------------------------------------\n  def setOpticalZeroPosition(self, motor=0, position=0):\n    if not isinstance(position, int):\n      print \"optical zero position must be given in steps, integer.\"\n      return\n    \n    if self.__checkMotor(motor):\n      cmd = \"SETOPTZEROPOS \" + str(motor) + \" \" + str(position)\n      self.__sendCommand(cmd)\n    return\n    \n  # --------------------------------------------------------------------------\n  def getGearRatio(self, motor=0):\n    if self.__checkMotor(motor):\n      self.__sendCommand(\"GETGEARRATIO \" + str(motor))\n      return float(self.__readResponse())\n    return\n  \n  # --------------------------------------------------------------------------\n  def setGearRatio(self, motor=0, ratio=60.0/18.0):\n    if self.__checkMotor(motor):\n      cmd = \"SETGEARRATIO \" + str(motor) + \" \" + str(ratio)\n      self.__sendCommand(cmd)\n      __gearRatio[motor] = ratio\n    return\n    \n  # --------------------------------------------------------------------------\n  def getStepsPerFullRotation(self, motor=0):\n    if self.__checkMotor(motor):\n      self.__sendCommand(\"GETFULLROT \" + str(motor))\n      return int(self.__readResponse())\n    return\n\n  # --------------------------------------------------------------------------\n  def setStepsPerFullRotation(self, motor=0, steps=400):\n    if not isinstance(steps, int):\n      print \"must be given as integer number\"\n      return\n    \n    if steps != 200 and steps != 400:\n      print \"steps must be either 200 or 400.\"\n      return\n    \n    if self.__checkMotor(motor):\n      cmd = \"SETFULLROT \" + str(motor) + \" \" + str(steps)\n      self.__sendCommand(cmd)\n      __stepsPerFullRotation[motor] = steps\n    return\n    \n  # --------------------------------------------------------------------------\n  def getSubSteps(self, motor=0):\n    if self.__checkMotor(motor):\n      self.__sendCommand(\"GETSUBSTEPS \" + str(motor))\n      return int(self.__readResponse())\n    return\n\n  # --------------------------------------------------------------------------\n  def setSubSteps(self, motor=0, substeps=4):\n    if not isinstance(substeps, int):\n      print \"must be given as integer number\"\n      return\n    \n    if substeps != 0 and ((substeps and (substeps - 1)) == 0):\n      print \"substeps must be a power of two\"\n      return\n    \n    if substeps < 1 or substeps > 16:\n      print \"substeps must be a positive number\"\n      return\n    \n    if self.__checkMotor(motor):\n      cmd = \"SETSUBSTEPS \" + str(motor) + \" \" + str(substeps)\n      self.__sendCommand(cmd)\n      __subSteps[motor] = substeps\n    return\n\n  # --------------------------------------------------------------------------\n  def getWaitTimeBetweenSteps(self, motor=0):\n    if self.__checkMotor(motor):\n      self.__sendCommand(\"GETWAITTIME \" + str(motor))\n      return int(self.__readResponse())\n    return\n\n  # --------------------------------------------------------------------------\n  def setWaitTimeBetweenSteps(self, motor=0, waittime=3):\n    if not isinstance(waittime, int):\n      print \"waittime must be given as integer number\"\n      return\n    \n    if waittime < 1:\n      print \"waittime must be >= 1\"\n      return\n    \n    if self.__checkMotor(motor):\n      cmd = \"SETWAITTIME \" + str(motor) + \" \" + str(waittime)\n      self.__sendCommand(cmd)\n    return\n\n  # --------------------------------------------------------------------------\n  def setConstAngularVelocity(self, motor=0, direction=CW, time=10.0):\n    if time < 5.0:\n      print \"time must be >= 5.0 seconds\"\n      return\n      \n    if self.__checkMotor(motor):\n      cmd = \"SETCONSTSPEED \" + str(motor) + \" \" + direction + \" \" + str(time)\n      self.__sendCommand(cmd)\n    return\n    \n  # --------------------------------------------------------------------------\n  def factoryReset(self):\n    self.__sendCommand(\"FACTORYRESET\")\n    return\n  \n  # --------------------------------------------------------------------------\n  def stopAllMovements(self):\n    self.__sendCommand(\"STOPALL\")\n    return\n\n  # --------------------------------------------------------------------------\n  def defineInternalProgramStep(self, stepNo=0, pos=[0.0, 0.0, 0.0, 0.0],\n                                unit=DEGREE, mode=RELATIVE):\n    # check validity of stepNo, positions, unit and mode\n    if len(pos) != 4:\n      print \"ERROR: position list must have 4 entries\"\n      return\n    \n    if stepNo < 0 or stepNo >= 16:\n      print \"ERROR: step number must be in [0..15]\"\n      return\n    \n    if not (unit is self.STEPS or unit is self.DEGREE or unit is self.PI):\n      print \"ERROR: unit must be either STEPS oder DEGREE or PI\"\n      return    \n    \n    # convert position to steps:\n    step = [0, 0, 0, 0]\n    if unit is self.STEPS: \n      for i in range(4):\n        step[i] = int(pos[i])\n        \n    elif unit is self.DEGREE:\n      for i in range(4):\n        if abs(pos[i]) > 360.0:\n          print \"ERROR: position must be <= 360.0 degree\"\n        else:\n          step[i] = self.__degreeToSteps(pos[i], i)\n        \n    elif unit is self.PI:\n      for i in range(4):\n        if abs(pos[i] > 2*numpy.pi):\n          print \"ERROR: position must be <= 2.0*pi\"\n        else:\n          step[i] = self.__radianToSteps(pos[i], i)\n          \n    # build up serial string\n    # here positions are in steps\n    cmd = \"SETPROGSTEP \" + str(stepNo)  + \" \" \\\n                         + str(step[0]) + \" \" \\\n                         + str(step[1]) + \" \" \\\n                         + str(step[2]) + \" \" \\\n                         + str(step[3]) + \" \" \\\n                         + mode\n\n    # send command\n    self.__sendCommand(cmd)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+			"file": "/N/meassrc/magnetometer/hardware/Motordriver.py",
+			"file_size": 15236,
+			"file_write_time": 130984674780000000,
+			"settings":
+			{
+				"buffer_size": 15236,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\"\"\"\nThis file is part of pi3diamond.\n\npi3diamond is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\npi3diamond is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with diamond. If not, see <http://www.gnu.org/licenses/>.\n\nCopyright (C) 2009-2011 Helmut Fedder <helmut.fedder@gmail.com>\n\"\"\"\n\nimport visa\nimport time\n\nclass PM100D():\n    \"\"\"Provides control of thorlabs powermeter PM100D.\"\"\"\n    \n    def __init__(self, visa_address='USB0::0x1313::0x8078::PM002838::INSTR'):\n        self.visa_address = visa_address\n        if hasattr(visa,'instrument'):\n            self.instr = visa.instrument(self.visa_address)\n        else:\n            self.instr = visa.ResourceManager().open_resource(self.visa_address)\n            \n    def _write(self, string):\n        try: # if the connection is already open, this will work\n            self.instr.write(string)\n        except: # else we attempt to open the connection and try again\n            try: # silently ignore possible exceptions raised by del\n                del self.instr\n            except Exception:\n                pass\n            self.instr = visa.instrument(self.visa_address)\n            self.instr.write(string)\n\n    def _ask(self, str):\n        try:\n            val = self.instr.ask(str)\n        except:\n            self.instr = visa.instrument(self.visa_address)\n            val = self.instr.ask(str)\n        return val\n\n    def getPower(self):\n        return float(self._ask('read?'))\n\n    def getMeanPower(self, t=0.5):\n        val = []\n        if (t<0.01): #don't stress the lazy power_meter too much...\n            print \"Minimum time: 5ms. Set time to 5ms.\"\n            t=0.01\n\n        timeout = time.time() + t\n        while(timeout >time.time()):\n            val.extend([float(self._ask('read?'))]) \n            time.sleep(0.01)\n        try:\n            return sum(val)/float(len(val))\n        except ZeroDivisionError:\n            print \"No value aquired!\"\n            return None\n\n    def disconnect(self):\n        if hasattr(self,\"instr\"):\n            self.instr.close()\n\n    def __del__(self):\n        if hasattr(self,\"instr\"):\n            self.instr.close()\n\n",
+			"file": "/N/meassrc/magnetometer/hardware/power_meter.py",
+			"file_size": 2630,
+			"file_write_time": 130652757260000000,
+			"settings":
+			{
+				"buffer_size": 2552,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/N/software/meassrc/magnetometer/power_calibration.py",
+			"settings":
+			{
+				"buffer_size": 1256,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "measurement.py",
+			"settings":
+			{
+				"buffer_size": 2515,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "measurement_worker.py",
+			"settings":
+			{
+				"buffer_size": 25481,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "RigolDG3000_RMcontroller.py",
+			"settings":
+			{
+				"buffer_size": 14761,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/N/software/meassrc/magnetometer/hardware/hameg.py",
+			"settings":
+			{
+				"buffer_size": 17431,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "hardware/RigolDG3000.py",
+			"settings":
+			{
+				"buffer_size": 5967,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/N/software/meassrc/magnetometer/hardware/rigol.py",
+			"settings":
+			{
+				"buffer_size": 13427,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "import time\nimport pyvisa\nimport visa\nimport numpy as np\n\n\nclass SR844():\n\n    def __init__(self,device, channel=None):\n        \"\"\"\n        Provides communication with a Stanford Research Lock-In\n        Amplifier via GPIB connection\n        \n        Connection Examples:\n        \n            lockin = SR844(\"GPIB::08::INSTR)\n        \"\"\"\n        rm = pyvisa.ResourceManager()\n        instr = rm.open_resource(device)\n        self.instr = instr\n\n    \n    def identification(self):\n        \"\"\"asks for identification information\"\"\"\n        idn = self.instr.query('*IDN?')\n        return idn\n\n    def get_frequency(self):\n        \"\"\"asks for detection frequency\"\"\"\n        getfreq=self.instr.query('FREQ?')\n        return getfreq\n\n    def set_frequency(self,frequency):\n        \"\"\"set detection frequency\"\"\"\n        if frequency >= 2.5E4 and frequency <= 2.0E8:\n            mode = self.getreferencemode()\n            if mode == 1:\n                self.instr.write('FREQ {0:1.5f}'.format(frequency))\n            else:\n                raise ValueError('this command is allowed only if the reference mode is Internal (mode = 1)')\n        else:\n            raise ValueError('frequency is not in the allowed range (2.5E4 <= f <= 2.0E8)')\n        \n    def get_reference_mode(self):\n        \"\"\"ask for reference mode (Internal: i=1, External: i=0)\"\"\"\n        reference = self.instr.query('FMOD?')\n        return int(reference)\n\n    def set_reference_mode(self,mode):\n        \"\"\"set refernce mode (modes: Internal: i=1, External: i=0\"\"\"\n        if mode in [0,1]:\n            self.instr.write('FMOD {0:d}'.format(mode))\n        else:\n            raise ValueError('refernce mode has to be 0 or 1. (Internal: i=1, External: i=0)')\n\n    def get_detection_mode(self):\n        \"\"\"ask for detection mode (F: i=0, 2F: i=1)\"\"\"\n        detectionmode = self.instr.query('HARM?')\n        return int(detectionmode)\n\n    def set_detection_mode(self,mode):\n        \"\"\" set detection mode (detect at F: i=0, detect at 2F: i=1)\"\"\"\n        if mode in [0,1]:\n            self.instr.write('HARM {0:d}'.format(mode))\n        else:\n            raise ValueError('detection mode hast to be 0 or 1 (F: i=0, 2F: i=1)')\n\nclass SR830():\n\n\n    def __init__(self, device, channel=None):\n        \"\"\"\n        Provides communication with a Stanford Research Lock-In\n        Amplifier via GPIB connection\n        \n        Connection Examples:\n        \n            lockin = SR844(\"GPIB::10::INSTR)\n\n        The address is set\n        with the [Setup] key on the front panel of the SR830 and may be set between 1\n        and 30\n        Make sure that the interface is set to GPIB via the [Setup] key]\n        \"\"\"\n        rm = pyvisa.ResourceManager()\n        instr = rm.open_resource(device)\n        self.instr = instr\n\n    def identification(self):\n        \"\"\"asks for identification information\"\"\"\n        idn = self.instr.query('*IDN?')\n        return idn\n\n    def get_phase(self):\n        \"\"\"Queries the reference phase shift\"\"\"\n        phase = self.instr.query('PHAS?')\n        return phase\n\n    def set_phase(self, phase):\n        \"\"\"Sets the reference phase shift in the range of -180.00 to +180.00\"\"\"\n        if phase >= -180 and phase <= 180:\n            self.instr.write('PHAS {0:.2f}'.format(phase))\n        else: \n            raise ValueError('Phase value out of range. Select a reference phase in the range from -180 to +180')\n   \n    def get_reference_mode(self):\n        \"\"\"Queries the reference mode\"\"\"\n        reference = self.instr.query('FMOD?')\n        reference = int(reference)\n        if reference == 1: \n            return \"Internal reference\"\n        elif reference == 0: \n            return \"External reference\"\n        else: return int(reference)\n\n    def set_reference_mode(self, mode):\n        \"\"\"Sets the refernce mode (modes: Internal: i=1, External: i=0\"\"\"\n        if mode in [0,1]:\n            self.instr.write('FMOD {0:d}'.format(mode))\n        else:\n            raise ValueError('Reference mode has to be 0 or 1. (Internal: i=1, External: i=0)')\n\n    def get_frequency(self):\n        \"\"\"Queries the reference frequency\"\"\"\n        getfreq=self.instr.query('FREQ?')\n        return getfreq\n\n    def set_frequency(self, frequency):\n        \"\"\"Sets the reference frequency\"\"\"\n        if frequency >= 0.001 and frequency <= 102000:\n            mode = self.get_reference_mode()\n            if mode == \"Internal reference\":\n                harm = self.get_harmonic()\n                harm = int(harm)\n                if harm*frequency <= 102000:\n                    self.instr.write('FREQ {0:.5f}'.format(frequency))\n                else: \n                    raise ValueError('Value for the harmonic is too high. Keyword harm has to fulfill the condition harm*freq<=102kHz.')\n            else:\n                raise ValueError('This command is allowed only if the reference mode is Internal (mode = 1)')\n        else:\n            raise ValueError('Frequency is not in the allowed range (0.001 Hz <= f <= 102000 Hz)')\n\n    def get_harmonic(self):\n        \"\"\"Queries the detection harmonic.\"\"\"\n        harm = self.instr.query('HARM?')\n        return harm\n\n    def set_harmonic(self, harm):\n        \"\"\"Sets the detection harmonic. Keyword argument harm has to be an integer\"\"\"\n        if harm >=1 and harm <=19999:\n            freq = float(self.get_frequency())\n            if harm*freq <= 102000:\n                self.instr.write('HARM {0:d}'.format(harm))\n            else:\n                raise ValueError('Value for the harmonic is too high. Keyword harm has to fulfill the condition harm*freq<=102kHz.')\n        else:  raise ValueError('Value for the harmonic has to be between 1 and 19999.')\n\n    def get_sensitivity(self):\n        \"\"\"Queries the sensitivity\n        i=0:2nV/fA, i=1:5nV/fA, i=2: 10nV/fA, i=3: 20nV/fA, i=4: 50nV/fA, i=5: 100nV/fA\n        i=6: 200nV/fA, i=7: 500nV/fA, i=8: 1uV/pA, \n        i=9: 2uV/pA, i=10: 5uV/pA, \n        i=11: 10uV/pA, i=12: 20uV/pA, i=13: 50uV/pA,\n        i=14: 100uV/pA, i=15: 200uV/pA,\n        i=16:500uV/pA, i=17: 1mV/nA, i=18: 2mV/nA, \n        i=19: 5mV/nA, i=20: 10mV/nA,\n        i=21: 20mV/nA, i=22: 50mV/nA, i=23: 100mV/nA, \n        i=24: 200mV/nA, i=25: 500mV/nA,\n        i=26: 1V/uA\"\"\"\n        sensi = self.instr.query(\"SENS?\")\n        sensi = int(sensi)\n        return sensi\n\n    def set_sensitivity(self, sensi):\n        \"\"\"Queries the sensitivity. Argument sensi has to be an integer in the range from 0 to 26\n        i=0:2nV/fA, i=1:5nV/fA, i=2: 10nV/fA, \n        i=3: 20nV/fA, i=4: 50nV/fA, i=5: 100nV/fA\n        i=6: 200nV/fA, i=7: 500nV/fA, i=8: 1uV/pA,\n        i=9: 2uV/pA, i=10: 5uV/pA, \n        i=11: 10uV/pA, i=12: 20uV/pA, i=13: 50uV/pA,\n        i=14: 100uV/pA, i=15: 200uV/pA,\n        i=16:500uV/pA, i=17: 1mV/nA, i=18: 2mV/nA,\n        i=19: 5mV/nA, i=20: 10mV/nA,\n        i=21: 20mV/nA, i=22: 50mV/nA, i=23: 100mV/nA,\n        i=24: 200mV/nA, i=25: 500mV/nA,\n        i=26: 1V/uA\"\"\"\n\n        if sensi in list(range(27)):\n            self.instr.write(\"SENS {0:d}\".format(sensi))\n        else: \n            raise ValueError('Keyword has to be an integer between 0 and 26.')\n\n\n    def get_time_constant(self):\n        \"\"\" Queries the time constant\n        i=0: 10us, i=1: 30us, i=2: 100us, i=3: 300us,\n        i=4: 1ms, i=5: 3ms, i=6: 10ms, i=7: 30ms,\n        i=8: 100ms, i=9: 300ms, i=10: 1s, i=11: 3s,\n        i=12: 10s, i=13: 30s, i=14: 100s, i=15: 300s,\n        i=16: 1ks, i-17: 3ks, i=18: 10ks, i=19: 30ks\"\"\"\n        time = self.instr.query(\"OFLT?\")\n        time = int(time)\n        return time\n\n    def set_time_constant(self, time):\n        \"\"\" Sets the time constant\n        i=0: 10us, i=1: 30us, i=2: 100us, i=3: 300us,\n        i=4: 1ms, i=5: 3ms, i=6: 10ms, i=7: 30ms,\n        i=8: 100ms, i=9: 300ms, i=10: 1s, i=11: 3s,\n        i=12: 10s, i=13: 30s, i=14: 100s, i=15: 300s,\n        i=16: 1ks, i-17: 3ks, i=18: 10ks, i=19: 30ks\"\"\"\n        if type(time) == int:\n            if time in list(range(20)):\n                self.instr.write(\"OFLT {0:d}\".format(time))\n            else: \n                raise ValueError('Argument has to be an integer between 0 and 19.')\n        else: \n            raise ValueError('Argument has to be an integer between 0 and 19.')\n\n    def get_low_pass_filter(self):\n        \"\"\"Queries the low pass filter slope. \n        The parameter i means: i=0: 6dB/oct, \n        i=1: 12dB/oct, i=2: 18dB/oct, i=3: 24dB/oct\"\"\"\n        fil = self.instr.query(\"OFSL?\")\n        fil = int(fil)\n        return fil\n\n    def set_low_pass_filter(self, fil):\n        \"\"\"Sets the low pass filter slope. \n        The parameter i means: i=0: 6dB/oct, \n        i=1: 12dB/oct, i=2: 18dB/oct, i=3: 24dB/oct\"\"\"\n        if type(fil) == int:\n            if fil in list(range(4)):\n                self.instr.write(\"OFSL {0:d}\".format(fil))\n            else: \n                raise ValueError('Argument has to be in the range of 0 to 3.')\n        else: \n            raise ValueError('Argument has to be an integer.')\n\n    def get_sync(self):\n        \"\"\"Queries the synchronous filter status. \n        The parameter i means: i=0: Off and i=1: synchronous filtering below 200 Hz.\n        Synchronous filtering is tuned on only if the detection frequency is less than 200 Hz\"\"\"\n        sync = self.instr.query(\"SYNC?\")\n        sync = int(sync)\n        return sync\n\n    def set_sync(self, sync):\n        \"\"\"Sets the synchronous filter status. \n        The parameter i means: i=0: Off and i=1: synchronous filtering below 200 Hz.\n        Synchronous filtering is tuned on only if the detection frequency is less than 200 Hz\"\"\"\n        if type(sync) == int:\n            if sync in [0, 1]:\n                self.instr.write(\"SYNC {0:d}\".format(sync))\n            else:\n                raise ValueError('Argument has to be either 0 or 1.')\n        else: \n            raise ValueError('Argument has to be an integer.')\n\n    # def get_output_source(self):\n    #     \"\"\"Queries the front panel output source (channel1 or channnel2).\n    #     The out parameter defines weather the channel display (out=0) or\n    #     X/Y (out=1) is selected\"\"\"\n    #     params = self.instr.query(\"FPOP?\")\n    #     return params\n\n    def get_output(self):\n        \"\"\"Queries the outout interface: i=0 for RS232 and i=1 for GPIB\"\"\"\n        out = self.instr.query('OUTX?')\n        return out\n\n    def set_output(self, out):\n        \"\"\"Sets the outout interface: i=0 for RS232 and i=1 for GPIB.\n        If you are connected only via one of the interfaces do not use set output, \n        otherwise you have to change the output interface via the fron panel.\"\"\"\n\n        if type(out) ==int:\n            if out in [0,1]:\n                out = self.instr.write('OUTX {0:d}'.format(out))\n            else:\n               raise ValueError('Argument has to be either 0 or 1.')\n        else: \n            raise ValueError('Argument has to be an integer.')\n\n    def get_grounding(self):\n        \"\"\"Queries the input shield grounding.\n        The parameter i means Float (i=0) or Ground (i=1)\"\"\"\n        grounding = self.instr.query(\"IGND?\")\n        grounding = int(grounding)\n        return grounding\n\n    def set_grounding(self, grounding):\n        \"\"\"Sets the input shield grounding.\n        The parameter i selects Float (i=0) or Ground (i=1)\"\"\"\n        if grounding in [0,1]:\n            self.instr.write(\"IGND {0:d}\".format(grounding))\n        else:\n            raise ValueError('Argument has to be either 0 or 1.')\n\n\n    def get_coupling(self):\n        \"\"\"Queries the input coupling.\n        The parameter i means AC (i=0) or DC(i=1)\"\"\"\n        coupling = self.instr.query(\"ICPL?\")\n        coupling = int(coupling)\n        return coupling\n\n    def set_coupling(self, coupling):\n        \"\"\"Sets the input shield coupling.\n        The parameter i selects AC (i=0) or DC (i=1)\"\"\"\n        if coupling in [0,1]:\n            self.instr.write(\"ICPL {0:d}\".format(coupling))\n        else:\n            raise ValueError('Argument has to be either 0 or 1.')\n\n    def get_filter_status(self):\n        \"\"\"Queries the input line notch filter status.\n        The parameter i means no filters (i=0), Line notch in (i=1), \n        2xLine notch in (i=2) or both notch filters in (i=3)\"\"\"\n        filters = self.instr.query(\"ILIN?\")\n        filters = int(filters)\n        return filters\n\n    def set_filter_status(self, filters):\n        \"\"\"Sets the input line notch filter status.\n        The parameter i means no filters (i=0), Line notch in (i=1), \n        2xLine notch in (i=2) or both notch filters in (i=3)\"\"\"\n        if filters in [0, 1, 2, 3]:\n            self.instr.write(\"ILIN {0:d}\".format(filters))\n        else:\n            raise ValueError('Argument has to be either 0, 1, 2 or 3.')\n\n    def get_reserve_mode(self):\n        \"\"\"Queries the reserve mode.\n        The parameter i means High Reserve (i=0), Normal (i=1) or\n        Low Noise (i=2)\"\"\"\n        reserve = self.instr.query(\"RMOD?\")\n        reserve = int(reserve)\n        return reserve\n\n    def set_reserve_mode(self, reserve):\n        \"\"\"Sets the reserve mode.\n        The parameter i means High Reserve (i=0), Normal (i=1) or\n        Low Noise (i=2)\"\"\"\n        if reserve in [0, 1, 2]:\n            self.instr.write(\"RMOD {0:d}\".format(reserve))\n        else:\n            raise ValueError('Argument has to be either 0, 1, or 2.')\n",
+			"file": "/N/meassrc/magnetometer/hardware/sr_lockin.py",
+			"file_size": 13647,
+			"file_write_time": 130985409710000000,
+			"settings":
+			{
+				"buffer_size": 13298,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "configuration_parser.py",
+			"settings":
+			{
+				"buffer_size": 3916,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "import time\nimport pyvisa\nimport visa\nimport numpy as np\n\n\nclass AFG3252():\n\n    def __init__(self,device, channel=None):\n        \"\"\"\n        Provides communication with a HMP2030 power supply\n        via USB (virtual COM) or LAN.\n        \n        Connection Examples:\n        \n            afg = AFG3262('ASRL11::INSTR')\n            afg = AFG3252('TCPIP0::129.69.46.235::inst0::INSTR')\n        \n        \"\"\"\n        if 'ASRL' in device:\n            self.__connect_serial(device)\n        else:\n            self.__connectLAN(device)\n\n\n            \n        \n\n    def __connect_serial(self, device):\n        \n        if hasattr(pyvisa,\"instrument\"): #old visa\n            instr=visa.instrument(device)\n            instr.timeout=1\n        else:\n            instr = visa.ResourceManager().open_resource(device)\n            instr.timeout=1000\n        \n        self.instr = instr\n\n\n\n    def __connectLAN(self, device):\n        \"\"\"connects to the tektronix function generator\"\"\"\n        if hasattr(pyvisa,\"instrument\"): #old visa\n            self.__ip = device\n            self.__instr = visa.Instrument(self.__ip,term_chars='\\n')\n            self.__instr.timeout=2\n        else:\n            self.__ip = device\n            rm = visa.ResourceManager()\n            self.__instr = rm.open_resource(device) \n            self.__instr.read_termination = '\\n'\n            self.__instr.write_termination = '\\n'\n            self.__instr.timeout=2000\n        self.__instr.chunk_size=4096         \n\n    \n    def identification(self):\n        \"\"\"asks for identification information\"\"\"\n        idn = self.__instr.ask('*IDN?')\n        return idn\n\n    def check_ch(self,ch):\n        \"\"\"checks the channel number\"\"\"\n        if ch in [1,2]:\n            return ch\n        else:\n            raise ValueError('Wrong channel number. Chose 1 or 2.')\n    \n    \n    def get_amp(self, ch=1):\n        \"\"\"asks for amplitude Vpp\"\"\"\n        self.check_ch(ch)\n        get_amp = self.__instr.ask('source{0:d}:voltage?'.format(ch))\n        return get_amp\n\n    def set_amp(self,voltage, ch=1):\n        \"\"\"sets amplitude to a desired value Vpp\"\"\"\n        self.check_ch(ch)\n        if voltage<=0:\n            raise ValueError('The selected amplitude must be greater than zero.')\n        if voltage is None:\n            raise ValueError('No voltage value selected.')\n        if voltage>5:\n            raise ValueError('The selected amplitude is too high: max amplitude: 5Vpp.')\n        else:\n            set_amp = self.__instr.write('source{0:d}:voltage {1:1.5f}'.format(ch,voltage))\n\n\n    def get_freq(self, ch=1):\n        \"\"\"asks for selected frequency of the desired channel\"\"\"\n        self.check_ch(ch)\n        get_freq = self.__instr.ask('source{0:d}:frequency?'.format(ch))\n        return get_freq\n\n    def set_freq(self,frequency, ch=1):\n        \"\"\"sets frequency to a desired value in Hz\"\"\"\n        self.check_ch(ch)\n        if frequency<=0:\n            raise ValueError('The selected frequency must be greater than zero. Or maybe you are just dumb!')\n        if frequency>240E6:\n            raise ValueError('The selected frequency is too high, max frequrency: 240MHz. Or maybe you are just dumb!')\n        else:\n            set_freq = self.__instr.write('source{0:d}:frequency {1:1.5f}'.format(ch,frequency))\n\n\n    def get_offset(self, ch=1):\n        \"\"\"asks for selected offset in volts of the desired channel\"\"\"\n        self.check_ch(ch)\n        get_offset = self.__instr.ask('source{0:d}:voltage:offset?'.format(ch))\n        return get_offset\n\n    def set_offset(self,offset, ch=1):\n        \"\"\"sets offset to a desired value in volts\"\"\"\n        self.check_ch(ch)\n        if offset+float(self.get_amp())/2>2.5:\n            raise ValueError('The selected offset is too high. Or maybe you are just dumb!')\n        else:\n            set_offset = self.__instr.write('source{0:d}:voltage:offset {1:1.5f}'.format(ch,offset))\n\n\n    def run(self, ch=1):\n        \"\"\"turns output on\"\"\"\n        self.check_ch(ch)\n        self.__instr.write('output{0:d}:state ON'.format(ch))\n        \n    def stop(self, ch=1):\n        \"\"\"turns output off\"\"\"\n        self.check_ch(ch)\n        self.__instr.write('output{0:d}:state OFF'.format(ch))        \n\n    def ask_run(self, ch=1):\n        \"\"\"asks wheather output is on or off\"\"\"\n        self.check_ch(ch)\n        run = self.__instr.ask('output{0:d}?'.format(ch))\n        return run\n\n    def set_waveform(self, func=\"SIN\", ch=1):\n        \"sets the output waveform: select form the following arguments: SINusoid, SQUare, PULSe,\"\n        \" RAMP, PRNoise, DC, SINC,\" \n        \"GAUSsian, LORentz, ERISe, EDECay, HAVersine,...\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:FUNC:SHAP {1:s}'.format(ch,func))\n\n    def get_waveform(self, ch=1):\n        \"asks for the output waveform\"\n        self.check_ch(ch)\n        run = self.__instr.ask('SOUR{0:d}:FUNC:SHAP?'.format(ch))\n        return run\n\n    def trig(self):\n        \"generates a trigger event\"\n        self.__instr.write(\"*TRG\")\n\n    def trig_source(self, mode='TIM'):\n        \"Sets the trigger source for an external trigger signal\"\n        self.__instr.write('TRIG:SOUR {0:s}'.format(mode))\n\n    def init_trig(self):\n        self.__instr.write(\"ABOR\")\n\n    def trig_mode(self, mode=\"TRIG\"):\n        \"sets output channel for Tigger Out\"\n        self.__instr.write('OUTP:TRIG:MODE {0:s}'.format(mode))\n\n    def get_trig_mode(self):\n        \"sets output channel for Tigger Out\"\n        return self.__instr.ask('OUTP:TRIG:MODE?')        \n\n\n    def phase(self, deg=\"0\", ch=1):\n        self.check_ch(ch)\n        self.__instr.write(\"SOUR:PHASE:ADJUST {0:s}DEG\".format(deg))\n\n\n####### AM modulation ##########\n\n    def set_AMmod_state(self, arg=\"ON\", ch=1):\n        \"enables or disables AM modulation. Use ON or OFF as argument\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:AM:STAT {1:s}'.format(ch, arg))\n\n    def set_AMmod_internal(self, func=\"INT\", ch=1):\n        \"sets the source of modulating signal of AM modulation. Select INTernal or EXTernal\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:AM:SOUR {1:s}'.format(ch,func))\n\n    def set_AMmod_waveform(self, func=\"RAMP\", ch=1):\n        \"sets the internal modulation waveform: select form the following arguments: \"\n        \"SINusoid, SQUare, TRI, RAMP, PRNoise\"\n        \"be sure you already set the source as internal with set_AMmod_internal()\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:AM:INT:FUNC {1:s}'.format(ch,func))\n\n    def set_AMmod_freq(self, freq=10, ch=1):\n        \"sets the internal modulation frequency\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:AM:INT:FREQ {1:.1f}Hz'.format(ch, freq))\n\n    def set_AMmod_depth(self, depth=50, ch=1):\n        \"sets the modulation depth.\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:AM:DEPT {1:.1f}'.format(ch, depth))\n\n#### FM modulation ########\n\n\n    def set_FMmod_state(self, arg=\"ON\", ch=1):\n        \"enables or disables FM modulation. Use ON or OFF as argument\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:FM:STAT {1:s}'.format(ch, arg))\n\n    def set_FMmod_internal(self, func=\"INT\", ch=1):\n        \"sets the source of modulating signal of FM modulation. Select INTernal or EXTernal\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:FM:SOUR {1:s}'.format(ch,func))\n\n    def set_FMmod_waveform(self, func=\"RAMP\", ch=1):\n        \"sets the internal modulation waveform: select form the following arguments: SINusoid, SQUare, TRI, RAMP, PRNoise\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:FM:INT:FUNC {1:s}'.format(ch,func))\n\n    def set_FMmod_freq(self, freq=10, ch=1):\n        \"sets the internal modulation frequency\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:FM:INT:FREQ {1:.1f}Hz'.format(ch, freq))\n\n    def set_FMmod_deviation(self, dev=300, ch=1):\n        \"sets the deviation of the center frequency in Frequency modulation mode\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:FM:DEV {1:.1f}Hz'.format(ch,dev))\n\n\n################### burst ##############\n\n    def burst_state(self, state='ON', ch=1):\n        \"enables or disables the burst mode for the specified channel\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:BURS:STAT {1:s}'. format(ch, state))\n\n    def burst_mode(self, mode='TRIG', ch=1):\n        \"sets the burst mode for the specified channel\"\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:BURS:MODE {1:s}'. format(ch, mode))\n\n\n    def burst_cycles(self, cycles=1, ch=1):\n        \"sets the number of cycles to be output in burst mode for the specified channel\"\n        self.check_ch(ch)\n        self.__instr.write('SOR{0:d}:BURS:NCYC {1:d}'.format(ch, cycles))\n\n############ sweep ##############\n\n    def set_frequency_mode(self, mode='CW', ch=1):\n        'sets the frequency sweep state. Select either CW, FIXed or SWEep'\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:FREQ:MODE {1:s}'. format(ch, mode))\n\n    def set_frequency_sweep_span(self, span=100, ch=1):\n        'sets the frequency span in sweep mode'\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:FREQ:SPAN {1:0.3f}Hz'. format(ch, span))\n\n    def set_center_frequency(self, center=5E3, ch=1):\n        'sets the center frequency in sweep mode'\n        self.check_ch(ch)\n        self.__instr.write('SOUR{0:d}:FREQ:CENT {1:0.3f}Hz'. format(ch, center))\n\n    def set_sweep_mode(self, mode='MAN', ch=1):\n        \"sets the sweep mode trigger. Select either AUTO or MANual\"\n        self.check_ch(ch)\n        self.__instr.write(\"SOUR{0:d}:SWE:MODE {1:s}\".format(ch, mode))\n\n    def set_sweep_time(self, time=1, ch=1):\n        \"sets the sweep time of the sweep in seconds. The sweep time does not include hold time\"\n        \"and return time\"\n        self.check_ch(ch)\n        self.__instr.write(\"SOUR{0:d}:SWE:TIME {1:0.3f}\".format(ch, time))\n\n    def set_sweep_rtime(self, rtime=1, ch=1):\n        \"sets the return time of the sweep in seconds\"\n        self.check_ch(ch)\n        self.__instr.write(\"SOUR{0:d}:SWE:RTIM {1:0.3f}\".format(ch, rtime))\n\n    def set_sweep_htime(self, htime=0, ch=1):\n        \"sets the hold time of the sweep in seconds\"\n        self.check_ch(ch)\n        self.__instr.write(\"SOUR{0:d}:SWE:HTIM {1:0.3f}\".format(ch, htime))\n\n    def set_sweep_form(self, form=\"LIN\", ch=1):\n        \"selects LINear or LOGarithmic spacing for the sweep\"\n        self.check_ch(ch)\n        self.__instr.write(\"SOUR{0:d}:SWE:SPAC {1:s}\".format(ch, form))\n\n\n",
+			"file": "/N/meassrc/magnetometer/hardware/afg3000.py",
+			"file_size": 10850,
+			"file_write_time": 130984492860000000,
+			"settings":
+			{
+				"buffer_size": 10555,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/N/equipment/coils/specs_coils",
+			"settings":
+			{
+				"buffer_size": 232,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 110.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"sspy",
+				"Set Syntax: Python"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"pcip",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 386.0
+	},
+	"console":
+	{
+		"height": 160.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/johnny/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/N/software/meassrc/magnetometer/new_meas03/RigolDG3000_RMcontroller",
+		"/C/Users/johnny/Downloads/DG1000_ProgrammingGuide_EN.pdf",
+		"/N/software/meassrc/magnetometer/hardware/RigolDG3000",
+		"/N/data/dani/magnetometer/cell4/remote/meas9/config-9.yaml",
+		"/N/data/dani/magnetometer/cell4/remote/meas22/config-22.yaml",
+		"/N/meassrc/magnetometer/new_meas02/measurement.py",
+		"/N/software/meassrc/magnetometer/new_meas03/measurement.py",
+		"/N/software/meassrc/magnetometer/src/analysis_lockin.py",
+		"/N/software/meassrc/magnetometer/new_meas02/configs/config-06.yaml",
+		"/N/equipment/coils/specs_coils",
+		"/N/software/meassrc/magnetometer/new_meas03/measurement.ipynb",
+		"/N/data/dani/magnetometer/cell4/remote/meas34/config-34.yaml",
+		"/N/software/meassrc/magnetometer/new_meas03/config-7.yaml",
+		"/N/software/meassrc/magnetometer/new_meas03/nidaq_device_modTR.py",
+		"/N/text/stsm_daniel/report_01.txt",
+		"/C/Users/johnny/Desktop/A quantum hybrid system between a macroscopic and",
+		"/N/text/stsm_daniel/report_01.txt~",
+		"/N/data/dani/magnetometer/cell4/remote/meas17/config-17.yaml",
+		"/N/data/dani/magnetometer/cell4/remote/meas27/config-27.yaml",
+		"/N/meassrc/magnetometer/power_calibration_interpolated_values.txt.npy",
+		"/N/meassrc/magnetometer/new_meas02/measurement_worker.py",
+		"/N/meassrc/magnetometer/power_calibration_interpolated_values.txt",
+		"/N/meassrc/magnetometer/hardware/lock-in.py",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-06.yaml",
+		"/N/meassrc/magnetometer/hardware/Motordriver_new.py",
+		"/N/data/dani/magnetometer/cell4/remote/meas2/config-02.yaml",
+		"/N/data/dani/magnetometer/cell4/remote/meas1/config-01.yaml",
+		"/N/data/dani/magnetometer/cell4/remote/meas60/B1-freq-.csv",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-01.yaml",
+		"/N/meassrc/magnetometer/hardware/sr_lockin.py",
+		"/N/meassrc/src/measurements/nvrb3.py",
+		"/N/meassrc/magnetometer/hardware/afg3000.py",
+		"/N/meassrc/magnetometer/src/magnetometer_control_no_sweep_B0Offset_with_hameg.py",
+		"//pi3-file/electronics/motordriver/firmware/fw_update.py",
+		"/N/meassrc/magnetometer/hardware/motordriver.c",
+		"/N/meassrc/magnetometer/hardware/motordriver.py",
+		"/N/meassrc/magnetometer/lockin_test.py",
+		"/N/meassrc/magnetometer/new_meas03/configs/config-57.yaml",
+		"/N/meassrc/magnetometer/new_meas02/measurement.ipynb",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas58/config-57.yaml",
+		"/N/meassrc/magnetometer/new_meas02/configuration_parser.py",
+		"/N/meassrc/magnetometer/new_meas02/nidaq_device_modTR.py",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-57.yaml",
+		"/N/meassrc/magnetometer/src/magnetometer_control_no_sweep_B0Offset_with_hameg_R2.py",
+		"/N/meassrc/magnetometer/src/magnetometer_i.py",
+		"/N/meassrc/magnetometer/hardware/hameg.py",
+		"/N/meassrc/magnetometer/hardware/lockin_test.py",
+		"/N/meassrc/magnetometer/src/tektronix.py",
+		"/N/meassrc/NI-DAQ-python-master/DAQ_emi_v3.3.py",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas7/B0-offset-0.000.csv",
+		"/N/meassrc/magnetometer/src/magnetometer_control_b0_sweep_modTR.py",
+		"/N/meassrc/magnetometer/new_meas02/nidaq_device.py",
+		"/N/meassrc/NI-DAQ-python-master/DAQ_emi_v4.py",
+		"/N/meassrc/magnetometer/src/magnetometer_control_b1AM.py",
+		"/N/meassrc/magnetometer/src/plotting_waterfall.py",
+		"/N/meassrc/magnetometer/src/plotting.py",
+		"/N/meassrc/magnetometer/src/analysis.py",
+		"/N/meassrc/magnetometer/src/analysis_linewidth.py",
+		"/N/meassrc/magnetometer/src/analysis_3d.py",
+		"/N/thesis/thesis_emily/Figures/lorentz.py",
+		"/N/thesis/thesis_emily/Figures/lorentz_modulated.py",
+		"/N/meassrc/magnetometer/src/analysis_2.py",
+		"/N/thesis/thesis_emily/Figures/spektren.txt",
+		"/N/thesis/thesis_emily/Figures/lorentz.py~",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas34/popt34.txt",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas86/config-86.yaml",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas63/config-63.yaml",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-37.yaml",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas64/config-64.yaml",
+		"/N/data/emily/magnetometer/cell4/with_nv_without_fluorescence_shielding_16_09/mod70Hz_fourier_avg.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas34/popt_linewidths_hz34.txt",
+		"/N/meassrc/magnetometer/src/magnetometer_b1.py",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-34.yaml",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-35.yaml",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas34/config-34.yaml",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas37/config-37.yaml",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas36/config-36.yaml",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas27/popt27.txt",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-11.yaml",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-36.yaml",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas27/mean_width_and_std.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas26/mean_width_and_std.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas23/mean_width_and_std.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas24/mean_width_and_std.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas23/popt_linewidths_hz23.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas24/popt_linewidths_hz24.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas19/mean_width_and_std.txt",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-22.yaml",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas19/config-22.yaml",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas19/popt_linewidths_hz19.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas20/mean_width_and_std.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas2/popt_linewidths_hz2.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas18/mean_width_and_std.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas17/mean_width_and_std.txt",
+		"/N/thesis/thesis_emily/Chapters/Chapter1.tex",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas6/config-6.yaml",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas5/config-5.yaml",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas4/config-4.yaml",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas3/config-3.yaml",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-10.yaml",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-8.yaml",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-9.yaml",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-7.yaml",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas1/config-1.yaml",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas6/popt6.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas6/popt_linewidths_hz6.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas5/popt5.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas5/popt_linewidths_hz5.txt",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-100.yaml",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas75/popt75.txt",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas76/popt76.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas3/popt_linewidths_hz3.txt",
+		"/N/data/emily/magnetometer_test/cell8/remote/meas1/popt_linewidths_hz1.txt",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-99.yaml",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas99/popt99.txt",
+		"/N/data/emily/magnetometer_test/cell4/remote/offset_coils_adjust/b0_sweep_lockin/meas71/popt.txt",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas80/popt_linewidths_hz80.txt",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas99/popt_linewidths_hz99.txt",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas75/popt_linewidths_hz75.txt",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-96.yaml",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas96/B1-freq-.csv",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas95/config-95.yaml",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-94.yaml",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-95.yaml",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-92.yaml",
+		"/N/data/emily/magnetometer_test/cell4/remote/meas88/config-88.yaml",
+		"/N/meassrc/magnetometer/new_meas02/configs/config-89.yaml"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"_base_config_lockin",
+			"burst",
+			"IDN",
+			"term",
+			"close",
+			"burst",
+			"close",
+			"set_vol",
+			"set_cur",
+			"ham",
+			"hameg",
+			"motor",
+			"anal",
+			"zero",
+			"allowed",
+			"lock",
+			"motor",
+			"LOCKIN",
+			"zero",
+			"lockin",
+			"atomic",
+			"goal",
+			"applicant",
+			"get_measurement_range_for_output",
+			"meas_ranges",
+			"del",
+			")\n",
+			"int_values",
+			"TODO",
+			"trig",
+			"fomat",
+			"cw",
+			"close",
+			"zerorun",
+			"ser",
+			"Motordriver instance",
+			"motordriver.Motordriver",
+			"_base_config_hameg",
+			"self.TEKTRONIX",
+			"_configure_output",
+			"self.TEKTRONIX",
+			"_base_config_hameg",
+			" \n",
+			"pulse",
+			"put",
+			"nidaq",
+			"amp",
+			"j",
+			"load_config",
+			"_nidaq.load_config",
+			"load_config",
+			"use_lock_in",
+			"DAQmx_Val_GroupByScanNumber",
+			"bufferSize",
+			"do_task",
+			"output",
+			"filepath,",
+			", ",
+			"hameg.close",
+			"logging",
+			"aborting",
+			"pointsRead",
+			"pointRead",
+			"pointsToRead",
+			"dir",
+			"readSam",
+			"float64",
+			"Thread",
+			"voltage_max",
+			"voltage_max[",
+			"set_max",
+			"stop",
+			"get_thread",
+			"fdevi",
+			"taskHandle",
+			"print tektronix.get_trig_mode()\ntektronix.trig_mode(mode='SYNC')\nprint tektronix.get_trig_mode()",
+			"trig",
+			"min",
+			"self.voltage_max",
+			"volR2",
+			"volR2step",
+			"volR2stop",
+			"volR2start",
+			"cv",
+			"0E",
+			"tektonix",
+			"tektronix",
+			"tektornix",
+			"tektronix",
+			"pointsRead",
+			"timeout",
+			"detect",
+			"detecttiontime",
+			")\n",
+			"getAnotherBatch",
+			"setupTask",
+			" {",
+			"pyvisa",
+			"data",
+			"ymaxtimesing",
+			"ymintimesing",
+			")\n4900",
+			")\n",
+			"updateManual",
+			"update",
+			"1000",
+			"queuetracking",
+			"track Fre",
+			"refresh",
+			"refreshtra",
+			"refresTrah",
+			"refres",
+			"refresTra",
+			"refreshPressed",
+			"refreshButton",
+			"',\n",
+			"plot_datatracking",
+			"datatracking",
+			"Figure",
+			"asarray",
+			"datatracking",
+			"ax8",
+			"axes8",
+			"axes2",
+			"axes8",
+			"ax8",
+			"trackpoint",
+			"plot_datafftavg"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"volR3",
+			"volR3step",
+			"volR3stop",
+			"volR3start",
+			"np",
+			"write",
+			"averaging",
+			"datafft",
+			"self.__instr."
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/N/meassrc/magnetometer/new_meas02/nidaq_device_modTR.py",
+					"settings":
+					{
+						"buffer_size": 6571,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1318,
+								1319
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/N/software/meassrc/audio/ui.py",
+					"settings":
+					{
+						"buffer_size": 390,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "configs/config-10.yaml",
+					"settings":
+					{
+						"buffer_size": 6598,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6234,
+								6234
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1860.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/N/software/meassrc/NI-DAQ-python-master/DAQ_emi_v4.py",
+					"settings":
+					{
+						"buffer_size": 21088,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1680,
+								1680
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1300.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "configs/config-34.yaml",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3540.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/N/meassrc/magnetometer/hardware/Motordriver.py",
+					"settings":
+					{
+						"buffer_size": 15236,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								575,
+								575
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 9.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/N/meassrc/magnetometer/hardware/power_meter.py",
+					"settings":
+					{
+						"buffer_size": 2552,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2485,
+								2485
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 112.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/N/software/meassrc/magnetometer/power_calibration.py",
+					"settings":
+					{
+						"buffer_size": 1256,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1256,
+								1256
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "measurement.py",
+					"settings":
+					{
+						"buffer_size": 2515,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								906,
+								906
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 9,
+					"file": "measurement_worker.py",
+					"settings":
+					{
+						"buffer_size": 25481,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1315,
+								1315
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 120.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "RigolDG3000_RMcontroller.py",
+					"settings":
+					{
+						"buffer_size": 14761,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8359,
+								8359
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1089.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/N/software/meassrc/magnetometer/hardware/hameg.py",
+					"settings":
+					{
+						"buffer_size": 17431,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2671,
+								2650
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1353.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "hardware/RigolDG3000.py",
+					"settings":
+					{
+						"buffer_size": 5967,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1164,
+								1207
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 817.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "/N/software/meassrc/magnetometer/hardware/rigol.py",
+					"settings":
+					{
+						"buffer_size": 13427,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3512,
+								3512
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2373.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "/N/meassrc/magnetometer/hardware/sr_lockin.py",
+					"settings":
+					{
+						"buffer_size": 13298,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10175,
+								10175
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4980.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "configuration_parser.py",
+					"settings":
+					{
+						"buffer_size": 3916,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								258,
+								258
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "/N/meassrc/magnetometer/hardware/afg3000.py",
+					"settings":
+					{
+						"buffer_size": 10555,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								58,
+								58
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "/N/equipment/coils/specs_coils",
+					"settings":
+					{
+						"buffer_size": 232,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								232,
+								232
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.035965982239,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 25.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 172.0,
+	"status_bar_visible": true
+}

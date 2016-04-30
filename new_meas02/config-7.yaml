@@ -1,0 +1,159 @@
+outputs:
+    B1:
+        device: 'tektronix'
+        channel: 2
+        active: true
+        func: 'SIN' # available funcs: 'SIN'
+        methods: ['freq'] # available methods: 'freq', 'amp', 'offset', 'const', 'freq_mod.span', 'freq_mod.sweep_time', 'freq_mod.return_time', 'amp_mod.freq', 'amp_mod.depth'
+        freq:
+            start: 100e3
+            stop: 5e3
+            step: 0.1e3
+            label: 'B1 frequency (Hz)'  # TODO
+        amp:
+            start: 4.
+            stop: 5.
+            step: 0.5
+            label: 'B1 amplitude (V)'
+        offset:
+            start: 0.
+            stop: 0.
+            step: 0.
+            label: 'B1 offset (V)'
+        # frequency modulation settings (cannot be combined with amplitude 
+        # modulation)
+        freq_mod:
+            active: false
+            center: 5E3
+            span:
+                start: 9.5E3
+                stop: 0.
+                step: 0.
+                label: 'B1 frequency modulation span (Hz)'
+            sweep_time:
+                start: 0.5
+                stop: 0.
+                step: 0.
+                label: 'B1 frequency modulation sweep time (s)'
+            return_time:
+                start: 0.5
+                stop: 0.
+                step: 0.
+                label: 'B1 frequency modulation return time (s)'
+            hold_time: 0
+            form: 'LIN'
+        # amplitude modulation settings (cannot be combined with frequency 
+        # modulation)
+        amp_mod:
+            active: false
+            waveform: 'SIN'  # available waveforms: 'SIN', 'SQU', 'TRI'
+            depth:
+                start: 50
+                stop: 50
+                step: 10
+                label: 'B1 amplitude modulation depth (%)'
+            freq:
+                start: 50
+                stop: 350
+                step: 10
+                label: 'B1 amplitude modulation frequency (Hz)'
+    B0:
+        device: 'tektronix'
+        channel: 1
+        active: true
+        func: 'DC' # available funcs: 'DC', 'RAMP', 'SQU'
+        methods: ['offset'] # available methods: 'freq', 'amp', 'offset', 'const'
+        freq:
+            start: 0.25
+            stop: 0.
+            step: 0.
+            label: 'B0 frequency (Hz)'
+        amp:
+            start: 0.2
+            stop: 1.0
+            step: 0.1
+            label: 'B0 amplitude (V)'
+        offset:
+            start: 0.0
+            stop: 0.1
+            step: 0.001
+            label: 'B0 offset (V)'
+    R3:
+        device: 'hameg'
+        channel: 1
+        active: false
+        func: 'DC'
+        methods: ['offset'] # available methods: 'offset', 'const'
+        offset:
+            start: 0.0
+            stop: 0.1
+            step: 0.005
+            label: 'R3 offset (V)'
+    R2:
+        device: 'hameg'
+        channel: 2
+        active: false
+        func: 'DC'
+        methods: ['offset'] # available methods: 'offset', 'const'
+        offset:
+            start: 0.00
+            stop: 0.1
+            step: 0.005
+            label: 'R2 offset (V)'
+    R4:
+        device: 'hameg'
+        channel: 3
+        active: false
+        func: 'DC'
+        methods: ['const'] # available methods: 'offset', 'const'
+        offset:
+            start: 0.07
+            stop: 0.1
+            step: 0.001
+            label: 'R4 offset (V)'
+stack:
+    - 'B0.0'
+    - 'B1.0'
+devices:
+    nidaq:
+        sample_rate: 2000000.0
+        measurement_time_s: 1.
+        downsampling_factor: 200
+measurement:
+    cell_id: 8
+    measurement_id: 7
+    rubidium_isotope: 85
+    temperature_C: 44
+    laser_power_uW: 8
+    photo_diode_gain_dB: 60
+    NV_in_cell: false
+    NV_light_on: false
+    NV_light_power_mW: 59
+    NV_chopper_on: false
+    NV_chopper_freq: 70
+    NV_microwave_on: false
+    NV_microwave_level_dBm: 0
+    NV_microwave_am_freq: 50e3
+    extra_resistances:
+        R0: 470
+        R1: 'with_highpass (430kOhm, 1uF, 680Ohm)'
+        R2: 150
+        R3: 150
+        R4: 150
+    polarity: 
+        R2: '-=+, +=-'
+        R3: '-=+, +=-'
+        R4: '-=+, +=-'
+    lock_in_params:
+        active: false
+        time_constant_ms: 1
+        sensitivity_mV: 20
+        slope_dB: 24
+        sync_filter: True
+        ground: 'float'
+        filters:
+            - 'line'
+            - '2xline'
+        reserve: 'low_noise'
+        phase: '10deg'
+        harmonic: 1
