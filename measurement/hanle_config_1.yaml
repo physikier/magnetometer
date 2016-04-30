@@ -4,11 +4,11 @@ outputs:
     B1:
         device: tektronix
         channel: 2
-        active:
+        active: 'true'
         func: SIN   # available funcs: 'SIN'
         methods:           # available methods: 'freq', 'amp', 'offset', 'const', 'freq_mod.span', 'freq_mod.sweep_time', 'freq_mod.return_time', 'amp_mod.freq', 'amp_mod.depth'
         freq:
-            start: 1.0
+            start:
             stop:
             step:
             label: B1 frequency (Hz)    # TODO
@@ -63,17 +63,17 @@ outputs:
         device: tektronix
         channel: 1
         active: 'false'
-        func: RAMP   # available funcs: 'DC', 'RAMP', 'SQU'
+        func: 'RAMP'     # available funcs: 'DC', 'RAMP', 'SQU'
         methods:         # available methods: 'freq', 'amp', 'offset', 'const'
         freq:
-            start: 6.0
-            stop: 7.0
-            step: 8.0
+            start: 5.0
+            stop: 6.0
+            step: 7.0
             label: B0 frequency (Hz)
         amp:
             start:
             stop:
-            step: 5.0
+            step:
             label: B0 amplitude (V)
         offset:
             start:

@@ -66,7 +66,7 @@ class NidaqDevice(object):
 
 
 
-        self.do_chan = ctypes.create_string_buffer('/Dev2/port0/line0')
+        self.do_chan = ctypes.create_string_buffer(b'/Dev2/port0/line0')
         uInt_ArrayFactory = ctypes.c_uint8 *2 
         self.do_data = uInt_ArrayFactory(1,0)
         self.DAQmx_Val_ChanPerLine = 0
@@ -180,8 +180,8 @@ class NidaqDevice(object):
         self.downsampling_factor = config['downsampling_factor']
         self.sampleRate = self.float64(config['sample_rate'])
         if use_lock_in:
-            self.channel = ctypes.create_string_buffer(self._channel_lock_in)
+            self.channel = ctypes.create_string_buffer(self._channel_lock_in.encode('utf-8'))
         else:
-            self.channel = ctypes.create_string_buffer(self._channel_photodiode)
+            self.channel = ctypes.create_string_buffer(self._channel_photodiode.encode('utf-8'))
         
         self._calc_deps()

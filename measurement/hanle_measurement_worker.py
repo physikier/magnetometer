@@ -52,7 +52,7 @@ for config_filename in configure_filenames:
     except ConfigIntegrityException:
         # TODO: add logfile
         exc_info = sys.exc_info()
-        raise exc_info[0], exc_info[1], exc_info[2]
+        raise exc_info[0](exc_info[1]).with_traceback(exc_info[2])
     
     try:
         hameg = ha.HMP2030(device="hameg01", voltage_max=20., current_max=0.07)
@@ -74,7 +74,7 @@ for config_filename in configure_filenames:
     
         # TODO: add logfile
         exc_info = sys.exc_info()
-        raise exc_info[0], exc_info[1], exc_info[2]
+        raise exc_info[0](exc_info[1]).with_traceback(exc_info[2])
     finally:
         hameg.close()
     try:
