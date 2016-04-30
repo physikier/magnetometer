@@ -53,13 +53,13 @@ class NidaqDevice(object):
 
         self.sampleRate = sample_rate 
         self.detectionTime = detection_time 
-        self.triggerSource = ctypes.create_string_buffer(trigger_source.encode('utf-8'))
+        self.triggerSource = ctypes.create_string_buffer(trigger_source)
         self.triggerLevel = trigger_level
         
         self._channel_photodiode = channel_photodiode
         self._channel_lock_in = channel_lock_in
-        self.channel = ctypes.create_string_buffer(channel_photodiode.encode('utf-8'))
-        self.clockSource = ctypes.create_string_buffer(clock_source.encode('utf-8'))
+        self.channel = ctypes.create_string_buffer(channel_photodiode)
+        self.clockSource = ctypes.create_string_buffer(clock_source)
         
         self._calc_deps()
 
