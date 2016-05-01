@@ -435,27 +435,27 @@ class MeasurementWorker(object):
 
             q=Queue()
             for i, v in enumerate(meas_ranges[0]):
-                    key, index = stack[0].split('.')  # e.g. key2='B2', index2='0'
-                    index = int(index)  # index2 is a integer value
-                    self._adjust_output_setting(v, key, index)  # send signal to remote device
-                    
-                    get_thread = Thread(target=self._nidaq.get_data, args=[q])
-                    get_thread.start()
-                    self._nidaq.pulse()
-                    get_thread.join()
-                    batch=self._nidaq.get_data(q)
+                key, index = stack[0].split('.')  # e.g. key2='B2', index2='0'
+                index = int(index)  # index2 is a integer value
+                self._adjust_output_setting(v, key, index)  # send signal to remote device
+                
+                get_thread = Thread(target=self._nidaq.get_data, args=[q])
+                get_thread.start()
+                self._nidaq.pulse()
+                get_thread.join()
+                batch=self._nidaq.get_data(q)
 
-                    
-                    # # Some configurations require a trigger signal to be sent to the tektronix device, this MUST
-                    # # be sent before the measurement takes place.
-                    # self._send_trigger_to_tekronix_if_required()
-                    
-                    # # request the data from the nidaq device and perform downsampling
-                    # batch = self._nidaq.get_data()
-                    downsampled_data = self._nidaq.downsampling(batch)
-                    
-                    data[:, i] = downsampled_data
-                    data_fft[:, i] = np.abs(np.fft.rfft(downsampled_data))
+                
+                # # Some configurations require a trigger signal to be sent to the tektronix device, this MUST
+                # # be sent before the measurement takes place.
+                # self._send_trigger_to_tekronix_if_required()
+                
+                # # request the data from the nidaq device and perform downsampling
+                # batch = self._nidaq.get_data()
+                downsampled_data = self._nidaq.downsampling(batch)
+                
+                data[:, i] = downsampled_data
+                data_fft[:, i] = np.abs(np.fft.rfft(downsampled_data))
                 
             if save:
                 # create generic name, with some variables, which will be used later for saving the data to disk

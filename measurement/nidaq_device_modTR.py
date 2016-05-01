@@ -138,7 +138,6 @@ class NidaqDevice(object):
             ctypes.byref(self.pointsRead),
             None
         )
-        
         return data
 
     def pulse(self, length=0.5):

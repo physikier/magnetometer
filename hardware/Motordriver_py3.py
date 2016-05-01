@@ -73,9 +73,9 @@ class Motordriver():
     
   # --------------------------------------------------------------------------
   def __del__(self):
-    # stop all motor movements when closing the interface
-    self.stopAllMovements()
     if self.ser.isOpen():
+      # stop all motor movements when closing the interface
+      self.stopAllMovements()
       self.ser.close()
 
     del self.ser
