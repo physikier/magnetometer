@@ -7,9 +7,6 @@ import copy
 import matplotlib.pyplot as plt
 import logging
 
-_import_path = os.path.abspath(os.path.join(os.getcwd(), '..'))
-if _import_path not in sys.path:
-    sys.path.insert(0, _import_path)
 
 # hardware
 import hardware.afg3000 as tek
@@ -49,7 +46,7 @@ for config_filename in configure_filenames:
     except ConfigIntegrityException:
         # TODO: add logfile
         exc_info = sys.exc_info()
-        raise exc_info[0], exc_info[1], exc_info[2]
+        raise exc_info[0](exc_info[1]).with_traceback(exc_info[2])
 
     try:
         hameg = ha.HMP2030(device="hameg01", voltage_max=20., current_max=0.07)
@@ -66,10 +63,10 @@ for config_filename in configure_filenames:
 
         mw.measure(save=True, config_path=config_filepath)
 
-    except Exception, e:
+    except Exception as e:
 
         # TODO: add logfile
         exc_info = sys.exc_info()
-        raise exc_info[0], exc_info[1], exc_info[2]
+        raise exc_info[0](exc_info[1]).with_traceback(exc_info[2])
     finally:
         hameg.close()

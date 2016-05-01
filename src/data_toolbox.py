@@ -51,7 +51,7 @@ def pickleFileToDict(path, keys=None):
         finally:
             fileh.close()
     except IOError:
-        print 'Error importing data'
+        print('Error importing data')
     d=KeysFromDict(dict,keys)
     return d
 
@@ -114,7 +114,7 @@ def stringToFile(datastring, path):
         finally:
             f.close()
     except IOError:
-        print 'Error exporting data'
+        print('Error exporting data')
         return False
     return True
 

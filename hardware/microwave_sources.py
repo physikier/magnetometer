@@ -183,7 +183,7 @@ class SMR20():
         self._write('*WAI')
         N = int(numpy.round(float(self._ask(':LIST:FREQ:POIN?'))))
         if N != len(frequency):
-            raise RuntimeError, 'Error in SMIQ with List Mode'
+            raise RuntimeError('Error in SMIQ with List Mode')
 
     def resetListPos(self):
         self._write(':ABOR:LIST')

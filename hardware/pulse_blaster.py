@@ -96,7 +96,7 @@ def write(channels, dt):
                 elif K < 1048577:
                     label = chk(dll.pb_inst_pbonly( ON|channel_bits, LONG_DELAY, K, ctypes.c_double( M*DT ) ))
                 else:
-                    raise RuntimeError, 'Loop count in LONG_DELAY exceedes maximum value.'
+                    raise RuntimeError('Loop count in LONG_DELAY exceedes maximum value.')
                 if i > 4:
                     chk(dll.pb_inst_pbonly( ON|channel_bits, CONTINUE, None, ctypes.c_double( i*DT )  ))
                 break

@@ -1,4 +1,3 @@
-from __future__ import division
 import ctypes
 import numpy as np
 
@@ -32,10 +31,10 @@ class NidaqDevice(object):
                  downsampling_factor=100,
                  sample_rate=float64(2000000.0), # sampling rate in samples per second
                  trigger_level=float64(0.),
-                 trigger_source='/Dev2/pfi0', 
-                 channel_photodiode='/Dev2/ai0',  # channel to read photo diode signal
-                 channel_lock_in='/Dev2/ai1',   # channel to read lock-in signal
-                 clock_source='OnboardClock'
+                 trigger_source=b'/Dev2/pfi0', 
+                 channel_photodiode=b'/Dev2/ai0',  # channel to read photo diode signal
+                 channel_lock_in=b'/Dev2/ai1',   # channel to read lock-in signal
+                 clock_source=b'OnboardClock'
 
                 ):
         self.instance = ctypes.windll.nicaiu 
@@ -53,13 +52,13 @@ class NidaqDevice(object):
 
         self.sampleRate = sample_rate
         self.detectionTime = detection_time
-        self.triggerSource = ctypes.create_string_buffer(trigger_source.encode('utf-8'))
+        self.triggerSource = ctypes.create_string_buffer(trigger_source)
         self.triggerLevel = trigger_level
         
         self._channel_photodiode = channel_photodiode
         self._channel_lock_in = channel_lock_in
-        self.channel = ctypes.create_string_buffer(channel_photodiode.encode('utf-8'))
-        self.clockSource = ctypes.create_string_buffer(clock_source.encode('utf-8'))
+        self.channel = ctypes.create_string_buffer(channel_photodiode)
+        self.clockSource = ctypes.create_string_buffer(clock_source)
         
         self._calc_deps()
 
@@ -74,8 +73,8 @@ class NidaqDevice(object):
 
         TaskHandle = ctypes.c_uint32
         self.do_task = TaskHandle(1)
-        self.instance.DAQmxCreateTask("",ctypes.byref(self.do_task))
-        self.instance.DAQmxCreateDOChan(self.do_task, self.do_chan,"output", self.DAQmx_Val_ChanPerLine)
+        self.instance.DAQmxCreateTask(b"",ctypes.byref(self.do_task))
+        self.instance.DAQmxCreateDOChan(self.do_task, self.do_chan,b"output", self.DAQmx_Val_ChanPerLine)
 
 
 
@@ -85,11 +84,11 @@ class NidaqDevice(object):
         self.instance.DAQmxDisconnectTerms((source,destination))
       
     def setup_task(self):
-        self.instance.DAQmxCreateTask("",ctypes.byref(self.taskHandle))
+        self.instance.DAQmxCreateTask(b"",ctypes.byref(self.taskHandle))
         self.instance.DAQmxCreateAIVoltageChan(
             self.taskHandle, 
             self.channel, 
-            "", 
+            b"", 
             self.DAQmx_Val_Cfg_Default, 
             self.min1, 
             self.max1, 
@@ -179,8 +178,11 @@ class NidaqDevice(object):
         self.downsampling_factor = config['downsampling_factor']
         self.sampleRate = self.float64(config['sample_rate'])
         if use_lock_in:
-            self.channel = ctypes.create_string_buffer(self._channel_lock_in.encode('utf-8'))
+            self.channel = ctypes.create_string_buffer(self._channel_lock_in)
         else:
-            self.channel = ctypes.create_string_buffer(self._channel_photodiode.encode('utf-8'))
+            self.channel = ctypes.create_string_buffer(self._channel_photodiode)
         
         self._calc_deps()
+
+if __name__ != '__main__':
+    print('this module was successfully imported')

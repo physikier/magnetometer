@@ -113,7 +113,7 @@ class HMP2030():
     # convenience method
     def set_output(self,current,ch=None):
         """Set the current on the given channel. Turn output on or off depending on the specified current."""
-        print "CALL TO DEPRECATED FUNCTION \"set_output\" in Hameg. Use \"set_current\" instead!"
+        print("CALL TO DEPRECATED FUNCTION \"set_output\" in Hameg. Use \"set_current\" instead!")
         if ch==None and self.channel != None:
             ch=self.channel
         if ch!=None:
@@ -150,7 +150,7 @@ class HMP2030():
         elif state == 2:
             return 'CV'
         else:
-            print "Couldn't read the status of the selected channel."
+            print("Couldn't read the status of the selected channel.")
     
     def set_voltage(self,volt,ch=None):
         """sets the voltage to the desired value"""
@@ -159,10 +159,10 @@ class HMP2030():
         if ch!=None:
             self.set_ch(ch)
         if volt < 0:
-            print 'The selected voltage cannot be set.'
+            print('The selected voltage cannot be set.')
         elif volt > self.voltage_max[ch-1] :     #the voltage_max will be set on the power supply if volt exceed voltage_max 
             self.__instr.write('VOLT %1.5f' %self.voltage_max[ch-1])
-            print 'The set voltage exceed the maximum voltage: %1.5f' %self.voltage_max[ch-1]
+            print('The set voltage exceed the maximum voltage: %1.5f' %self.voltage_max[ch-1])
         else:
             self.__instr.write('VOLT %1.5f' %volt)
      
@@ -242,17 +242,17 @@ class HMP2030():
 
         seq_ary = np.array(seq)
         if max(seq_ary[:,0]) > self.voltage_max[ch-1]:
-            print 'The set voltage exceed the maximum voltage: %1.5f' %self.voltage_max[ch-1]
+            print('The set voltage exceed the maximum voltage: %1.5f' %self.voltage_max[ch-1])
         elif max(seq_ary[:,1]) > self.current_max[ch-1]:
-            print 'The set current exceed the maximum current: %1.5f' %self.current_max[ch-1]
+            print('The set current exceed the maximum current: %1.5f' %self.current_max[ch-1])
         elif min(seq_ary[:,2]) < .5:
-            print 'The set time is shorter than 0.5s.'
+            print('The set time is shorter than 0.5s.')
         elif seq >= 0:
-            print 'Negative value of voltage, current or time.'
+            print('Negative value of voltage, current or time.')
         elif ch != [1,2,3]:
-            print 'Wrong channel number. Chose 1, 2 or 3.'
+            print('Wrong channel number. Chose 1, 2 or 3.')
         elif N != range(0,256):
-            print 'The set repetitions are outside the range [0,255].'
+            print('The set repetitions are outside the range [0,255].')
         else:
             self.__instr.write('ARB:DATA' + ' ' + str(seq).translate(None, '[()] '))
             self.__instr.write('ARB:REP' + ' ' + str(N))
@@ -349,9 +349,9 @@ class HMP2030():
         if ch!=None:
             self.set_ch(ch)
         if fuse_voltage_max < 0:
-            print 'The selected value for voltage protection cannot be set.'
+            print('The selected value for voltage protection cannot be set.')
         elif fuse_voltage_max > 32.0: #the maximal voltage which the HMP2030 supplies
-            print 'The set voltage exceed the maximum voltage: 32V' 
+            print('The set voltage exceed the maximum voltage: 32V' )
         else:
             self.__instr.write('VOLT:PROT %1.5f' %fuse_voltage_max)
         
@@ -363,9 +363,9 @@ class HMP2030():
             self.set_ch(ch)
         self.__instr.write('FUSE ON')
         if fuse_current_max < 0:
-            print 'The selected value for current fuse cannot be set.'
+            print('The selected value for current fuse cannot be set.')
         elif fuse_current_max > 5.0: #the maximal current which the HMP2030 supplies
-            print 'The set current exceed the maximum current: 5A' 
+            print('The set current exceed the maximum current: 5A' )
         else:
             self.__instr.write('CURR %1.5f' %fuse_current_max)
         self.__instr.write('FUSE:DEL 0')

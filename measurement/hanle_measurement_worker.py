@@ -6,6 +6,13 @@ import sys
 import copy
 import matplotlib.pyplot as plt
 import logging
+
+# delete meas11 folder (not necessary for magnetometer program)
+import shutil
+shutil.rmtree(
+    "N:\\data\\2016\\magnetometer\\cell66\\remote\\meas11",
+    ignore_errors=True)
+
 #
 _import_path = os.path.abspath(os.path.join(os.getcwd(), '..'))
 if _import_path not in sys.path:

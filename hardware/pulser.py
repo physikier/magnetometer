@@ -12,7 +12,7 @@ class Pulser():
     def __init__(self, serial=''):
         xem = ok.FrontPanel()
         if (xem.OpenBySerial(serial) != 0):
-            raise RuntimeError, 'Failed to open USB connection.'
+            raise RuntimeError('Failed to open USB connection.')
         PLL = ok.PLL22150()
         xem.GetPLL22150Configuration(PLL)
         PLL.SetVCOParameters(333,48)            #set VCO to 333MHz
@@ -23,7 +23,7 @@ class Pulser():
         xem.SetPLL22150Configuration(PLL)
 
         if (xem.ConfigureFPGA(bitfile) != 0):
-            raise RuntimeError, 'Failed to upload bit file to fpga.'
+            raise RuntimeError('Failed to upload bit file to fpga.')
 
         self.xem = xem
     
