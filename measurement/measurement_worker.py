@@ -31,7 +31,7 @@ class MeasurementWorker(object):
         self._config = config
         self._cell_id = None  # identifier of the cell in this measurement
         self._measurement_id = None  # unique id of the measurement
-        self._filepath = ''
+        self._filepath = b''
         
         self._measurement = None
         
