@@ -19,6 +19,10 @@ class ControllerGui(QtGui.QMainWindow):
         ControllerGui.ui_utils = UIUtils(self)
 
         self.ui_utils.disable_widgets()
+        self.controller_utils.get_cell_id_measurement_no()
+        #self.controller_utils.apply_recent_cell_id()
+       
+        
 
         self.checkBox_B0.stateChanged.connect(self.controller_utils.apply_B0_stat)
         self.checkBox_B1.stateChanged.connect(self.controller_utils.apply_B1_stat)
@@ -59,7 +63,6 @@ class ControllerGui(QtGui.QMainWindow):
         self.spinBox_samples.valueChanged.connect(self.controller_utils.apply_samples)
         self.spinBox_downsampling.valueChanged.connect(self.controller_utils.apply_downsampling)
         self.spinBox_mtime.valueChanged.connect(self.controller_utils.apply_measure_time)
-        
         self.show()
 
 
@@ -188,6 +191,7 @@ class ControllerUtils():
 
     def apply_cell_id(self):
         cell_id = self.gui.spinBox_cell_id.value()
+        self.gui.spinBox_measure_no.setValue(self.gui.ui_utils.find_current_measurement_number(cell_id))
         self.yaml_config_handler.write_hanle_config(cell=cell_id)
         print('[SET] cell\'s id: ' + str(cell_id))
 
@@ -232,6 +236,13 @@ class ControllerUtils():
         print('[SET] B1 measuring method: ' + method)
         self.gui.ui_utils.disable_widgets()
 
+    def get_cell_id_measurement_no(self):
+        cell_id = self.gui.ui_utils.find_recent_cell_id()
+        number = self.gui.ui_utils.find_current_measurement_number(cell_id)
+        self.gui.spinBox_measure_no.setValue(number)
+        self.gui.spinBox_cell_id.setValue(cell_id)
+
+
 
 # User Interface Utils
 class UIUtils():
@@ -256,6 +267,47 @@ class UIUtils():
             self.gui.spinBox_ampl_step_B1.setEnabled(True)
             self.gui.spinBox_off_stop_B1.setEnabled(True)
             self.gui.spinBox_off_step_B1.setEnabled(True)
+
+    def find_current_measurement_number(self, cell_id):
+        import glob
+        import os
+        import re
+        #cell_id = self.find_recent_cell_id()
+        try:
+            newest_folder = max(glob.iglob(os.path.join('N:\\data\\2016\\magnetometer\\cell{}\\remote'.format(cell_id), '*/')), key=os.path.getctime)
+            regex = re.compile(r'\d+')
+            regex.findall(newest_folder)
+            nums=[int(x) for x in regex.findall(newest_folder)]
+            recent_measure_num=nums[-1]
+            measurement_number = recent_measure_num + 1
+            print(newest_folder)
+            print(nums)
+            print(measurement_number, type(measurement_number))
+            return measurement_number
+        
+        except ValueError:
+            print('no existing measurement in directory: start now with measurement number = 0')
+
+            return 0
+
+    def find_recent_cell_id(self):
+        import glob
+        import os
+        import re
+
+        try:
+            newest_folder = max(glob.iglob(os.path.join('N:\\data\\2016\\magnetometer', '*/')), key=os.path.getctime)
+            regex = re.compile(r'\d+')
+            regex.findall(newest_folder)
+            nums=[int(x) for x in regex.findall(newest_folder)]
+            recent_cell_id=nums[-1]
+            print(newest_folder)
+            print(nums)
+            print(recent_cell_id)
+            return(recent_cell_id)
+        except ValueError:
+            print('no recent cell id found: set cell id = 0')
+            return 0
 
 
 def main():
