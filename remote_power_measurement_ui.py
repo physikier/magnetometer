@@ -47,6 +47,45 @@ class ControllerGui(QtGui.QMainWindow):
         self.plot1.getAxis('right').setStyle(showValues=False)
 
 
+        def mouseClickEvent(self, ev):
+            if ev.button() == QtCore.Qt.RightButton:
+                if self.raiseContextMenu(ev): 
+                    ev.accept()
+
+        def raiseContextMenu(self, ev):
+            menu = self.getContextMenus()
+            
+            # Let the scene add on to the end of our context menu
+            # (this is optional)
+            menu = self.scene().addParentContextMenus(self, menu, ev)
+            
+            pos = ev.screenPos()
+            menu.popup(QtCore.QPoint(pos.x(), pos.y()))
+            return True
+
+    # This method will be called when this item's _children_ want to raise
+    # a context menu that includes their parents' menus.
+        def getContextMenus(self, event=None):
+            if self.menu is None:
+                self.menu = QtGui.QMenu()
+                self.menu.setTitle(self.name+ " options..")
+                
+                green = QtGui.QAction("Turn green", self.menu)
+                green.triggered.connect(self.setGreen)
+                self.menu.addAction(green)
+                self.menu.green = green
+            return self.menu
+
+        def setGreen(self):
+            print("this works great")
+            # inform Qt that this item must be redrawn.
+            self.update()
+
+
+
+
+
+
         self.show()
 
    
@@ -68,7 +107,8 @@ class ControllerUtils():
         self.gui.ui_utils.plot1(data)
         #x='calibration done'
         #print(x)
-
+    def andreas(self):
+        print("great")
  # User Interface Utils
 class UIUtils():
 
@@ -187,6 +227,10 @@ class UIUtils():
                     #self.gui.plot1.addItem(textItem)
                 vLine.setPos(mousePoint.x())
                 hLine.setPos(mousePoint.y())
+
+        
+
+
 
 
         #self.ui_utils.mouseMoved()

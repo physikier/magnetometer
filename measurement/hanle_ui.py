@@ -1,6 +1,7 @@
 import sys
 import numpy
 import yaml_writer as yw
+
 from PyQt4 import QtCore, QtGui, uic
 
 # Main QT Window Class
@@ -20,14 +21,13 @@ class ControllerGui(QtGui.QMainWindow):
 
         self.ui_utils.disable_widgets()
         self.controller_utils.get_cell_id_measurement_no()
-        #self.controller_utils.apply_recent_cell_id()
+        
        
         
 
         self.checkBox_B0.stateChanged.connect(self.controller_utils.apply_B0_stat)
         self.checkBox_B1.stateChanged.connect(self.controller_utils.apply_B1_stat)
 
-       
         self.comboBox_method_B0.currentIndexChanged.connect(self.controller_utils.apply_method_B0)
         self.comboBox_method_B1.currentIndexChanged.connect(self.controller_utils.apply_method_B1)
 
@@ -37,7 +37,6 @@ class ControllerGui(QtGui.QMainWindow):
         self.spinBox_freq_stop_B1.valueChanged.connect(self.controller_utils.apply_freq_stop_B1)
         self.spinBox_freq_step_B0.valueChanged.connect(self.controller_utils.apply_freq_step_B0)
         self.spinBox_freq_step_B1.valueChanged.connect(self.controller_utils.apply_freq_step_B1)
-
 
         self.spinBox_ampl_start_B0.valueChanged.connect(self.controller_utils.apply_ampl_start_B0)
         self.spinBox_ampl_start_B1.valueChanged.connect(self.controller_utils.apply_ampl_start_B1)
@@ -63,18 +62,26 @@ class ControllerGui(QtGui.QMainWindow):
         self.spinBox_samples.valueChanged.connect(self.controller_utils.apply_samples)
         self.spinBox_downsampling.valueChanged.connect(self.controller_utils.apply_downsampling)
         self.spinBox_mtime.valueChanged.connect(self.controller_utils.apply_measure_time)
+
+        self.btn_load_config.clicked.connect(self.controller_utils.load_yaml_config)
         self.show()
 
 
 # Function Generator Utils
 class ControllerUtils():
+
     # the gui is the instance of the main Qt Window (ControllerGui class)
     gui = None
     # This is an instance of the YamlConfigHandler class
     yaml_config_handler = None
 
+
     def __init__(self, gui):
         ControllerUtils.gui = gui
+        self.yaml_config_handler = yw.YamlConfigHandler()
+
+    def load_yaml_config(self):
+        self.apply_B0_stat()
 
     def apply_B0_stat(self):
         value_stat = self.gui.checkBox_B0.checkState()
