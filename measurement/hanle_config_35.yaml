@@ -4,23 +4,23 @@ outputs:
     B1:
         device: tektronix
         channel: 2
-        active:
+        active: 'false'
         func: SIN   # available funcs: 'SIN'
-        methods:           # available methods: 'freq', 'amp', 'offset', 'const', 'freq_mod.span', 'freq_mod.sweep_time', 'freq_mod.return_time', 'amp_mod.freq', 'amp_mod.depth'
+        methods: const     # available methods: 'freq', 'amp', 'offset', 'const', 'freq_mod.span', 'freq_mod.sweep_time', 'freq_mod.return_time', 'amp_mod.freq', 'amp_mod.depth'
         freq:
-            start:
-            stop:
-            step:
+            start: 0.0
+            stop: 0.0
+            step: 0.0
             label: B1 frequency (Hz)    # TODO
         amp:
-            start:
-            stop:
-            step:
+            start: 0.0
+            stop: 0.0
+            step: 0.0
             label: B1 amplitude (V)
         offset:
-            start:
-            stop:
-            step:
+            start: 0.0
+            stop: 0.0
+            step: 0.0
             label: B1 offset (V)
         # frequency modulation settings (cannot be combined with amplitude 
         # modulation)
@@ -62,23 +62,23 @@ outputs:
     B0:
         device: tektronix
         channel: 1
-        active:
+        active: 'false'
         func: RAMP   # available funcs: 'DC', 'RAMP', 'SQU'
-        methods:         # available methods: 'freq', 'amp', 'offset', 'const'
+        methods: freq    # available methods: 'freq', 'amp', 'offset', 'const'
         freq:
-            start:
-            stop:
-            step:
+            start: 0.0
+            stop: 0.0
+            step: 0.0
             label: B0 frequency (Hz)
         amp:
-            start:
-            stop:
-            step:
+            start: 0.0
+            stop: 0.0
+            step: 0.0
             label: B0 amplitude (V)
         offset:
-            start:
-            stop:
-            step:
+            start: 0.0
+            stop: 0.0
+            step: 0.0
             label: B0 offset (V)
     R3:
         device: hameg
@@ -182,18 +182,18 @@ stack:
 -   B0.0
 devices:
     nidaq:
-        sample_rate:
-        measurement_time_s:
-        downsampling_factor: 
+        sample_rate: 200000
+        measurement_time_s: 0.0
+        downsampling_factor: 0
 
 measurement:
     cell_id: 4
     measurement_id: 35
     rubidium_isotope: 85
     laser_locked: 'true'
-    temperature_C:
-    laser_power_uW:
-    photo_diode_gain_dB:
+    temperature_C: 0.0
+    laser_power_uW: 0.0
+    photo_diode_gain_dB: 0
     NV_in_cell: false
     NV_light_on: false
     NV_light_power_mW: 59

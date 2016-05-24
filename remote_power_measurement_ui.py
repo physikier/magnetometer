@@ -47,45 +47,6 @@ class ControllerGui(QtGui.QMainWindow):
         self.plot1.getAxis('right').setStyle(showValues=False)
 
 
-        def mouseClickEvent(self, ev):
-            if ev.button() == QtCore.Qt.RightButton:
-                if self.raiseContextMenu(ev): 
-                    ev.accept()
-
-        def raiseContextMenu(self, ev):
-            menu = self.getContextMenus()
-            
-            # Let the scene add on to the end of our context menu
-            # (this is optional)
-            menu = self.scene().addParentContextMenus(self, menu, ev)
-            
-            pos = ev.screenPos()
-            menu.popup(QtCore.QPoint(pos.x(), pos.y()))
-            return True
-
-    # This method will be called when this item's _children_ want to raise
-    # a context menu that includes their parents' menus.
-        def getContextMenus(self, event=None):
-            if self.menu is None:
-                self.menu = QtGui.QMenu()
-                self.menu.setTitle(self.name+ " options..")
-                
-                green = QtGui.QAction("Turn green", self.menu)
-                green.triggered.connect(self.setGreen)
-                self.menu.addAction(green)
-                self.menu.green = green
-            return self.menu
-
-        def setGreen(self):
-            print("this works great")
-            # inform Qt that this item must be redrawn.
-            self.update()
-
-
-
-
-
-
         self.show()
 
    
@@ -127,8 +88,12 @@ class UIUtils():
         a=0
         art_measurement=[]
         art_degrees=np.arange(0,360,step_size)
-        print(len(art_degrees), type(art_degrees))
+        #print(len(art_degrees), type(art_degrees))
         art_measurement = np.random.normal(size=len(art_degrees))
+        index = art_measurement.np.where(float(self.gui.lineEdit_power.text()))
+        print(float(self.gui.lineEdit_power.text()))
+        #print(index)
+        #searched_deg = art_degrees[index]
         # while a<360/step_size:
         #     art_measurement.append(np.random.uniform(0.,20.))
         #     a = a+1

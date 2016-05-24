@@ -64,6 +64,7 @@ class ControllerGui(QtGui.QMainWindow):
         self.spinBox_mtime.valueChanged.connect(self.controller_utils.apply_measure_time)
 
         self.btn_load_config.clicked.connect(self.controller_utils.load_yaml_config)
+
         self.show()
 
 
@@ -75,13 +76,44 @@ class ControllerUtils():
     # This is an instance of the YamlConfigHandler class
     yaml_config_handler = None
 
-
     def __init__(self, gui):
         ControllerUtils.gui = gui
-        self.yaml_config_handler = yw.YamlConfigHandler()
+        self.apply_meas_no()
 
     def load_yaml_config(self):
         self.apply_B0_stat()
+        self.apply_B1_stat()
+        self.apply_freq_start_B0()
+        self.apply_freq_start_B1()
+        self.apply_freq_stop_B0()
+        self.apply_freq_stop_B1()
+        self.apply_freq_step_B0()
+        self.apply_freq_step_B1()
+        self.apply_ampl_start_B0()
+        self.apply_ampl_start_B1()
+        self.apply_ampl_stop_B0()
+        self.apply_ampl_stop_B1()
+        self.apply_ampl_step_B0()
+        self.apply_ampl_step_B1()
+        self.apply_off_start_B0()
+        self.apply_off_start_B1()
+        self.apply_off_stop_B0()
+        self.apply_off_stop_B1()
+        self.apply_off_step_B0()
+        self.apply_off_step_B1()
+        self.apply_meas_no()
+        self.apply_cell_id()
+        self.apply_temp()
+        self.apply_lpower()
+        self.apply_diode_gain()
+        self.apply_samples()
+        self.apply_downsampling()
+        self.apply_measure_time()
+        self.apply_method_B0()
+        self.apply_method_B1()
+
+        self.gui.textBrowser_load_config.append('config-' + str(self.gui.spinBox_measure_no.value()) + '.yaml loaded...')
+
 
     def apply_B0_stat(self):
         value_stat = self.gui.checkBox_B0.checkState()

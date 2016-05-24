@@ -4,23 +4,23 @@ outputs:
     B1:
         device: tektronix
         channel: 2
-        active:
+        active: 'false'
         func: SIN   # available funcs: 'SIN'
         methods:           # available methods: 'freq', 'amp', 'offset', 'const', 'freq_mod.span', 'freq_mod.sweep_time', 'freq_mod.return_time', 'amp_mod.freq', 'amp_mod.depth'
         freq:
-            start:
-            stop:
-            step:
+            start: 0.0
+            stop: 0.0
+            step: 0.0
             label: B1 frequency (Hz)    # TODO
         amp:
-            start:
-            stop:
-            step:
+            start: 0.0
+            stop: 0.0
+            step: 0.0
             label: B1 amplitude (V)
         offset:
-            start:
-            stop:
-            step:
+            start: 0.0
+            stop: 0.0
+            step: 0.0
             label: B1 offset (V)
         # frequency modulation settings (cannot be combined with amplitude 
         # modulation)
@@ -62,23 +62,23 @@ outputs:
     B0:
         device: tektronix
         channel: 1
-        active:
+        active: 'false'
         func: RAMP   # available funcs: 'DC', 'RAMP', 'SQU'
         methods:         # available methods: 'freq', 'amp', 'offset', 'const'
         freq:
-            start:
-            stop:
-            step:
+            start: 0.0
+            stop: 0.0
+            step: 0.0
             label: B0 frequency (Hz)
         amp:
-            start:
-            stop:
-            step:
+            start: 0.0
+            stop: 0.0
+            step: 0.0
             label: B0 amplitude (V)
         offset:
-            start:
-            stop:
-            step:
+            start: 0.0
+            stop: 0.0
+            step: 0.0
             label: B0 offset (V)
     R3:
         device: hameg
@@ -187,7 +187,7 @@ devices:
         downsampling_factor: 
 
 measurement:
-    cell_id: 66
+    cell_id:
     measurement_id: 0
     rubidium_isotope: 85
     laser_locked: 'true'
