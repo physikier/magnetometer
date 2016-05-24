@@ -86,7 +86,7 @@ class MagnetometerWorker(object):
                 mw.set_config(cfg) # load measurement config
                 mw.set_base_path(os.path.join('n:', os.sep, 'data', '2016', 'magnetometer'))
 
-                data = mw.measure(save=True, config_path=config_filepath)
+                data, downsampled_data = mw.measure(save=True, config_path=config_filepath)
                 
             except Exception as e:
 
@@ -101,4 +101,4 @@ class MagnetometerWorker(object):
                 pass
         ##############################################################################################
         motor.disconnect()
-        return data
+        return data, downsampled_data

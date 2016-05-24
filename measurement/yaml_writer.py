@@ -1,4 +1,5 @@
 import ruamel.yaml as yaml
+from ruamel.yaml.comments import CommentedSeq
 
 class YamlConfigHandler(object):
     measurement_nr = None
@@ -45,7 +46,7 @@ class YamlConfigHandler(object):
         self.load_data_from_config(load_config_file)
         self.yaml_data['measurement']['measurement_id'] = measurement_nr
         # the values in the raw.yaml mustn't be changed so the data are saved to a temporary config file
-        self.config_file_path = 'hanle_config_' + str(measurement_nr) + '.yaml'
+        self.config_file_path = 'C:\\Users\\johnny\\dev\\magnetometer\\measurement\\configs\\config-' + str(measurement_nr) + '.yaml'
 
     # this method loads all data from the 'load_config_file' into the data dictionary to keep the config in memory
     def load_data_from_config(self, load_config_file):
@@ -56,7 +57,7 @@ class YamlConfigHandler(object):
     # this function saves the values from the data dictionary back to the data_yaml dictionary
     def write_data_to_config(self):
         self.yaml_data['outputs']['B1']['active']                 = self.data['active_B1']
-        self.yaml_data['outputs']['B1']['methods']                = self.data['method_B1']
+        self.yaml_data['outputs']['B1']['methods']                = CommentedSeq([self.data['method_B1']])
         self.yaml_data['outputs']['B1']['freq']['start']          = self.data['freq_start_B1']
         self.yaml_data['outputs']['B1']['freq']['stop']           = self.data['freq_stop_B1']
         self.yaml_data['outputs']['B1']['freq']['step']           = self.data['freq_step_B1']
@@ -67,7 +68,7 @@ class YamlConfigHandler(object):
         self.yaml_data['outputs']['B1']['offset']['stop']         = self.data['off_stop_B1']
         self.yaml_data['outputs']['B1']['offset']['step']         = self.data['off_step_B1']
         self.yaml_data['outputs']['B0']['active']                 = self.data['active_B0']
-        self.yaml_data['outputs']['B0']['methods']                = self.data['method_B0']
+        self.yaml_data['outputs']['B0']['methods']                = CommentedSeq([self.data['method_B0']])
         self.yaml_data['outputs']['B0']['freq']['start']          = self.data['freq_start_B0']
         self.yaml_data['outputs']['B0']['freq']['stop']           = self.data['freq_stop_B0']
         self.yaml_data['outputs']['B0']['freq']['step']           = self.data['freq_step_B0']
@@ -84,10 +85,10 @@ class YamlConfigHandler(object):
         self.yaml_data['measurement']['temperature_C']            = self.data['temp']
         self.yaml_data['measurement']['laser_power_uW']           = self.data['power']
         self.yaml_data['measurement']['photo_diode_gain_dB']      = self.data['diode_gain']
-        self.yaml_data['outputs']['R2']['active']                 = 'true'
+        self.yaml_data['outputs']['R2']['active']                 = True
         self.yaml_data['outputs']['R3']['active']                 = 'true'
         self.yaml_data['outputs']['R4']['active']                 = 'true'
-        self.yaml_data['outputs']['lock_in']['active']            = 'false'
+        self.yaml_data['outputs']['lock_in']['active']            = False
         self.yaml_data['outputs']['motor']['active']              = 'false'
 
         with open(self.config_file_path, 'w') as yaml_config:
@@ -106,6 +107,14 @@ class YamlConfigHandler(object):
             self.data[arg] = value
 
         self.write_data_to_config()
+
+    def delete_config_files(self):
+        from glob import glob
+        from os import remove, chdir
+        chdir('C:\\Users\\johnny\\dev\\magnetometer\\measurement\\configs')
+        filelist = glob('*.yaml')
+        for f in filelist:
+            remove(f)
 
 
 # self.data = {

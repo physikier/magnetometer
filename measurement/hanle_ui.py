@@ -1,6 +1,7 @@
 import sys
 import numpy
 import yaml_writer as yw
+import auto_measurement_worker as amw
 
 from PyQt4 import QtCore, QtGui, uic
 
@@ -21,49 +22,55 @@ class ControllerGui(QtGui.QMainWindow):
 
         self.ui_utils.disable_widgets()
         self.controller_utils.get_cell_id_measurement_no()
+
+        # self.plotWidget_plot1.setTitle(title='data')
+        # self.plotWidget_plot1.setLabel('left', "Y Axis", units='A')
+        # self.plotWidget_plot1.setLabel('bottom', "X Axis", units='B')
+        
         
        
         
 
-        self.checkBox_B0.stateChanged.connect(self.controller_utils.apply_B0_stat)
-        self.checkBox_B1.stateChanged.connect(self.controller_utils.apply_B1_stat)
+        # self.checkBox_B0.stateChanged.connect(self.controller_utils.apply_B0_stat)
+        # self.checkBox_B1.stateChanged.connect(self.controller_utils.apply_B1_stat)
 
-        self.comboBox_method_B0.currentIndexChanged.connect(self.controller_utils.apply_method_B0)
-        self.comboBox_method_B1.currentIndexChanged.connect(self.controller_utils.apply_method_B1)
+        # self.comboBox_method_B0.currentIndexChanged.connect(self.controller_utils.apply_method_B0)
+        # self.comboBox_method_B1.currentIndexChanged.connect(self.controller_utils.apply_method_B1)
 
-        self.spinBox_freq_start_B0.valueChanged.connect(self.controller_utils.apply_freq_start_B0)
-        self.spinBox_freq_start_B1.valueChanged.connect(self.controller_utils.apply_freq_start_B1)
-        self.spinBox_freq_stop_B0.valueChanged.connect(self.controller_utils.apply_freq_stop_B0)
-        self.spinBox_freq_stop_B1.valueChanged.connect(self.controller_utils.apply_freq_stop_B1)
-        self.spinBox_freq_step_B0.valueChanged.connect(self.controller_utils.apply_freq_step_B0)
-        self.spinBox_freq_step_B1.valueChanged.connect(self.controller_utils.apply_freq_step_B1)
+        # self.spinBox_freq_start_B0.valueChanged.connect(self.controller_utils.apply_freq_start_B0)
+        # self.spinBox_freq_start_B1.valueChanged.connect(self.controller_utils.apply_freq_start_B1)
+        # self.spinBox_freq_stop_B0.valueChanged.connect(self.controller_utils.apply_freq_stop_B0)
+        # self.spinBox_freq_stop_B1.valueChanged.connect(self.controller_utils.apply_freq_stop_B1)
+        # self.spinBox_freq_step_B0.valueChanged.connect(self.controller_utils.apply_freq_step_B0)
+        # self.spinBox_freq_step_B1.valueChanged.connect(self.controller_utils.apply_freq_step_B1)
 
-        self.spinBox_ampl_start_B0.valueChanged.connect(self.controller_utils.apply_ampl_start_B0)
-        self.spinBox_ampl_start_B1.valueChanged.connect(self.controller_utils.apply_ampl_start_B1)
-        self.spinBox_ampl_stop_B0.valueChanged.connect(self.controller_utils.apply_ampl_stop_B0)
-        self.spinBox_ampl_stop_B1.valueChanged.connect(self.controller_utils.apply_ampl_stop_B1)
-        self.spinBox_ampl_step_B0.valueChanged.connect(self.controller_utils.apply_ampl_step_B0)
-        self.spinBox_ampl_step_B1.valueChanged.connect(self.controller_utils.apply_ampl_step_B1)
-
-
-        self.spinBox_off_start_B0.valueChanged.connect(self.controller_utils.apply_off_start_B0)
-        self.spinBox_off_start_B1.valueChanged.connect(self.controller_utils.apply_off_start_B1)       
-        self.spinBox_off_stop_B0.valueChanged.connect(self.controller_utils.apply_off_stop_B0)
-        self.spinBox_off_stop_B1.valueChanged.connect(self.controller_utils.apply_off_stop_B1)
-        self.spinBox_off_step_B0.valueChanged.connect(self.controller_utils.apply_off_step_B0)
-        self.spinBox_off_step_B1.valueChanged.connect(self.controller_utils.apply_off_step_B1)
+        # self.spinBox_ampl_start_B0.valueChanged.connect(self.controller_utils.apply_ampl_start_B0)
+        # self.spinBox_ampl_start_B1.valueChanged.connect(self.controller_utils.apply_ampl_start_B1)
+        # self.spinBox_ampl_stop_B0.valueChanged.connect(self.controller_utils.apply_ampl_stop_B0)
+        # self.spinBox_ampl_stop_B1.valueChanged.connect(self.controller_utils.apply_ampl_stop_B1)
+        # self.spinBox_ampl_step_B0.valueChanged.connect(self.controller_utils.apply_ampl_step_B0)
+        # self.spinBox_ampl_step_B1.valueChanged.connect(self.controller_utils.apply_ampl_step_B1)
 
 
-        self.spinBox_measure_no.valueChanged.connect(self.controller_utils.apply_meas_no)
-        self.spinBox_cell_id.valueChanged.connect(self.controller_utils.apply_cell_id)
-        self.spinBox_temp.valueChanged.connect(self.controller_utils.apply_temp)
-        self.spinBox_lpower.valueChanged.connect(self.controller_utils.apply_lpower)
-        self.spinBox_diode_gain.valueChanged.connect(self.controller_utils.apply_diode_gain)
-        self.spinBox_samples.valueChanged.connect(self.controller_utils.apply_samples)
-        self.spinBox_downsampling.valueChanged.connect(self.controller_utils.apply_downsampling)
-        self.spinBox_mtime.valueChanged.connect(self.controller_utils.apply_measure_time)
+        # self.spinBox_off_start_B0.valueChanged.connect(self.controller_utils.apply_off_start_B0)
+        # self.spinBox_off_start_B1.valueChanged.connect(self.controller_utils.apply_off_start_B1)       
+        # self.spinBox_off_stop_B0.valueChanged.connect(self.controller_utils.apply_off_stop_B0)
+        # self.spinBox_off_stop_B1.valueChanged.connect(self.controller_utils.apply_off_stop_B1)
+        # self.spinBox_off_step_B0.valueChanged.connect(self.controller_utils.apply_off_step_B0)
+        # self.spinBox_off_step_B1.valueChanged.connect(self.controller_utils.apply_off_step_B1)
+
+
+        # self.spinBox_measure_no.valueChanged.connect(self.controller_utils.apply_meas_no)
+        # self.spinBox_cell_id.valueChanged.connect(self.controller_utils.apply_cell_id)
+        # self.spinBox_temp.valueChanged.connect(self.controller_utils.apply_temp)
+        # self.spinBox_lpower.valueChanged.connect(self.controller_utils.apply_lpower)
+        # self.spinBox_diode_gain.valueChanged.connect(self.controller_utils.apply_diode_gain)
+        # self.spinBox_samples.valueChanged.connect(self.controller_utils.apply_samples)
+        # self.spinBox_downsampling.valueChanged.connect(self.controller_utils.apply_downsampling)
+        # self.spinBox_mtime.valueChanged.connect(self.controller_utils.apply_measure_time)
 
         self.btn_load_config.clicked.connect(self.controller_utils.load_yaml_config)
+        self.btn_start_measurement.clicked.connect(self.controller_utils.run_measurement)
 
         self.show()
 
@@ -75,12 +82,14 @@ class ControllerUtils():
     gui = None
     # This is an instance of the YamlConfigHandler class
     yaml_config_handler = None
+    auto_measurement_worker = None
 
     def __init__(self, gui):
         ControllerUtils.gui = gui
-        self.apply_meas_no()
+        #self.apply_meas_no()
 
     def load_yaml_config(self):
+        self.apply_meas_no()
         self.apply_B0_stat()
         self.apply_B1_stat()
         self.apply_freq_start_B0()
@@ -101,7 +110,7 @@ class ControllerUtils():
         self.apply_off_stop_B1()
         self.apply_off_step_B0()
         self.apply_off_step_B1()
-        self.apply_meas_no()
+        
         self.apply_cell_id()
         self.apply_temp()
         self.apply_lpower()
@@ -114,23 +123,50 @@ class ControllerUtils():
 
         self.gui.textBrowser_load_config.append('config-' + str(self.gui.spinBox_measure_no.value()) + '.yaml loaded...')
 
+    def run_measurement(self):
+        try:
+            self.auto_measurement_worker = amw.MagnetometerWorker()
+            data, downsampled_data = self.auto_measurement_worker.run_measurement()
+            #print(data, type(data))
+            #print(data[:,0])
+            #print(data[:,1])
+
+            # plot measured data
+            self.plot_data(downsampled_data, self.gui.spinBox_samples.value(), self.gui.spinBox_mtime.value())
+            # delete config files from temporary config folder
+            self.yaml_config_handler.delete_config_files()
+        except IOError:
+            print('some shit happend with the hardware interfaces')
+        except IndexError:
+            print('some shit with data reading happend, so data array has wrong dimensions')
+        finally:
+            # delete config files from temporary config folder
+            self.yaml_config_handler.delete_config_files()
+
+    def plot_data(self, data, samples, measure_time):
+        y = data[:,0]
+        x = numpy.arange(0, measure_time, 1/samples)
+        print(x.size)
+        print(y.size)
+        self.gui.plotWidget_plot1.plot(x,y, pen=[0,0,255])
+
 
     def apply_B0_stat(self):
         value_stat = self.gui.checkBox_B0.checkState()
         if value_stat == 2:
-            self.yaml_config_handler.write_hanle_config(active_B0='true')
+            self.yaml_config_handler.write_hanle_config(active_B0=True)
             print('[SET] B0 active: true')
         else:
-            self.yaml_config_handler.write_hanle_config(active_B0='false')
+            self.yaml_config_handler.write_hanle_config(active_B0=False)
             print('[SET] B0 active: false')
 
     def apply_B1_stat(self):
         value_stat = self.gui.checkBox_B1.checkState()
         if value_stat == 2:
-            self.yaml_config_handler.write_hanle_config(active_B1='true')
+            self.yaml_config_handler.write_hanle_config(active_B1=True)
             print('[SET] B1 active: true')
         else:
-            self.yaml_config_handler.write_hanle_config(active_B1='false')
+            self.yaml_config_handler.write_hanle_config(active_B1=False)
             print('[SET] B1 active: false')
 
     def apply_freq_start_B0(self):

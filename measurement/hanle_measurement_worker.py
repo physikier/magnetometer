@@ -25,7 +25,7 @@ import hardware.hameg_py3 as ha
 #import hardware.sr_lockin as lo
 import hardware.Motordriver_py3 as mo
 
-from nidaq_device_modTR import NidaqDevice
+from nidaq_device_modTR2 import NidaqDevice
 from configuration_parser import load_config, ConfigIntegrityException
 from measurement_worker import MeasurementWorker
 ################################################
