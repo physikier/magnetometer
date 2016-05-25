@@ -23,9 +23,13 @@ class ControllerGui(QtGui.QMainWindow):
         self.ui_utils.disable_widgets()
         self.controller_utils.get_cell_id_measurement_no()
 
-        # self.plotWidget_plot1.setTitle(title='data')
-        # self.plotWidget_plot1.setLabel('left', "Y Axis", units='A')
-        # self.plotWidget_plot1.setLabel('bottom', "X Axis", units='B')
+        self.plotWidget_plot1.setTitle(title='data')
+        self.plotWidget_plot1.setLabel('left', "Y Axis", units='A')
+        self.plotWidget_plot1.setLabel('bottom', "time", units='seconds')
+        self.plotWidget_plot1.setLabel('right', '')
+        self.plotWidget_plot1.setLabel('top', '')
+        self.plotWidget_plot1.getAxis('top').setStyle(showValues=False)
+        self.plotWidget_plot1.getAxis('right').setStyle(showValues=False)
         
         
        
@@ -130,9 +134,12 @@ class ControllerUtils():
             #print(data, type(data))
             #print(data[:,0])
             #print(data[:,1])
+            #print(downsampled_data.size, type(downsampled_data))
+            #print(downsampled_data.shape)
+            #print(data.shape[1])
 
             # plot measured data
-            self.plot_data(downsampled_data, self.gui.spinBox_samples.value(), self.gui.spinBox_mtime.value())
+            self.plot_data(data=data, samples=self.gui.spinBox_samples.value(), downsampling=self.gui.spinBox_downsampling.value(), measure_time=self.gui.spinBox_mtime.value())
             # delete config files from temporary config folder
             self.yaml_config_handler.delete_config_files()
         except IOError:
@@ -143,12 +150,20 @@ class ControllerUtils():
             # delete config files from temporary config folder
             self.yaml_config_handler.delete_config_files()
 
-    def plot_data(self, data, samples, measure_time):
-        y = data[:,0]
-        x = numpy.arange(0, measure_time, 1/samples)
-        print(x.size)
-        print(y.size)
-        self.gui.plotWidget_plot1.plot(x,y, pen=[0,0,255])
+    def plot_data(self, data, samples, downsampling, measure_time):
+        from random import randint
+        y = data
+        x = numpy.arange(0, measure_time, (1/samples)*downsampling)
+        for i in range(y.shape[1]):
+            #c=numpy.max(y[:,i])-numpy.min(y[:,i])
+            d=numpy.mean(y[:,i])
+            off = i*d/50
+            #line color RGB
+            R = randint(0,255)
+            G = randint(0,255)
+            B = randint(0,255)
+
+            self.gui.plotWidget_plot1.plot(x,y[:,i]+off, pen=[R,G,B])
 
 
     def apply_B0_stat(self):
