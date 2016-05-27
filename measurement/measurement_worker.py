@@ -520,7 +520,7 @@ class MeasurementWorker(object):
                 plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='_fft', ending='png')))
     
         self._measurement = data
-        print(downsampled_data)
+        
         return data, downsampled_data
     
 #     def _measure_rec(self, x, data, level=0, max_level=0, outputs=[]):

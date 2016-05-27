@@ -1,5 +1,6 @@
 import sys
 import numpy
+from threading import Thread
 import yaml_writer as yw
 import auto_measurement_worker as amw
 
@@ -30,10 +31,6 @@ class ControllerGui(QtGui.QMainWindow):
         self.plotWidget_plot1.setLabel('top', '')
         self.plotWidget_plot1.getAxis('top').setStyle(showValues=False)
         self.plotWidget_plot1.getAxis('right').setStyle(showValues=False)
-        
-        
-       
-        
 
         # self.checkBox_B0.stateChanged.connect(self.controller_utils.apply_B0_stat)
         # self.checkBox_B1.stateChanged.connect(self.controller_utils.apply_B1_stat)
@@ -55,14 +52,12 @@ class ControllerGui(QtGui.QMainWindow):
         # self.spinBox_ampl_step_B0.valueChanged.connect(self.controller_utils.apply_ampl_step_B0)
         # self.spinBox_ampl_step_B1.valueChanged.connect(self.controller_utils.apply_ampl_step_B1)
 
-
         # self.spinBox_off_start_B0.valueChanged.connect(self.controller_utils.apply_off_start_B0)
         # self.spinBox_off_start_B1.valueChanged.connect(self.controller_utils.apply_off_start_B1)       
         # self.spinBox_off_stop_B0.valueChanged.connect(self.controller_utils.apply_off_stop_B0)
         # self.spinBox_off_stop_B1.valueChanged.connect(self.controller_utils.apply_off_stop_B1)
         # self.spinBox_off_step_B0.valueChanged.connect(self.controller_utils.apply_off_step_B0)
         # self.spinBox_off_step_B1.valueChanged.connect(self.controller_utils.apply_off_step_B1)
-
 
         # self.spinBox_measure_no.valueChanged.connect(self.controller_utils.apply_meas_no)
         # self.spinBox_cell_id.valueChanged.connect(self.controller_utils.apply_cell_id)
@@ -131,13 +126,6 @@ class ControllerUtils():
         try:
             self.auto_measurement_worker = amw.MagnetometerWorker()
             data, downsampled_data = self.auto_measurement_worker.run_measurement()
-            #print(data, type(data))
-            #print(data[:,0])
-            #print(data[:,1])
-            #print(downsampled_data.size, type(downsampled_data))
-            #print(downsampled_data.shape)
-            #print(data.shape[1])
-
             # plot measured data
             self.plot_data(data=data, samples=self.gui.spinBox_samples.value(), downsampling=self.gui.spinBox_downsampling.value(), measure_time=self.gui.spinBox_mtime.value())
             # delete config files from temporary config folder
@@ -164,7 +152,6 @@ class ControllerUtils():
             B = randint(0,255)
 
             self.gui.plotWidget_plot1.plot(x,y[:,i]+off, pen=[R,G,B])
-
 
     def apply_B0_stat(self):
         value_stat = self.gui.checkBox_B0.checkState()
