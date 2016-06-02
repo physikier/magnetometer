@@ -23,9 +23,10 @@ import pyvisa
 import hardware.afg3000_py3 as tek
 import hardware.hameg_py3 as ha
 #import hardware.sr_lockin as lo
+
 import hardware.Motordriver_py3 as mo
 
-from nidaq_device_modTR2 import NidaqDevice
+from nidaq_device_modTR2 import NidaqDevice, NidaqDevice_simAoAi
 from configuration_parser import load_config, ConfigIntegrityException
 from measurement_worker import MeasurementWorker
 ################################################
@@ -70,8 +71,10 @@ for config_filename in configure_filenames:
         use_lock_in = cfg['outputs']['lock_in']['active']
         nidaq_config = cfg['devices']['nidaq']
         nidaq = NidaqDevice()
+        nidaq_simAoAi = NidaqDevice_simAoAi()
+        nidaq_simAoAi.load_config(nidaq_config, use_lock_in=use_lock_in)
         nidaq.load_config(nidaq_config, use_lock_in=use_lock_in)
-        mw = MeasurementWorker(nidaq=nidaq, tektronix=tektronix, hameg=hameg, lock_in=None, motor=motor, logger=logger)
+        mw = MeasurementWorker(nidaq=nidaq, nidaq_simAoAi=nidaq_simAoAi, tektronix=tektronix, hameg=hameg, lock_in=None, motor=motor, logger=logger)
         mw.set_config(cfg) # load measurement config
         mw.set_base_path(os.path.join('n:', os.sep, 'data', '2016', 'magnetometer'))
 
