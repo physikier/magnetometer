@@ -6,6 +6,7 @@ class YamlConfigHandler(object):
     yaml_data = None
     config_file_path = None
     data = {
+        'device_B1' : None,
         'active_B1' : None,
         'method_B1' : None,
         'freq_start_B1' : None,
@@ -17,6 +18,7 @@ class YamlConfigHandler(object):
         'off_start_B1' : None,
         'off_stop_B1' : None,
         'off_step_B1' : None,
+        'device_B0' : None,
         'active_B0' : None,
         'method_B0' : None,
         'freq_start_B0' : None,
@@ -34,7 +36,9 @@ class YamlConfigHandler(object):
         'cell' : None,
         'temp' : None,
         'power' : None,
-        'diode_gain' : None
+        'diode_gain' : None,
+        'stack' : None
+        
     }
 
     # to instantiate a YamlHandler object you have to pass
@@ -56,6 +60,8 @@ class YamlConfigHandler(object):
 
     # this function saves the values from the data dictionary back to the data_yaml dictionary
     def write_data_to_config(self):
+        ###################### OUTPuts
+        self.yaml_data['outputs']['B1']['device']                 = self.data['device_B1']
         self.yaml_data['outputs']['B1']['active']                 = self.data['active_B1']
         self.yaml_data['outputs']['B1']['methods']                = CommentedSeq([self.data['method_B1']])
         self.yaml_data['outputs']['B1']['freq']['start']          = self.data['freq_start_B1']
@@ -67,6 +73,7 @@ class YamlConfigHandler(object):
         self.yaml_data['outputs']['B1']['offset']['start']        = self.data['off_start_B1']
         self.yaml_data['outputs']['B1']['offset']['stop']         = self.data['off_stop_B1']
         self.yaml_data['outputs']['B1']['offset']['step']         = self.data['off_step_B1']
+        self.yaml_data['outputs']['B0']['device']                 = self.data['device_B0']
         self.yaml_data['outputs']['B0']['active']                 = self.data['active_B0']
         self.yaml_data['outputs']['B0']['methods']                = CommentedSeq([self.data['method_B0']])
         self.yaml_data['outputs']['B0']['freq']['start']          = self.data['freq_start_B0']
@@ -91,6 +98,10 @@ class YamlConfigHandler(object):
         self.yaml_data['outputs']['lock_in']['active']            = False
         self.yaml_data['outputs']['motor']['active']              = 'false'
 
+        ###################### Stack
+        self.yaml_data['stack']                                   =self.data['stack']
+
+
         with open(self.config_file_path, 'w') as yaml_config:
             yaml_config.write( yaml.dump(self.yaml_data, Dumper=yaml.RoundTripDumper, indent=4))
 
@@ -107,6 +118,15 @@ class YamlConfigHandler(object):
             self.data[arg] = value
 
         self.write_data_to_config()
+
+    def write_stack(self):
+        stack = []
+        if self.data['active_B0'] == True:
+            stack.append('B0.0')
+        elif self.data['active_B1'] == True:
+            stack.append('B1.1')
+
+
 
     def delete_config_files(self):
         from glob import glob

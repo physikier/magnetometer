@@ -9,13 +9,15 @@ from threading import Thread
 from queue import Queue 
 
 
+
 class MeasurementWorker(object):
+    NIDAQ = 'nidaq'
     TEKTRONIX = 'tektronix'
     HAMEG = 'hameg'
     LOCKIN = 'SR830'
     MOTOR = 'motor_driver'
     
-    def __init__(self, config=None, nidaq=None, tektronix=None, hameg=None, lock_in=None, motor=None, logger=None):
+    def __init__(self, config=None, nidaq=None, nidaq_simAoAi=None, tektronix=None, hameg=None, lock_in=None, motor=None, logger=None):
         # if nidaq is None or tektronix is None or hameg is None or lock_in is None or motor is None:
         #     raise RuntimeError("MeasurementWorker must be called with instances of nidaq, tektronix, hameg, motor and Lock-in")
         if nidaq is None or tektronix is None or hameg is None or motor is None:
@@ -23,6 +25,7 @@ class MeasurementWorker(object):
         self.logger = logger
 
         self._nidaq = nidaq
+        self._nidaq_simAoAi = nidaq_simAoAi
         self._tektronix = tektronix
         self._hameg = hameg
         #self._lock_in = lock_in
@@ -67,6 +70,50 @@ class MeasurementWorker(object):
         for key in method_keys:
             config = config[key]
         return np.arange(config['start'], config['stop'] + config['step'], config['step'])
+
+    ################################################################################################
+    # This is a new entry to implement the use of NIDAQ as function generator/simAoAi (instead of tektronix)
+    ################################################################################################
+
+    def _base_config_nidaq_aoai(self, output):
+
+        # analog out AO:
+        # AO:1 channel:
+        channel = b'/Dev2/ao0'
+     
+
+        self.func_B0 = output['func'].upper()
+        self.freq_B0 = output['freq']['start']
+        self.amp_B0 = output['amp']['start']
+        self.off_B0 = output['offset']['start']
+    
+        self._nidaq_simAoAi.set_waveform(self.func_B0, self.freq_B0, self.amp_B0, self.off_B0)
+  
+
+        # # analog out AO:
+        # # AO:1 channel:
+        # channel = b'/Dev2/ao0'
+        # self.active_B0 = output['active']
+        # if self.active_B0 == True:
+
+        #     self.func_B0 = output['func'].upper()
+        #     self.freq_B0 = output['freq']['start']
+        #     self.amp_B0 = output['amp']['start']
+        #     self.off_B0 = output['offset']['start']
+        
+        #     self._nidaq_simAoAi.set_waveform(self.func_B0, self.freq_B0, self.amp_B0, self.off_B0)
+        # elif 
+
+        # # AO:2 channel:
+        # channel = b'/Dev2/ao1'
+        # self.func_B1 = output['func'].upper()
+        # self.freq_B1 = output['freq']['start']
+        # self.amp_B1 = output['amp']['start']
+        # self.off_B1 = output['offset']['start']
+      
+
+    ################################################################################################
+    ################################################################################################
     
     def _base_config_tektronix(self, output):
         """ Basic configuration for every TEKTRONIX device.
@@ -156,6 +203,9 @@ class MeasurementWorker(object):
         
         # power off inactive outputs
         if not output['active']:
+            if device == self.NIDAQ:
+                #TODO; disable device
+                pass
             if device == self.TEKTRONIX:
                 self._tektronix.stop(ch=channel)
             if device == self.HAMEG:
@@ -171,6 +221,8 @@ class MeasurementWorker(object):
             return True
         
         # run the base configuration for each output
+        if device == self.NIDAQ:
+            self._base_config_nidaq_aoai(output)
         if device == self.TEKTRONIX:
             self._base_config_tektronix(output)
         if device == self.HAMEG:
@@ -207,7 +259,31 @@ class MeasurementWorker(object):
         channel = output['channel']
         method = output['methods'][index]
         
-        if device == self.TEKTRONIX:
+        ######################## NEW ####################################
+        #####################################################################
+        if device == self.NIDAQ:
+            if method == 'freq':
+                if self.logger is not None:
+                    self.logger.info('{}: set freq to {}. dev: {}'.format(key, value, device))
+                self._nidaq_simAoAi.set_waveform(self.func, value, self.amp, self.off)
+                print('self.freq', self.freq)
+                self._nidaq_simAoAi.set_init_waveform(self.func, self.freq, self.amp, self.off)
+                return
+        
+            elif method == 'amp':
+                if self.logger is not None:
+                    self.logger.info('{}: set amp to {}. dev: {}'.format(key, value, device))
+                self._nidaq_simAoAi.set_waveform(self.func, self.freq, value, self.off)
+                return
+            elif method == 'off':
+                if self.logger is not None:
+                    self.logger.info('{}: set offset to {}. dev: {}'.format(key, value, device))
+
+                return
+        #####################################################################
+        #####################################################################
+        elif device == self.TEKTRONIX:
+
             if method == 'freq':
                 if self.logger is not None:
                     self.logger.info('{}: set freq to {}. dev: {}, ch: {}'.format(key, value, device, channel))
@@ -356,52 +432,112 @@ class MeasurementWorker(object):
         # create the data arrays that should hold the measurement data
         data = np.zeros([self._nidaq.numberPointsComp] + [x.shape[0] for x in meas_ranges])
         data_fft = np.zeros([self._nidaq.numberPointsComp/2+1] + [x.shape[0] for x in meas_ranges])
-        
-        self._nidaq.setup_task()
 
-        if save:
-            # create dir
-            os.makedirs(self.get_filepath())
-
-            # copy config file
-            if config_path is not None:
-                shutil.copy2(config_path, self.get_filepath())
+        if output['device'] == self.TEKTRONIX:
         
-        # perform the actual measurement
-        if len(stack) == 2:
-            for i, v1 in enumerate(meas_ranges[0]):
-                key1, index1 = stack[0].split('.')  # e.g. key1='B1', index1='0'
-                index1 = int(index1)  # index1 is a integer value
-                self._adjust_output_setting(v1, key1, index1)  # send signal to remote device
+            self._nidaq.setup_task()
+
+            if save:
+                # create dir
+                os.makedirs(self.get_filepath())
+
+                # copy config file
+                if config_path is not None:
+                    shutil.copy2(config_path, self.get_filepath())
+            
+            # perform the actual measurement
+            if len(stack) == 2:
+                for i, v1 in enumerate(meas_ranges[0]):
+                    key1, index1 = stack[0].split('.')  # e.g. key1='B1', index1='0'
+                    index1 = int(index1)  # index1 is a integer value
+                    self._adjust_output_setting(v1, key1, index1)  # send signal to remote device
+                    q=Queue()
+                    for j, v2 in enumerate(meas_ranges[1]):
+                        key2, index2 = stack[1].split('.')  # e.g. key2='B2', index2='0'
+                        index2 = int(index2)  # index2 is a integer value
+                        self._adjust_output_setting(v2, key2, index2)  # send signal to remote device
+                        
+                        # Some configurations require a trigger signal to be sent to the tektronix device, this MUST
+                        # be sent before the measurement takes place.
+                        #self._send_trigger_to_tekronix_if_required()
+                        
+                        # request the data from the nidaq device and perform downsampling
+                      
+                        get_thread = Thread(target=self._nidaq.get_data, args=[q])
+                        get_thread.start()
+                        self._nidaq.pulse()
+                        get_thread.join()
+                        batch=self._nidaq.get_data(q)
+
+
+                        #batch = self._nidaq.get_data()
+                        downsampled_data = self._nidaq.downsampling(batch)
+                        
+                        data[:, i, j] = downsampled_data
+                        data_fft[:, i, j] = np.abs(np.fft.rfft(downsampled_data))
+                    
+                    if save:
+                        # create generic name, with some variables, which will be used later for saving the data to disk
+                        name = "{output:}-{method:}-{value:.3f}{suffix:}.{ending:}".format(
+                            output=key1, method=','.join(cfg['outputs'][key1]['methods']), value=v1, 
+                            # 'suffix' and 'ending' values will be filled later. This trick allows to use 'format' again
+                            # at a later point
+                            suffix='{suffix:}', ending='{ending:}' 
+                        )
+
+                        # save the measurement to disk
+                        np.savetxt(os.path.join(
+                                self.get_filepath(), name.format(suffix='', ending='csv')), data[:, i, :], delimiter=',', fmt='%.4e')
+                        # np.savetxt(os.path.join(
+                        #         self.get_filepath(), name.format(suffix='_fft', ending='csv')), data_fft[:, i, :], delimiter=',', fmt='%.4e')
+
+                        # create plots from measurement data
+                        plt.clf()
+                        plt.plot(data[:, i, :])
+
+                        plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='', ending='png')))
+                        plt.clf()
+                        # ATTENTION: we throw away the first 100 values, because in a FFT those values are super large and
+                        # the other values are too small to be combined in a single plot.
+                        
+                        plt.plot(data_fft[100:, i, :]) 
+                        plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='_fft', ending='png')))
+                        plt.clf()
+                
+                # hdu = pyfits.PrimaryHDU(data=data)
+                # hdu.writeto(os.path.join(
+                #                 self.get_filepath(), '{0:}_{1:}.fits'.format(key1, key2)))
+                        
+            if len(stack) == 1:
+
                 q=Queue()
-                for j, v2 in enumerate(meas_ranges[1]):
-                    key2, index2 = stack[1].split('.')  # e.g. key2='B2', index2='0'
-                    index2 = int(index2)  # index2 is a integer value
-                    self._adjust_output_setting(v2, key2, index2)  # send signal to remote device
+                for i, v in enumerate(meas_ranges[0]):
+                    key, index = stack[0].split('.')  # e.g. key2='B2', index2='0'
+                    index = int(index)  # index2 is a integer value
+                    self._adjust_output_setting(v, key, index)  # send signal to remote device
                     
-                    # Some configurations require a trigger signal to be sent to the tektronix device, this MUST
-                    # be sent before the measurement takes place.
-                    #self._send_trigger_to_tekronix_if_required()
-                    
-                    # request the data from the nidaq device and perform downsampling
-                  
                     get_thread = Thread(target=self._nidaq.get_data, args=[q])
                     get_thread.start()
                     self._nidaq.pulse()
                     get_thread.join()
                     batch=self._nidaq.get_data(q)
 
-
-                    #batch = self._nidaq.get_data()
+                    
+                    # # Some configurations require a trigger signal to be sent to the tektronix device, this MUST
+                    # # be sent before the measurement takes place.
+                    # self._send_trigger_to_tekronix_if_required()
+                    
+                    # # request the data from the nidaq device and perform downsampling
+                    # batch = self._nidaq.get_data()
                     downsampled_data = self._nidaq.downsampling(batch)
                     
-                    data[:, i, j] = downsampled_data
-                    data_fft[:, i, j] = np.abs(np.fft.rfft(downsampled_data))
-                
+                    data[:, i] = downsampled_data
+                    data_fft[:, i] = np.abs(np.fft.rfft(downsampled_data))
+                    
                 if save:
                     # create generic name, with some variables, which will be used later for saving the data to disk
-                    name = "{output:}-{method:}-{value:.3f}{suffix:}.{ending:}".format(
-                        output=key1, method=','.join(cfg['outputs'][key1]['methods']), value=v1, 
+                    name = "{output:}-{method:}-{suffix:}.{ending:}".format(
+                        output=key, method=','.join(cfg['outputs'][key]['methods']),
                         # 'suffix' and 'ending' values will be filled later. This trick allows to use 'format' again
                         # at a later point
                         suffix='{suffix:}', ending='{ending:}' 
@@ -409,119 +545,131 @@ class MeasurementWorker(object):
 
                     # save the measurement to disk
                     np.savetxt(os.path.join(
-                            self.get_filepath(), name.format(suffix='', ending='csv')), data[:, i, :], delimiter=',', fmt='%.4e')
+                            self.get_filepath(), name.format(suffix='', ending='csv')), data, delimiter=',', fmt='%.4e')
                     # np.savetxt(os.path.join(
-                    #         self.get_filepath(), name.format(suffix='_fft', ending='csv')), data_fft[:, i, :], delimiter=',', fmt='%.4e')
+                    #         self.get_filepath(), name.format(suffix='_fft', ending='csv')), data_fft, delimiter=',', fmt='%.4e')
 
                     # create plots from measurement data
                     plt.clf()
-                    plt.plot(data[:, i, :])
+                    plt.plot(data)
 
                     plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='', ending='png')))
                     plt.clf()
                     # ATTENTION: we throw away the first 100 values, because in a FFT those values are super large and
                     # the other values are too small to be combined in a single plot.
-                    
-                    plt.plot(data_fft[100:, i, :]) 
+                    plt.plot(data_fft[100:]) 
                     plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='_fft', ending='png')))
                     plt.clf()
-            
-            # hdu = pyfits.PrimaryHDU(data=data)
-            # hdu.writeto(os.path.join(
-            #                 self.get_filepath(), '{0:}_{1:}.fits'.format(key1, key2)))
-                    
-        if len(stack) == 1:
 
-            q=Queue()
-            for i, v in enumerate(meas_ranges[0]):
-                key, index = stack[0].split('.')  # e.g. key2='B2', index2='0'
-                index = int(index)  # index2 is a integer value
-                self._adjust_output_setting(v, key, index)  # send signal to remote device
-                
-                get_thread = Thread(target=self._nidaq.get_data, args=[q])
-                get_thread.start()
-                self._nidaq.pulse()
-                get_thread.join()
-                batch=self._nidaq.get_data(q)
+            if len(stack) == 0:
+                # TODO: implement this
+                #raise NotImplemented('Stack with size 1 is not implemented yet.')
 
-                
-                # # Some configurations require a trigger signal to be sent to the tektronix device, this MUST
-                # # be sent before the measurement takes place.
-                # self._send_trigger_to_tekronix_if_required()
-                
-                # # request the data from the nidaq device and perform downsampling
-                # batch = self._nidaq.get_data()
+                self._send_trigger_to_tekronix_if_required()
+                        
+                        # request the data from the nidaq device and perform downsampling
+                batch = self._nidaq.get_data()
                 downsampled_data = self._nidaq.downsampling(batch)
-                
-                data[:, i] = downsampled_data
-                data_fft[:, i] = np.abs(np.fft.rfft(downsampled_data))
-                
-            if save:
-                # create generic name, with some variables, which will be used later for saving the data to disk
-                name = "{output:}-{method:}-{suffix:}.{ending:}".format(
-                    output=key, method=','.join(cfg['outputs'][key]['methods']),
-                    # 'suffix' and 'ending' values will be filled later. This trick allows to use 'format' again
-                    # at a later point
-                    suffix='{suffix:}', ending='{ending:}' 
-                )
-
-                # save the measurement to disk
-                np.savetxt(os.path.join(
-                        self.get_filepath(), name.format(suffix='', ending='csv')), data, delimiter=',', fmt='%.4e')
-                # np.savetxt(os.path.join(
-                #         self.get_filepath(), name.format(suffix='_fft', ending='csv')), data_fft, delimiter=',', fmt='%.4e')
-
-                # create plots from measurement data
-                plt.clf()
-                plt.plot(data)
-
-                plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='', ending='png')))
-                plt.clf()
-                # ATTENTION: we throw away the first 100 values, because in a FFT those values are super large and
-                # the other values are too small to be combined in a single plot.
-                plt.plot(data_fft[100:]) 
-                plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='_fft', ending='png')))
-                plt.clf()
-
-        if len(stack) == 0:
-            # TODO: implement this
-            #raise NotImplemented('Stack with size 1 is not implemented yet.')
-
-            self._send_trigger_to_tekronix_if_required()
+                        
+                data = downsampled_data
+                data_fft = np.abs(np.fft.rfft(downsampled_data))
                     
-                    # request the data from the nidaq device and perform downsampling
-            batch = self._nidaq.get_data()
-            downsampled_data = self._nidaq.downsampling(batch)
-                    
-            data = downsampled_data
-            data_fft = np.abs(np.fft.rfft(downsampled_data))
-                
-            if save:
-                # create generic name, with some variables, which will be used later for saving the data to disk
-                name = "single_mesurement{suffix:}.{ending:}".format(
-                    suffix='{suffix:}', ending='{ending:}' 
-                )
+                if save:
+                    # create generic name, with some variables, which will be used later for saving the data to disk
+                    name = "single_mesurement{suffix:}.{ending:}".format(
+                        suffix='{suffix:}', ending='{ending:}' 
+                    )
 
-                # save the measurement to disk
-                np.savetxt(os.path.join(
-                        self.get_filepath(), name.format(suffix='', ending='csv')), data, delimiter=',', fmt='%.4e')
-                np.savetxt(os.path.join(
-                        self.get_filepath(), name.format(suffix='_fft', ending='csv')), data_fft, delimiter=',', fmt='%.4e')
+                    # save the measurement to disk
+                    np.savetxt(os.path.join(
+                            self.get_filepath(), name.format(suffix='', ending='csv')), data, delimiter=',', fmt='%.4e')
+                    np.savetxt(os.path.join(
+                            self.get_filepath(), name.format(suffix='_fft', ending='csv')), data_fft, delimiter=',', fmt='%.4e')
 
-                # create plots from measurement data
-                plt.clf()
-                plt.plot(data)
+                    # create plots from measurement data
+                    plt.clf()
+                    plt.plot(data)
 
-                plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='', ending='png')))
-                plt.clf()
-                # ATTENTION: we throw away the first 100 values, because in a FFT those values are super large and
-                # the other values are too small to be combined in a single plot.
-                plt.plot(data_fft[100:]) 
-                plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='_fft', ending='png')))
-    
-        self._measurement = data
+                    plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='', ending='png')))
+                    plt.clf()
+                    # ATTENTION: we throw away the first 100 values, because in a FFT those values are super large and
+                    # the other values are too small to be combined in a single plot.
+                    plt.plot(data_fft[100:]) 
+                    plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='_fft', ending='png')))
         
-        return data, downsampled_data
+            self._measurement = data
+
+            return data, downsampled_data
+#################### NEW ###############################
+############################################################
+        elif output['device'] == self.NIDAQ:
+
+            #self._nidaq_simAoAi.setup_task()
+
+            if save:
+                # create dir
+                os.makedirs(self.get_filepath())
+
+                # copy config file
+                if config_path is not None:
+                    shutil.copy2(config_path, self.get_filepath())
+
+            if len(stack) == 1:
+
+                q=Queue()
+                for i, v in enumerate(meas_ranges[0]):
+                    key, index = stack[0].split('.')  # e.g. key2='B2', index2='0'
+                    index = int(index)  # index2 is a integer value
+                    self._adjust_output_setting(v, key, index)  # send signal to remote device
+                    
+                    get_thread = Thread(target=self._nidaq_simAoAi.get_data, args=[q])
+                    get_thread.start()
+                    #self._nidaq.pulse()
+                    get_thread.join()
+                    batch=self._nidaq_simAoAi.get_data(q)
+                    print('batch', batch)
+                    downsampled_data = batch
+                    # # Some configurations require a trigger signal to be sent to the tektronix device, this MUST
+                    # # be sent before the measurement takes place.
+                    # self._send_trigger_to_tekronix_if_required()
+                    
+                    # # request the data from the nidaq device and perform downsampling
+                    # batch = self._nidaq.get_data()
+                    #downsampled_data = self._nidaq_simAoAi.downsampling(batch)
+                    
+                    data[:, i] = downsampled_data
+                    data_fft[:, i] = np.abs(np.fft.rfft(downsampled_data))
+                    
+                if save:
+                    # create generic name, with some variables, which will be used later for saving the data to disk
+                    name = "{output:}-{method:}-{suffix:}.{ending:}".format(
+                        output=key, method=','.join(cfg['outputs'][key]['methods']),
+                        # 'suffix' and 'ending' values will be filled later. This trick allows to use 'format' again
+                        # at a later point
+                        suffix='{suffix:}', ending='{ending:}' 
+                    )
+
+                    # save the measurement to disk
+                    np.savetxt(os.path.join(
+                            self.get_filepath(), name.format(suffix='', ending='csv')), data, delimiter=',', fmt='%.4e')
+                    # np.savetxt(os.path.join(
+                    #         self.get_filepath(), name.format(suffix='_fft', ending='csv')), data_fft, delimiter=',', fmt='%.4e')
+
+                    # create plots from measurement data
+                    plt.clf()
+                    plt.plot(data)
+
+                    plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='', ending='png')))
+                    plt.clf()
+                    # ATTENTION: we throw away the first 100 values, because in a FFT those values are super large and
+                    # the other values are too small to be combined in a single plot.
+                    plt.plot(data_fft[100:]) 
+                    plt.savefig(os.path.join(self.get_filepath(), name.format(suffix='_fft', ending='png')))
+                    plt.clf()
+            else:
+                pass
+
+            pass
     
 #     def _measure_rec(self, x, data, level=0, max_level=0, outputs=[]):
 #         if len(x) == 0:
@@ -550,6 +698,9 @@ class MeasurementWorker(object):
 #                 # TODO: do measurement!
                 
 #             rec(xnew, data, level=level+1, maxlevel=maxlevel, outputs=outputs)
+
+###############################################################################################################
+####################################
     
     def save():
         raise NotImplemented
