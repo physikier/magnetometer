@@ -22,7 +22,9 @@ class ControllerGui(QtGui.QMainWindow):
         ControllerGui.ui_utils = UIUtils(self)
 
         self.ui_utils.disable_widgets()
+        self.ui_utils.disable_widgets_init()
         self.controller_utils.get_cell_id_measurement_no()
+
 
         self.plotWidget_plot1.setTitle(title='data')
         self.plotWidget_plot1.setLabel('left', "Y Axis", units='A')
@@ -32,10 +34,13 @@ class ControllerGui(QtGui.QMainWindow):
         self.plotWidget_plot1.getAxis('top').setStyle(showValues=False)
         self.plotWidget_plot1.getAxis('right').setStyle(showValues=False)
 
-        # self.checkBox_B0.stateChanged.connect(self.controller_utils.apply_B0_stat)
-        # self.checkBox_B1.stateChanged.connect(self.controller_utils.apply_B1_stat)
+        self.checkBox_B0.stateChanged.connect(lambda: self.ui_utils.edit_stack(key='B0'))
+        self.spinBox_stack_B0.valueChanged.connect(lambda: self.ui_utils.edit_stack_pos(key1='B0', key2='B1'))
+        self.checkBox_B1.stateChanged.connect(lambda: self.ui_utils.edit_stack(key='B1'))
+        self.spinBox_stack_B1.valueChanged.connect(lambda: self.ui_utils.edit_stack_pos(key1='B1', key2='B0'))
 
-        # self.comboBox_method_B0.currentIndexChanged.connect(self.controller_utils.apply_method_B0)
+        self.comboBox_device_B0.currentIndexChanged.connect(lambda: self.ui_utils.synchronize_devices(key1='B0', key2='B1'))
+        self.comboBox_device_B1.currentIndexChanged.connect(lambda: self.ui_utils.synchronize_devices(key1='B1', key2='B0'))
         # self.comboBox_method_B1.currentIndexChanged.connect(self.controller_utils.apply_method_B1)
 
         # self.spinBox_freq_start_B0.valueChanged.connect(self.controller_utils.apply_freq_start_B0)
@@ -90,6 +95,8 @@ class ControllerUtils():
     def load_yaml_config(self):
         self.apply_meas_no()
         self.apply_B0_stat()
+        self.apply_B0_device()
+        self.apply_B1_device()
         self.apply_B1_stat()
         self.apply_freq_start_B0()
         self.apply_freq_start_B1()
@@ -119,6 +126,7 @@ class ControllerUtils():
         self.apply_measure_time()
         self.apply_method_B0()
         self.apply_method_B1()
+        self.apply_stack()
 
         self.gui.textBrowser_load_config.append('config-' + str(self.gui.spinBox_measure_no.value()) + '.yaml loaded...')
 
@@ -170,6 +178,16 @@ class ControllerUtils():
         else:
             self.yaml_config_handler.write_hanle_config(active_B1=False)
             print('[SET] B1 active: false')
+
+    def apply_B0_device(self):
+        device = self.gui.comboBox_device_B0.currentText()
+        self.yaml_config_handler.write_hanle_config(device_B0=device)
+        print('[SET] B0 device: ' + device)
+
+    def apply_B1_device(self):
+        device = self.gui.comboBox_device_B1.currentText()
+        self.yaml_config_handler.write_hanle_config(device_B1=device)
+        print('[SET] B1 device: ' + device)
 
     def apply_freq_start_B0(self):
         value_freq_start = self.gui.spinBox_freq_start_B0.value()
@@ -313,11 +331,20 @@ class ControllerUtils():
         print('[SET] B1 measuring method: ' + method)
         self.gui.ui_utils.disable_widgets()
 
+    def apply_stack(self):
+        stack = []
+        var1 = 'B0.' + str(self.gui.spinBox_stack_B0.value())
+        var2 = 'B1.' + str(self.gui.spinBox_stack_B1.value())
+        stack = [var1, var2]
+        print(stack)
+
     def get_cell_id_measurement_no(self):
         cell_id = self.gui.ui_utils.find_recent_cell_id()
         number = self.gui.ui_utils.find_current_measurement_number(cell_id)
         self.gui.spinBox_measure_no.setValue(number)
         self.gui.spinBox_cell_id.setValue(cell_id)
+
+
 
 
 
@@ -327,6 +354,18 @@ class UIUtils():
 
     def __init__(self, gui):
         UIUtils.gui = gui
+
+    def disable_widgets_init(self):
+        value_stat1 = self.gui.checkBox_B0.checkState()
+        value_stat2 = self.gui.checkBox_B1.checkState()
+        if value_stat1 == 2:
+            self.gui.spinBox_stack_B0.setEnabled(True)    
+        else:
+            self.gui.spinBox_stack_B0.setEnabled(False)
+        if value_stat2 == 2:
+            self.gui.spinBox_stack_B1.setEnabled(True)    
+        else:
+            self.gui.spinBox_stack_B1.setEnabled(False)
 
     def disable_widgets(self):
         method = self.gui.comboBox_method_B1.currentText()
@@ -385,6 +424,33 @@ class UIUtils():
         except ValueError:
             print('no recent cell id found: set cell id = 0')
             return 0
+
+    def synchronize_devices(self, key1, key2):
+        # key = B0, B1
+        print(key1, type(key1))
+        var1 = eval('self.gui.comboBox_device_' + key1)
+        var2 = eval('self.gui.comboBox_device_' + key2)
+        dev_index = var1.currentIndex()
+        var2.setCurrentIndex(dev_index)
+
+    def edit_stack(self, key):
+        value_stat = eval('self.gui.checkBox_' + key).checkState()
+        if value_stat == 2:
+            eval('self.gui.spinBox_stack_' + key).setEnabled(True)    
+        else:
+            eval('self.gui.spinBox_stack_' + key).setEnabled(False)
+
+    def edit_stack_pos(self, key1, key2):
+        if eval('self.gui.spinBox_stack_' + key1).value() == 0:
+            eval('self.gui.spinBox_stack_' + key2).setValue(1)
+        elif eval('self.gui.spinBox_stack_' + key1).value() == 1:
+            eval('self.gui.spinBox_stack_' + key2).setValue(0)
+
+
+
+
+        
+
 
 
 def main():
