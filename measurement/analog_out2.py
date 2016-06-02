@@ -21,15 +21,7 @@ class WaveformThread(threading.Thread):
     self.CHK(DAQmxCreateTask(b'',self.taskHandle))
     self.CHK(DAQmxCreateAOVoltageChan(self.taskHandle,b'/Dev2/ao0',b'',-5.,5.,DAQmx_Val_Volts,None))
     self.CHK(DAQmxCfgSampClkTiming(self.taskHandle, b'', self.sampleRate, DAQmx_Val_Rising, DAQmx_Val_ContSamps, self.periodLength))
-    #self.CHK(DAQmxSetWriteAttribute(self.taskHandle, DAQmx_Write_RegenMode, DAQmx_Val_AllowRegen))
-    # #self.CHK(DAQmxCfgPipelinedSampClkTiming(self.taskHandle, b'', 2e6, DAQmx_Val_Rising, DAQmx_Val_ContSamps, self.periodLength))
-    # self.CHK(DAQmxCfgOutputBuffer(self.taskHandle, 2000000))
-    # #self.CHK(DAQmxSetAODataXferReqCond(self.taskHandle,b'/Dev2/ao0',10240))
-    # self.CHK(DAQmxSetAODataXferMech(self.taskHandle, b'/Dev2/ao0',DAQmx_Val_USBbulk))
-    # #self.CHK(DAQmxCfgInputBuffer(self.taskHandle, 1))
-    # #print(DAQmx_Val_FiniteSamps)
-    
-    
+
     self.CHK(DAQmxWriteAnalogF64(self.taskHandle, self.periodLength, 0, 100.0, DAQmx_Val_GroupByChannel, self.data, None, None))
     threading.Thread.__init__(self)
 
@@ -103,7 +95,7 @@ if __name__ == '__main__':
   #x = func_ramp(t, 2)
 
 
-  x, samplerate = func_sin(0.00001, 2.6e6)
+  x, samplerate = func_sin(0.00001, 2.6e4)
   #x, samplerate = func_ramp(3, 0.001, 2e6)
 
   #print(type(x))
