@@ -21,7 +21,8 @@ class ControllerGui(QtGui.QMainWindow):
         ControllerGui.controller_utils = ControllerUtils(self)
         ControllerGui.ui_utils = UIUtils(self)
 
-        self.ui_utils.disable_widgets()
+        self.ui_utils.disable_widgets(key='B0')
+        self.ui_utils.disable_widgets(key='B1')
         self.ui_utils.disable_widgets_init()
         self.controller_utils.get_cell_id_measurement_no()
 
@@ -41,7 +42,8 @@ class ControllerGui(QtGui.QMainWindow):
 
         self.comboBox_device_B0.currentIndexChanged.connect(lambda: self.ui_utils.synchronize_devices(key1='B0', key2='B1'))
         self.comboBox_device_B1.currentIndexChanged.connect(lambda: self.ui_utils.synchronize_devices(key1='B1', key2='B0'))
-        # self.comboBox_method_B1.currentIndexChanged.connect(self.controller_utils.apply_method_B1)
+        self.comboBox_method_B0.currentIndexChanged.connect(lambda: self.ui_utils.disable_widgets(key='B0'))
+        self.comboBox_method_B1.currentIndexChanged.connect(lambda: self.ui_utils.disable_widgets(key='B1'))
 
         # self.spinBox_freq_start_B0.valueChanged.connect(self.controller_utils.apply_freq_start_B0)
         # self.spinBox_freq_start_B1.valueChanged.connect(self.controller_utils.apply_freq_start_B1)
@@ -143,6 +145,7 @@ class ControllerUtils():
         except IndexError:
             print('some shit with data reading happend, so data array has wrong dimensions')
         finally:
+            
             # delete config files from temporary config folder
             self.yaml_config_handler.delete_config_files()
 
@@ -329,14 +332,27 @@ class ControllerUtils():
         method = self.gui.comboBox_method_B1.currentText()
         self.yaml_config_handler.write_hanle_config(method_B1=method)
         print('[SET] B1 measuring method: ' + method)
-        self.gui.ui_utils.disable_widgets()
+        
 
     def apply_stack(self):
         stack = []
-        var1 = 'B0.' + str(self.gui.spinBox_stack_B0.value())
-        var2 = 'B1.' + str(self.gui.spinBox_stack_B1.value())
-        stack = [var1, var2]
-        print(stack)
+        stat_B0 = self.gui.checkBox_B0.checkState()
+        stat_B1 = self.gui.checkBox_B1.checkState()
+        method_B0 = self.gui.comboBox_method_B0.currentText()
+        method_B1 = self.gui.comboBox_method_B1.currentText()
+        # B1:
+        if stat_B1 == 2 and method_B1 in ['freq', 'amp', 'off']:
+            var2 = 'B1.' + str(self.gui.spinBox_stack_B1.value())
+            stack.append(var2)
+        else: pass
+        # B0:
+        if stat_B0 == 2 and method_B0 in ['freq', 'amp', 'off']:
+            var1 = 'B0.' + str(self.gui.spinBox_stack_B0.value())
+            stack.append(var1)
+        else: pass
+        self.yaml_config_handler.write_hanle_config(stack=stack)
+        print('[SET] stack: ' + str(stack))
+        #print(stack)
 
     def get_cell_id_measurement_no(self):
         cell_id = self.gui.ui_utils.find_recent_cell_id()
@@ -367,22 +383,22 @@ class UIUtils():
         else:
             self.gui.spinBox_stack_B1.setEnabled(False)
 
-    def disable_widgets(self):
-        method = self.gui.comboBox_method_B1.currentText()
+    def disable_widgets(self, key):
+        method = eval('self.gui.comboBox_method_' + key).currentText()
         if method == 'const':
-            self.gui.spinBox_freq_stop_B1.setEnabled(False)
-            self.gui.spinBox_freq_step_B1.setEnabled(False)
-            self.gui.spinBox_ampl_stop_B1.setEnabled(False)
-            self.gui.spinBox_ampl_step_B1.setEnabled(False)
-            self.gui.spinBox_off_stop_B1.setEnabled(False)
-            self.gui.spinBox_off_step_B1.setEnabled(False)
+            eval('self.gui.spinBox_freq_stop_' + key).setEnabled(False)
+            eval('self.gui.spinBox_freq_step_' + key).setEnabled(False)
+            eval('self.gui.spinBox_ampl_stop_' + key).setEnabled(False)
+            eval('self.gui.spinBox_ampl_step_' + key).setEnabled(False)
+            eval('self.gui.spinBox_off_stop_' + key).setEnabled(False)
+            eval('self.gui.spinBox_off_step_' + key).setEnabled(False)
         else:
-            self.gui.spinBox_freq_stop_B1.setEnabled(True)
-            self.gui.spinBox_freq_step_B1.setEnabled(True)
-            self.gui.spinBox_ampl_stop_B1.setEnabled(True)
-            self.gui.spinBox_ampl_step_B1.setEnabled(True)
-            self.gui.spinBox_off_stop_B1.setEnabled(True)
-            self.gui.spinBox_off_step_B1.setEnabled(True)
+            eval('self.gui.spinBox_freq_stop_' + key).setEnabled(True)
+            eval('self.gui.spinBox_freq_step_' + key).setEnabled(True)
+            eval('self.gui.spinBox_ampl_stop_' + key).setEnabled(True)
+            eval('self.gui.spinBox_ampl_step_' + key).setEnabled(True)
+            eval('self.gui.spinBox_off_stop_' + key).setEnabled(True)
+            eval('self.gui.spinBox_off_step_' + key).setEnabled(True)
 
     def find_current_measurement_number(self, cell_id):
         import glob

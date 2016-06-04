@@ -343,6 +343,9 @@
       <property name="decimals">
        <number>4</number>
       </property>
+      <property name="maximum">
+       <double>10000.000000000000000</double>
+      </property>
      </widget>
      <widget class="QDoubleSpinBox" name="spinBox_ampl_stop_B1">
       <property name="geometry">
@@ -616,6 +619,9 @@
       </property>
       <property name="decimals">
        <number>4</number>
+      </property>
+      <property name="maximum">
+       <double>10000.000000000000000</double>
       </property>
      </widget>
      <widget class="QLabel" name="label_4">
@@ -1122,6 +1128,9 @@
       </property>
       <property name="decimals">
        <number>4</number>
+      </property>
+      <property name="maximum">
+       <double>10000.000000000000000</double>
       </property>
      </widget>
      <widget class="QSpinBox" name="spinBox_cell_id">
