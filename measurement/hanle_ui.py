@@ -44,6 +44,7 @@ class ControllerGui(QtGui.QMainWindow):
         self.comboBox_device_B1.currentIndexChanged.connect(lambda: self.ui_utils.synchronize_devices(key1='B1', key2='B0'))
         self.comboBox_method_B0.currentIndexChanged.connect(lambda: self.ui_utils.disable_widgets(key='B0'))
         self.comboBox_method_B1.currentIndexChanged.connect(lambda: self.ui_utils.disable_widgets(key='B1'))
+        self.comboBox_method_B1.currentIndexChanged.connect(lambda: self.ui_utils.edit_stack(key='B1'))
 
         # self.spinBox_freq_start_B0.valueChanged.connect(self.controller_utils.apply_freq_start_B0)
         # self.spinBox_freq_start_B1.valueChanged.connect(self.controller_utils.apply_freq_start_B1)
@@ -374,11 +375,13 @@ class UIUtils():
     def disable_widgets_init(self):
         value_stat1 = self.gui.checkBox_B0.checkState()
         value_stat2 = self.gui.checkBox_B1.checkState()
-        if value_stat1 == 2:
+        method1 = self.gui.comboBox_method_B1.currentText()
+        method0 = self.gui.comboBox_method_B0.currentText()
+        if value_stat1 == 2 and method0 in ['freq', 'amp', 'off']:
             self.gui.spinBox_stack_B0.setEnabled(True)    
         else:
             self.gui.spinBox_stack_B0.setEnabled(False)
-        if value_stat2 == 2:
+        if value_stat2 == 2 and method1 in ['freq', 'amp', 'off']:
             self.gui.spinBox_stack_B1.setEnabled(True)    
         else:
             self.gui.spinBox_stack_B1.setEnabled(False)
@@ -392,6 +395,7 @@ class UIUtils():
             eval('self.gui.spinBox_ampl_step_' + key).setEnabled(False)
             eval('self.gui.spinBox_off_stop_' + key).setEnabled(False)
             eval('self.gui.spinBox_off_step_' + key).setEnabled(False)
+            eval('self.gui.spinBox_stack_' + key).setEnabled(False)
         else:
             eval('self.gui.spinBox_freq_stop_' + key).setEnabled(True)
             eval('self.gui.spinBox_freq_step_' + key).setEnabled(True)
@@ -399,6 +403,7 @@ class UIUtils():
             eval('self.gui.spinBox_ampl_step_' + key).setEnabled(True)
             eval('self.gui.spinBox_off_stop_' + key).setEnabled(True)
             eval('self.gui.spinBox_off_step_' + key).setEnabled(True)
+            eval('self.gui.spinBox_stack_' + key).setEnabled(True)
 
     def find_current_measurement_number(self, cell_id):
         import glob
@@ -451,13 +456,18 @@ class UIUtils():
 
     def edit_stack(self, key):
         value_stat = eval('self.gui.checkBox_' + key).checkState()
-        if value_stat == 2:
-            eval('self.gui.spinBox_stack_' + key).setEnabled(True)    
+        method = eval('self.gui.comboBox_method_' + key).currentText()
+        if value_stat == 2 and method in ['freq', 'amp', 'off']:
+            eval('self.gui.spinBox_stack_' + key).setEnabled(True)
         else:
             eval('self.gui.spinBox_stack_' + key).setEnabled(False)
+        
+           
 
     def edit_stack_pos(self, key1, key2):
-        if eval('self.gui.spinBox_stack_' + key1).value() == 0:
+        if eval('self.gui.spinBox_stack_' + key1).isEnabled() == False:
+            eval('self.gui.spinBox_stack_' + key2).setValue(0)
+        elif eval('self.gui.spinBox_stack_' + key1).value() == 0:
             eval('self.gui.spinBox_stack_' + key2).setValue(1)
         elif eval('self.gui.spinBox_stack_' + key1).value() == 1:
             eval('self.gui.spinBox_stack_' + key2).setValue(0)

@@ -220,10 +220,11 @@ class NidaqDevice_simAoAi(object):
 
         self.bufferSize = int(self.numberPointsComp*self.detectionTime) #200 
         self.waveform = numpy.zeros(self.numberPointsComp, dtype=numpy.float64)
+        self.waveform2 = numpy.zeros(self.numberPointsComp, dtype=numpy.float64)
         self.periodLength = int((self.waveform.size/10)*detection_time)
         self.pointsToRead = self.periodLength
         self.data_in = numpy.zeros(self.periodLength, dtype=numpy.float64)
-        self.method_freq = False
+        self.method_B0_freq = False
         # print('pointscomp' + str(self.numberPointsComp))
         # print('buffer=' + str(self.bufferSize))
         # print('points=' + str(self.pointsToRead))
@@ -231,7 +232,7 @@ class NidaqDevice_simAoAi(object):
         
 
 
-    def setup_task(self):
+    def setup_task_aoai(self):
         # AO Channel
         self.CHK(DAQmxCreateTask(b'',byref(self.taskHandleAO)))
         self.CHK(DAQmxCreateAOVoltageChan(self.taskHandleAO,b'/Dev2/ao0',b'',-5.,5.,DAQmx_Val_Volts,None))
@@ -242,9 +243,20 @@ class NidaqDevice_simAoAi(object):
         self.CHK(DAQmxCreateAIVoltageChan(self.taskHandleAI, b'/Dev2/ai1',b'',DAQmx_Val_Cfg_Default,-5.,5., DAQmx_Val_Volts, None))
         self.CHK(DAQmxCfgSampClkTiming(self.taskHandleAI,b'/Dev2/ao/SampleClock',self.sampleRate, DAQmx_Val_Rising, DAQmx_Val_ContSamps, self.periodLength))
 
+    def setup_task_2ao1ai(self):
+        # AO Channels
+        self.CHK(DAQmxCreateTask(b'',byref(self.taskHandleAO)))
+        self.CHK(DAQmxCreateAOVoltageChan(self.taskHandleAO,b'/Dev2/ao0:1',b'',-5.,5.,DAQmx_Val_Volts,None))
+        self.CHK(DAQmxCfgSampClkTiming(self.taskHandleAO, b'OnboardClock', self.sampleRate, DAQmx_Val_Rising, DAQmx_Val_ContSamps, self.periodLength));
+
+        # AI Channel
+        self.CHK(DAQmxCreateTask(b'',self.taskHandleAI))
+        self.CHK(DAQmxCreateAIVoltageChan(self.taskHandleAI, b'/Dev2/ai1',b'',DAQmx_Val_Cfg_Default,-5.,5., DAQmx_Val_Volts, None))
+        self.CHK(DAQmxCfgSampClkTiming(self.taskHandleAI,b'/Dev2/ao/SampleClock',self.sampleRate, DAQmx_Val_Rising, DAQmx_Val_ContSamps, self.periodLength))
+
     def run_aoai(self):
         self._calc_daq_deps()
-        self.setup_task()
+        self.setup_task_aoai()
         self.running = True
         counter = 0
         self.data=self.waveform
@@ -285,13 +297,15 @@ class NidaqDevice_simAoAi(object):
         # self.start_task()
         #self.pulse()
         time_start = time.time()
-        print('waveform:' , self.waveform)
+        print('waveform:' , self.waveform.size)
+        print('pointstoread:', self.pointsToRead)
         data = self.run_aoai()
         time_end = time.time()
         # print("Reading "+ str(points)+" samples took "+str(time_end-time_start))
         self.stop_aoai()
         q.put(data)
         # print('data2=' + str(data))
+        print('read datapoints', data.size)
         return data
 
     def downsampling(self, data):
@@ -315,24 +329,36 @@ class NidaqDevice_simAoAi(object):
 
     #################### Define Waveforms ####################
 
+    # def set_waveform(self, func, freq, amp, off):
+    #     self.waveform = self.calc_waveform(func, freq, amp, off)
+
     def set_waveform(self, func, freq, amp, off):
-        self.waveform = self.calc_waveform(func, freq, amp, off)
+        samples = self.sampleRateComp
+        if self.method_B0_freq == True:
+            print('m in init t')
+            self.t = self.init_t
+        else:
+            print('m in  t')
+            self.t = numpy.arange(0, (1./freq)*10, 1.0/samples)
+        return self.calc_waveform(func, freq, amp, off, self.t)
 
     def set_init_waveform(self, func, freq, amp, off):
-        self.init_waveform = self.calc_waveform(func, freq, amp, off)
-        self.method_freq = True
-
-    def calc_waveform(self, func, freq, amp, off):
-        print('im in set waveform')
         samples = self.sampleRateComp
+        self.init_t = numpy.arange(0, (1./freq)*10, 1.0/samples)
+        self.init_waveform = self.calc_waveform(func, freq, amp, off, self.init_t)
+        self.method_B0_freq = True
+
+    def calc_waveform(self, func, freq, amp, off, t):
+        print('im in set waveform')
+        #samples = self.sampleRateComp
         if func == 'SIN':
-            print('sin')
-            self.freq = freq
-            print(self.freq)
-            return self.func_sin(frequency=freq, amplitude=amp, offset=off, samples=samples)
+            #print('sin')
+            #self.freq = freq
+            #print(self.freq)
+            return self.func_sin(freq, amp, off, t)
         elif func == 'RAMP':
-            print('ramp')
-            return self.func_saw(freq, amp, off, samples)
+           #print('ramp')
+            return self.func_saw(freq, amp, off, t)
             
         else:
             print('waveform not implemented')
@@ -354,15 +380,15 @@ class NidaqDevice_simAoAi(object):
     #         print('waveform not implemented')
     #         return 0
 
-    def func_saw(self, frequency, amplitude, offset, samples):
+    def func_saw(self, frequency, amplitude, offset, t):
         from scipy import signal
-        t = numpy.arange(0, (1./frequency)*10, 1.0/samples)
+        #t = numpy.arange(0, (1./frequency)*10, 1.0/samples)
         f_t = amplitude*signal.sawtooth(2*numpy.pi*frequency*t) + offset
         return f_t
 
-    def func_sin(frequency, amplitude, offset, samples):
-        t = numpy.arange(0, 50*(1./frequency), 1.0/samples)
-        f_t = numpy.sin(2*numpy.pi*t/period)
+    def func_sin(self, frequency, amplitude, offset, t):
+        #t = numpy.arange(0, (1./frequency)*10, 1.0/samples)
+        f_t = amplitude*numpy.sin(2*numpy.pi*frequency*t) + offset
         return f_t
 
     ##################### Data/Measurement Scaling ####################
@@ -381,13 +407,15 @@ class NidaqDevice_simAoAi(object):
         # print('points=' + str(self.pointsToRead))
 
     def _calc_daq_deps(self):
-        if self.method_freq == True:
+        if self.method_B0_freq == True:
+            print('im in freq mode')
             self.periodLength = int((self.init_waveform.size/10)*self.detectionTime)
         else:
             self.periodLength = int((self.waveform.size/10)*self.detectionTime)
 
         self.pointsToRead = self.periodLength
         self.bufferSize = int(self.numberPointsComp*self.detectionTime) #200  
+        #self.bufferSize = self.pointsToRead
         #self.pointsToRead = int(self.numberPointsComp*self.detectionTime)
         self.data_in = numpy.zeros(self.periodLength, dtype=numpy.float64)
 

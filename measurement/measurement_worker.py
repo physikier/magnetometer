@@ -32,6 +32,7 @@ class MeasurementWorker(object):
         self._motor = motor
         
         self._config = config
+
         self._cell_id = None  # identifier of the cell in this measurement
         self._measurement_id = None  # unique id of the measurement
         self._filepath = b''
@@ -80,14 +81,28 @@ class MeasurementWorker(object):
         # analog out AO:
         # AO:1 channel:
         channel = b'/Dev2/ao0'
-     
 
-        self.func_B0 = output['func'].upper()
-        self.freq_B0 = output['freq']['start']
-        self.amp_B0 = output['amp']['start']
-        self.off_B0 = output['offset']['start']
-    
-        self._nidaq_simAoAi.set_waveform(self.func_B0, self.freq_B0, self.amp_B0, self.off_B0)
+        # check active outputs
+        out1 = self._config['outputs']['B0']['active']
+        out2 = self._config['outputs']['B1']['active']
+        method = self._config['outputs']['B0']['methods']
+        print('method', method)
+
+        self.func = output['func'].upper()
+        self.freq = output['freq']['start']
+        self.amp = output['amp']['start']
+        self.off = output['offset']['start']
+        print(self.func,self.freq,self.amp,self.off)
+
+        if method == ['freq']:
+            self._nidaq_simAoAi.set_init_waveform(self.func, self.freq, self.amp, self.off)
+        else: pass
+
+        if out1 == True and out2 == False or out1 == False and out2 == True:
+            self._nidaq_simAoAi.waveform = self._nidaq_simAoAi.set_waveform(self.func, self.freq, self.amp, self.off)
+
+        elif out1 == True and out2 == True:
+            pass
   
 
         # # analog out AO:
@@ -265,20 +280,22 @@ class MeasurementWorker(object):
             if method == 'freq':
                 if self.logger is not None:
                     self.logger.info('{}: set freq to {}. dev: {}'.format(key, value, device))
-                self._nidaq_simAoAi.set_waveform(self.func, value, self.amp, self.off)
-                print('self.freq', self.freq)
-                self._nidaq_simAoAi.set_init_waveform(self.func, self.freq, self.amp, self.off)
+                #self._nidaq_simAoAi.set_init_waveform(self.func, self.freq, self.amp, self.off)
+                self._nidaq_simAoAi.waveform = self._nidaq_simAoAi.set_waveform(self.func, value, self.amp, self.off)
+                #print('self.freq', self.freq)
+                
                 return
         
             elif method == 'amp':
                 if self.logger is not None:
                     self.logger.info('{}: set amp to {}. dev: {}'.format(key, value, device))
-                self._nidaq_simAoAi.set_waveform(self.func, self.freq, value, self.off)
+                self._nidaq_simAoAi.waveform = self._nidaq_simAoAi.set_waveform(self.func, self.freq, value, self.off)
                 return
-            elif method == 'off':
+            elif method == 'offset':
                 if self.logger is not None:
                     self.logger.info('{}: set offset to {}. dev: {}'.format(key, value, device))
-
+                self._nidaq_simAoAi.waveform = self._nidaq_simAoAi.set_waveform(self.func, self.freq, self.amp, value)
+                
                 return
         #####################################################################
         #####################################################################
@@ -431,6 +448,7 @@ class MeasurementWorker(object):
         
         # create the data arrays that should hold the measurement data
         data = np.zeros([self._nidaq.numberPointsComp] + [x.shape[0] for x in meas_ranges])
+        print('size of empty created data array', data.size)
         data_fft = np.zeros([self._nidaq.numberPointsComp/2+1] + [x.shape[0] for x in meas_ranges])
 
         if output['device'] == self.TEKTRONIX:
@@ -627,7 +645,7 @@ class MeasurementWorker(object):
                     #self._nidaq.pulse()
                     get_thread.join()
                     batch=self._nidaq_simAoAi.get_data(q)
-                    print('batch', batch)
+                    print('batchsize', batch.size)
                     downsampled_data = batch
                     # # Some configurations require a trigger signal to be sent to the tektronix device, this MUST
                     # # be sent before the measurement takes place.

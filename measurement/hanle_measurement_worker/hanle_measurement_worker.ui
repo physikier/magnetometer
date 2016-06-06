@@ -197,7 +197,7 @@
       </item>
       <item>
        <property name="text">
-        <string>off</string>
+        <string>offset</string>
        </property>
       </item>
       <item>
@@ -1113,7 +1113,7 @@
       </item>
       <item>
        <property name="text">
-        <string>off</string>
+        <string>offset</string>
        </property>
       </item>
      </widget>
