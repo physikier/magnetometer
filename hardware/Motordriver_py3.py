@@ -20,6 +20,8 @@
 import time
 import serial
 import numpy
+import time
+
 
 class Motordriver():
   
@@ -150,15 +152,45 @@ class Motordriver():
   
   # --------------------------------------------------------------------------
   def __readResponse(self):
+    ###### original code ############
+
     out = ""    
     while self.ser.inWaiting() > 0:
       c = self.ser.read(1).decode('utf-8')
       if c != '\n':
         out += c
-    
     self.ser.flushInput()
-    # python 2: return out.decode("utf-8")
-    return out
+    return out 
+    #return out.decode("utf-8") #python2
+
+    ###############################
+    #########  This code was written to filter out any non-floatable characters because
+    #########  getPosition caused problems when initializing an exitEvent routine during the 
+    #########  measurement process, but this turned out to be a bad idea.
+
+    # out = ""
+    # while self.ser.inWaiting() > 0:
+    #   c = self.ser.read(1).decode('utf-8')
+    #   if c != '\n':
+    #     out += c
+    # self.ser.flushInput()
+    # if not out:
+    #   print("jetzt ist out leer")
+    #   return str(0.0)
+    # else:
+    #   print("out vorher ist", out)
+    #   stripped = lambda s: "".join(i for i in s if 31 < ord(i) < 127)
+    #   out = stripped(out)
+    #   if len(out) > 9:
+    #     print("jetzt hat out ganz viele Werte")
+    #     out = out[:8]
+    #     print("out nachher (das lange) ist", out)
+    #     return out
+    #   else: 
+    #     print("das regulaere out nachher ist", out)
+    #     return out
+    
+    
 
   # --------------------------------------------------------------------------
   # command implementation
@@ -199,11 +231,28 @@ class Motordriver():
     return
   
   # --------------------------------------------------------------------------
+  #was added later for convenience reasons
+  def goHomeDirected(self, motor=0):
+    if 360 >= self.getPosition(motor=0) > 180:
+      self.moveRelative(motor=0, pos=360-self.getPosition(motor=0))
+    if 180 >= self.getPosition(motor=0) > 0:
+      self.moveRelative(motor=0, pos=-self.getPosition(motor=0))
+    while self.isMoving(motor=0):
+      time.sleep(0.1)
+  # --------------------------------------------------------------------------
   def goHome(self):
     self.moveToAbsolutePosition(0, 0, self.STEPS)
+    while self.isMoving(motor=0):#was added later for convenience reasons
+      time.sleep(0.1)
     self.moveToAbsolutePosition(1, 0, self.STEPS)
+    while self.isMoving(motor=1):#was added later for convenience reasons
+      time.sleep(0.1)
     self.moveToAbsolutePosition(2, 0, self.STEPS)
+    while self.isMoving(motor=2):#was added later for convenience reasons
+      time.sleep(0.1)
     self.moveToAbsolutePosition(3, 0, self.STEPS)
+    while self.isMoving(motor=3):#was added later for convenience reasons
+      time.sleep(0.1)
     
   # --------------------------------------------------------------------------
   def moveToAbsolutePosition(self, motor=0, pos=0, unit=DEGREE):
@@ -218,6 +267,8 @@ class Motordriver():
     if self.__checkMotor(motor) and self.__checkUnit(unit):
       cmd = "MOVEABS " + str(motor) + " " + str(pos) + " " + unit
       self.__sendCommand(cmd)
+      while self.isMoving(motor=0): #was added later for convenience reasons
+        time.sleep(0.1)
     return
     
   # --------------------------------------------------------------------------
@@ -229,6 +280,8 @@ class Motordriver():
     if self.__checkMotor(motor) and self.__checkUnit(unit):
       cmd = "MOVEREL " + str(motor) + " " + str(pos) + " " + unit
       self.__sendCommand(cmd)
+      while self.isMoving(motor=0):#was added later for convenience reasons
+        time.sleep(0.1)
     return
     
   # --------------------------------------------------------------------------
@@ -389,7 +442,7 @@ class Motordriver():
     return
 
   # --------------------------------------------------------------------------
-  def setConstAngularVelocity(self, motor=0, direction=CW, time=10.0):
+  def setConstAngularVelocity(self, motor=0, direction='CW', time=10.0):
     if time < 5.0:
       print("time must be >= 5.0 seconds")
       return
