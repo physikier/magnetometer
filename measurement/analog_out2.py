@@ -95,7 +95,7 @@ if __name__ == '__main__':
   #x = func_ramp(t, 2)
 
 
-  x, samplerate = func_sin(0.00001, 2.6e4)
+  x, samplerate = func_sin(0.000001, 2.6e4)
   #x, samplerate = func_ramp(3, 0.001, 2e6)
 
   #print(type(x))

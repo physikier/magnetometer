@@ -85,8 +85,36 @@ class MeasurementWorker(object):
         # check active outputs
         out1 = self._config['outputs']['B0']['active']
         out2 = self._config['outputs']['B1']['active']
-        method = self._config['outputs']['B0']['methods']
+
+        stack = self._config['stack']
+        key1, index1 = stack[0].split('.')
+
+        # if len(stack) == 1:
+        #     try:
+        #         key1, index1 = stack[0].split('.')
+        #         print(key1, index1)
+
+        #     except ValueError:
+        #         print('stack array not properly set. Either zero length or wrong index (index should be 0 if there is only one active output/key like B0 or B1')
+        #     else: pass
+        # elif len(stack) == 2:
+        #     try:
+        #         key1, index1 = stack[0].split('.')
+        #         key2, index2 = stack[1].split('.')
+        #         print(key1, index1)
+        #         print(key2, index2)
+        #     except ValueError:
+        #         print('stack array not properly set.')
+        #     else: pass
+
+        
+       
+        method = self._config['outputs'][key1]['methods']
         print('method', method)
+
+        # if out1 == True or out2 == True:
+        #     self._nidaq_simAoAi.one_ao_one_ai = True
+        # else: pass
 
         self.func = output['func'].upper()
         self.freq = output['freq']['start']
