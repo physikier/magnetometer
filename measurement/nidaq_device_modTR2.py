@@ -208,6 +208,12 @@ class NidaqDevice_simAoAi(object):
         self._channel_photodiode = channel_photodiode
         self._channel_lock_in = channel_lock_in
         self.clockSource = clock_source
+        self.pointsRead = int32()
+
+
+        # Voltage ai ao max & min
+        self.min_V = -10.
+        self.max_V = 10.
 
         self.taskHandleAO = TaskHandle()
         self.taskHandleAI = TaskHandle()
@@ -216,15 +222,14 @@ class NidaqDevice_simAoAi(object):
         self.downsampling_factor = downsampling_factor
         self.detectionTime = detection_time
         self.numberPointsComp = 0
-        self.pointsRead = int32()
-
+        
         self.bufferSize = int(self.numberPointsComp*self.detectionTime) #200 
         self.waveform = numpy.zeros(self.numberPointsComp, dtype=numpy.float64)
         self.waveform2 = numpy.zeros(self.numberPointsComp, dtype=numpy.float64)
         self.periodLength = int((self.waveform.size/10)*detection_time)
         self.pointsToRead = self.periodLength
         self.data_in = numpy.zeros(self.periodLength, dtype=numpy.float64)
-        self.method_B0_freq = False
+        self.method_freq = False
         # print('pointscomp' + str(self.numberPointsComp))
         # print('buffer=' + str(self.bufferSize))
         # print('points=' + str(self.pointsToRead))
@@ -235,23 +240,23 @@ class NidaqDevice_simAoAi(object):
     def setup_task_aoai(self):
         # AO Channel
         self.CHK(DAQmxCreateTask(b'',byref(self.taskHandleAO)))
-        self.CHK(DAQmxCreateAOVoltageChan(self.taskHandleAO,b'/Dev2/ao0',b'',-5.,5.,DAQmx_Val_Volts,None))
+        self.CHK(DAQmxCreateAOVoltageChan(self.taskHandleAO,b'/Dev2/ao0',b'',self.min_V, self.max_V,DAQmx_Val_Volts,None))
         self.CHK(DAQmxCfgSampClkTiming(self.taskHandleAO, b'OnboardClock', self.sampleRate, DAQmx_Val_Rising, DAQmx_Val_ContSamps, self.periodLength));
         
         # AI Channel
         self.CHK(DAQmxCreateTask(b'',self.taskHandleAI))
-        self.CHK(DAQmxCreateAIVoltageChan(self.taskHandleAI, b'/Dev2/ai1',b'',DAQmx_Val_Cfg_Default,-5.,5., DAQmx_Val_Volts, None))
+        self.CHK(DAQmxCreateAIVoltageChan(self.taskHandleAI, b'/Dev2/ai1',b'',DAQmx_Val_Cfg_Default,self.min_V,self.max_V, DAQmx_Val_Volts, None))
         self.CHK(DAQmxCfgSampClkTiming(self.taskHandleAI,b'/Dev2/ao/SampleClock',self.sampleRate, DAQmx_Val_Rising, DAQmx_Val_ContSamps, self.periodLength))
 
     def setup_task_2ao1ai(self):
         # AO Channels
         self.CHK(DAQmxCreateTask(b'',byref(self.taskHandleAO)))
-        self.CHK(DAQmxCreateAOVoltageChan(self.taskHandleAO,b'/Dev2/ao0:1',b'',-5.,5.,DAQmx_Val_Volts,None))
+        self.CHK(DAQmxCreateAOVoltageChan(self.taskHandleAO,b'/Dev2/ao0:1',b'',self.min_V, self.max_V,DAQmx_Val_Volts,None))
         self.CHK(DAQmxCfgSampClkTiming(self.taskHandleAO, b'OnboardClock', self.sampleRate, DAQmx_Val_Rising, DAQmx_Val_ContSamps, self.periodLength));
 
         # AI Channel
         self.CHK(DAQmxCreateTask(b'',self.taskHandleAI))
-        self.CHK(DAQmxCreateAIVoltageChan(self.taskHandleAI, b'/Dev2/ai1',b'',DAQmx_Val_Cfg_Default,-5.,5., DAQmx_Val_Volts, None))
+        self.CHK(DAQmxCreateAIVoltageChan(self.taskHandleAI, b'/Dev2/ai1',b'',DAQmx_Val_Cfg_Default,self.min_V, self.max_V, DAQmx_Val_Volts, None))
         self.CHK(DAQmxCfgSampClkTiming(self.taskHandleAI,b'/Dev2/ao/SampleClock',self.sampleRate, DAQmx_Val_Rising, DAQmx_Val_ContSamps, self.periodLength))
 
     def run_aoai(self):
@@ -334,19 +339,26 @@ class NidaqDevice_simAoAi(object):
 
     def set_waveform(self, func, freq, amp, off):
         samples = self.sampleRateComp
-        if self.method_B0_freq == True:
+        if self.method_freq == True:
             print('m in init t')
             self.t = self.init_t
         else:
             print('m in  t')
-            self.t = numpy.arange(0, (1./freq)*10, 1.0/samples)
+            self.t = numpy.arange(0, (1./freq)*1000, 1.0/samples)
         return self.calc_waveform(func, freq, amp, off, self.t)
 
     def set_init_waveform(self, func, freq, amp, off):
         samples = self.sampleRateComp
-        self.init_t = numpy.arange(0, (1./freq)*10, 1.0/samples)
+        # self.t = numpy.arange(0, (1./freq), 1.0/samples)
+        # self.init_t = numpy.array([])
+        # for i in range(1,10):
+        #     i+=1
+        #     numpy.append(self.init_t,self.t)
+        # print('size init t:', self.init_t.size)
+
+        self.init_t = numpy.arange(0, (1./freq)*1000, 1.0/(samples))
         self.init_waveform = self.calc_waveform(func, freq, amp, off, self.init_t)
-        self.method_B0_freq = True
+        self.method_freq = True
 
     def calc_waveform(self, func, freq, amp, off, t):
         print('im in set waveform')
@@ -407,11 +419,11 @@ class NidaqDevice_simAoAi(object):
         # print('points=' + str(self.pointsToRead))
 
     def _calc_daq_deps(self):
-        if self.method_B0_freq == True:
+        if self.method_freq == True:
             print('im in freq mode')
-            self.periodLength = int((self.init_waveform.size/10)*self.detectionTime)
+            self.periodLength = int((self.init_waveform.size/1000)*self.detectionTime)
         else:
-            self.periodLength = int((self.waveform.size/10)*self.detectionTime)
+            self.periodLength = int((self.waveform.size/1000)*self.detectionTime)
 
         self.pointsToRead = self.periodLength
         self.bufferSize = int(self.numberPointsComp*self.detectionTime) #200  
