@@ -560,7 +560,7 @@
        </rect>
       </property>
       <property name="maximum">
-       <number>200000</number>
+       <number>2000000</number>
       </property>
       <property name="value">
        <number>200000</number>
@@ -750,6 +750,9 @@
       <property name="decimals">
        <number>4</number>
       </property>
+      <property name="maximum">
+       <double>100000.000000000000000</double>
+      </property>
      </widget>
      <widget class="QDoubleSpinBox" name="spinBox_off_start_B0">
       <property name="geometry">
@@ -911,6 +914,9 @@
       <property name="decimals">
        <number>4</number>
       </property>
+      <property name="maximum">
+       <double>100000.000000000000000</double>
+      </property>
      </widget>
      <widget class="QDoubleSpinBox" name="spinBox_freq_start_B1">
       <property name="geometry">
@@ -923,6 +929,9 @@
       </property>
       <property name="decimals">
        <number>4</number>
+      </property>
+      <property name="maximum">
+       <double>100000.000000000000000</double>
       </property>
      </widget>
      <widget class="QPushButton" name="btn_start_measurement">

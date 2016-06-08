@@ -109,8 +109,8 @@ class MeasurementWorker(object):
 
         
        
-        method = self._config['outputs'][key1]['methods']
-        print('method', method)
+        self.method = self._config['outputs'][key1]['methods']
+        print('method', self.method)
 
         # if out1 == True or out2 == True:
         #     self._nidaq_simAoAi.one_ao_one_ai = True
@@ -122,7 +122,7 @@ class MeasurementWorker(object):
         self.off = output['offset']['start']
         print(self.func,self.freq,self.amp,self.off)
 
-        if method == ['freq']:
+        if self.method == ['freq']:
             self._nidaq_simAoAi.set_init_waveform(self.func, self.freq, self.amp, self.off)
         else: pass
 
@@ -480,7 +480,8 @@ class MeasurementWorker(object):
         data_fft = np.zeros([self._nidaq.numberPointsComp/2+1] + [x.shape[0] for x in meas_ranges])
 
         if output['device'] == self.TEKTRONIX:
-        
+
+
             self._nidaq.setup_task()
 
             if save:
@@ -649,6 +650,12 @@ class MeasurementWorker(object):
 #################### NEW ###############################
 ############################################################
         elif output['device'] == self.NIDAQ:
+
+            # reshape data array for method = freq
+            if self.method == ['freq']:
+                data = np.zeros([self._nidaq_simAoAi.numberPointsComp] + [x.shape[0] for x in meas_ranges])
+                print('size of empty created data array freq method', data.size)
+                data_fft = np.zeros([self._nidaq_simAoAi.numberPointsComp/2+1] + [x.shape[0] for x in meas_ranges])
 
             #self._nidaq_simAoAi.setup_task()
 

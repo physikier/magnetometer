@@ -342,12 +342,12 @@ class ControllerUtils():
         method_B0 = self.gui.comboBox_method_B0.currentText()
         method_B1 = self.gui.comboBox_method_B1.currentText()
         # B1:
-        if stat_B1 == 2 and method_B1 in ['freq', 'amp', 'off']:
+        if stat_B1 == 2 and method_B1 in ['freq', 'amp', 'offset']:
             var2 = 'B1.' + str(self.gui.spinBox_stack_B1.value())
             stack.append(var2)
         else: pass
         # B0:
-        if stat_B0 == 2 and method_B0 in ['freq', 'amp', 'off']:
+        if stat_B0 == 2 and method_B0 in ['freq', 'amp', 'offset']:
             var1 = 'B0.' + str(self.gui.spinBox_stack_B0.value())
             stack.append(var1)
         else: pass
@@ -377,11 +377,11 @@ class UIUtils():
         value_stat2 = self.gui.checkBox_B1.checkState()
         method1 = self.gui.comboBox_method_B1.currentText()
         method0 = self.gui.comboBox_method_B0.currentText()
-        if value_stat1 == 2 and method0 in ['freq', 'amp', 'off']:
+        if value_stat1 == 2 and method0 in ['freq', 'amp', 'offset']:
             self.gui.spinBox_stack_B0.setEnabled(True)    
         else:
             self.gui.spinBox_stack_B0.setEnabled(False)
-        if value_stat2 == 2 and method1 in ['freq', 'amp', 'off']:
+        if value_stat2 == 2 and method1 in ['freq', 'amp', 'offset']:
             self.gui.spinBox_stack_B1.setEnabled(True)    
         else:
             self.gui.spinBox_stack_B1.setEnabled(False)
@@ -457,7 +457,7 @@ class UIUtils():
     def edit_stack(self, key):
         value_stat = eval('self.gui.checkBox_' + key).checkState()
         method = eval('self.gui.comboBox_method_' + key).currentText()
-        if value_stat == 2 and method in ['freq', 'amp', 'off']:
+        if value_stat == 2 and method in ['freq', 'amp', 'offset']:
             eval('self.gui.spinBox_stack_' + key).setEnabled(True)
         else:
             eval('self.gui.spinBox_stack_' + key).setEnabled(False)

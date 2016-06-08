@@ -230,6 +230,7 @@ class NidaqDevice_simAoAi(object):
         self.pointsToRead = self.periodLength
         self.data_in = numpy.zeros(self.periodLength, dtype=numpy.float64)
         self.method_freq = False
+        self.scaling_fac = 100
         # print('pointscomp' + str(self.numberPointsComp))
         # print('buffer=' + str(self.bufferSize))
         # print('points=' + str(self.pointsToRead))
@@ -344,7 +345,7 @@ class NidaqDevice_simAoAi(object):
             self.t = self.init_t
         else:
             print('m in  t')
-            self.t = numpy.arange(0, (1./freq)*1000, 1.0/samples)
+            self.t = numpy.arange(0, (1./freq)*self.scaling_fac, 1.0/samples)
         return self.calc_waveform(func, freq, amp, off, self.t)
 
     def set_init_waveform(self, func, freq, amp, off):
@@ -356,9 +357,10 @@ class NidaqDevice_simAoAi(object):
         #     numpy.append(self.init_t,self.t)
         # print('size init t:', self.init_t.size)
 
-        self.init_t = numpy.arange(0, (1./freq)*1000, 1.0/(samples))
+        self.init_t = numpy.arange(0, (1./freq)*self.scaling_fac, 1.0/(samples))
         self.init_waveform = self.calc_waveform(func, freq, amp, off, self.init_t)
         self.method_freq = True
+        self.numberPointsComp = int((self.init_waveform.size/self.scaling_fac)*self.detectionTime)
 
     def calc_waveform(self, func, freq, amp, off, t):
         print('im in set waveform')
@@ -421,15 +423,15 @@ class NidaqDevice_simAoAi(object):
     def _calc_daq_deps(self):
         if self.method_freq == True:
             print('im in freq mode')
-            self.periodLength = int((self.init_waveform.size/1000)*self.detectionTime)
+            self.periodLength = int((self.init_waveform.size)*self.detectionTime)
         else:
-            self.periodLength = int((self.waveform.size/1000)*self.detectionTime)
+            self.periodLength = int((self.waveform.size)*self.detectionTime)
 
-        self.pointsToRead = self.periodLength
+        self.pointsToRead = int(self.periodLength/self.scaling_fac)
         self.bufferSize = int(self.numberPointsComp*self.detectionTime) #200  
         #self.bufferSize = self.pointsToRead
         #self.pointsToRead = int(self.numberPointsComp*self.detectionTime)
-        self.data_in = numpy.zeros(self.periodLength, dtype=numpy.float64)
+        self.data_in = numpy.zeros(self.pointsToRead, dtype=numpy.float64)
 
     def load_config(self, config, use_lock_in=False):
         self.detectionTime = config['measurement_time_s']
